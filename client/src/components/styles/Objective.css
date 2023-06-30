@@ -1,0 +1,40 @@
+.Objective {
+    display: flex;
+    position: relative;
+
+    font-size: 1.5rem;
+
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    align-items: center;
+}
+
+.Objective input {
+    height: 0;
+    width: 0;
+}
+
+.Objective .checkmark {
+    display: inline-block;
+    position: relative;
+
+    height: 1.5rem;
+    width: 1.5rem;
+
+    background-color: grey;
+}
+
+.Objective:hover .checkmark {
+    display: inline-block;
+    position: relative;
+
+    background-color: lightgrey;
+}
+
+.Objective input:checked ~ .checkmark {
+    background-color: green;
+}
