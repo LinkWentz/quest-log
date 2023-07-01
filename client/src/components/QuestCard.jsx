@@ -2,7 +2,7 @@
 function QuestCard(props) {
 
     return (
-      <div className="QuestCard">
+      <div className="QuestCard Glint">
         <header>Title Text</header>
         <footer>Objective Text</footer>
       </div>
