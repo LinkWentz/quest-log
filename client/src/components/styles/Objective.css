@@ -2,7 +2,13 @@
     display: flex;
     position: relative;
 
+    margin: 0.25rem 0;
+    padding: 0 1rem;
+
     font-size: 2.5rem;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.4);
+    overflow: hidden;
 
     cursor: pointer;
     -webkit-user-select: none;
@@ -18,23 +24,6 @@
     width: 0;
 }
 
-.Objective .checkmark {
-    display: inline-block;
-    position: relative;
-
-    height: 2.5rem;
-    width: 2.5rem;
-
-    background-color: grey;
-}
-
-.Objective:hover .checkmark {
-    display: inline-block;
-    position: relative;
-
-    background-color: lightgrey;
-}
-
-.Objective input:checked ~ .checkmark {
-    background-color: green;
+.Objective:has(input:checked) {
+    background-color: rgba(150, 255, 150, 0.5);
 }
