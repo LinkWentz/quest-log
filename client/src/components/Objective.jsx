@@ -1,9 +1,9 @@
 import './styles/Objective.css'
 
-function Objective() {
+function Objective(props) {
     return (
         <label className="Objective">
-            Objective Text
+            {props.children}
             <input type="checkbox"/>
         </label>
     )
