@@ -16,20 +16,8 @@
 /* Glass Effect */
 
 .Glass {
-    background-color: rgba(255, 255, 255, .15);
-    backdrop-filter: blur(5px);
-    border-radius: 20px;
-}
-
-.Glass::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-
-    content: '';
-    box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
+    background-color: rgba(255, 255, 255, .30);
+    backdrop-filter: blur(3px);
     border-radius: 20px;
 }
 
@@ -58,9 +46,11 @@
     display: inline-block;
     
     margin: 0;
-    padding: 20px;
+    padding: 40px;
     height: 100%;
     width: 100%;
+
+    overflow-y: auto;
 }
 
 .Quest div {
@@ -72,21 +62,39 @@
 }
 
 .Quest header {
-    height: 15%;
+    display: flex;
+
+    height: auto; 
+    min-height: auto;
 
     text-align: start;
-    font-size: 3rem;
+    line-height: 7rem;
+    font-size: 7rem;
+    overflow: visible;
+
+    align-items: center;
 }
 
 .Quest main {
-    height: 70%;
-
     text-align: start;
-    font-size: 1.5rem;
+    font-size: 2.5rem;
+    line-height: 3.75rem;
+    overflow-y: auto;
 }
 
 .Quest footer {
-    height: 15%;
+    overflow-y: auto;
+}
 
-    overflow-y: scroll
+.Quest .break {
+    display: block;
+    position: relative;
+    left: 2%;
+
+    margin: 1.5rem 0;
+    padding: 0px;
+    height: 0.1rem;
+    width: 96%;
+
+    background-color: #000000;
 }
