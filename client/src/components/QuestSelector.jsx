@@ -1,6 +1,10 @@
+import QuestCard from './QuestCard'
+
 function QuestSelector() {
   return (
-    <div className="QuestSelector Glass"></div>
+    <div className="QuestSelector Glass">
+      <QuestCard>Hello</QuestCard>
+    </div>
   );
 }
 
