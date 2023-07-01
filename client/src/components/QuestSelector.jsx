@@ -1,8 +1,6 @@
 function QuestSelector() {
   return (
-    <div className="QuestSelector">
-        <div className="Glass"></div>
-    </div>
+    <div className="QuestSelector Glass"></div>
   );
 }
 

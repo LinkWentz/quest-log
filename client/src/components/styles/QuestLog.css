@@ -1,10 +1,16 @@
 .QuestLog {
+    display: grid;
     position: absolute;
     top: 0;
     left: 0;
 
+    padding: 30px;
     height: 100%;
     width: 100%;
+
+    grid-template-columns: 3fr 7fr;
+    grid-template-rows: 1fr;
+    gap: 40px;
 }
 
 /* Glass Effect */
@@ -12,6 +18,7 @@
 .Glass {
     background-color: rgba(255, 255, 255, .15);
     backdrop-filter: blur(5px);
+    border-radius: 20px;
 }
 
 .Glass::before {
@@ -30,16 +37,11 @@
 
 .QuestSelector {
     display: inline-block;
-    position: absolute;
-    top: 0;
-    left: 0;
     
     margin: 0;
     padding: 20px;
     height: 100%;
-    width: 30%;
-
-    border-right: 2px solid white;
+    width: 100%;
 }
 
 .QuestSelector div {
@@ -54,14 +56,11 @@
 
 .Quest {
     display: inline-block;
-    position: absolute;
-    top: 0;
-    left: 30%;
     
     margin: 0;
     padding: 20px;
     height: 100%;
-    width: 70%;
+    width: 100%;
 }
 
 .Quest div {
