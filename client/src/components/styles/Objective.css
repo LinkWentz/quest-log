@@ -25,5 +25,17 @@
 }
 
 .Objective:has(input:checked) {
-    background-color: rgba(150, 255, 150, 0.5);
+    background: linear-gradient(150deg, rgba(100, 255, 100, 0.5), rgba(100, 255, 100, 0.7), rgba(255, 255, 255, 0.4));
+    background-size: 400% 400%;
+    animation: complete 0.5s ease;
+    background-position: 0% 50%;
+}
+
+@keyframes complete {
+    from{
+        background-position: 100% 50%;
+    }
+    to{
+        background-position: 0% 50%;
+    }
 }
