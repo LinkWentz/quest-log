@@ -32,6 +32,43 @@
     padding: 20px;
     height: 100%;
     width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.QuestSelector:first-child .QuestCard {
+    margin-top: 0;
+}
+
+.QuestCard { 
+    margin: 0.5rem 0;
+    padding: 0.5rem 1.5rem;
+    width: 100%;
+
+    background-color: rgba(255, 255, 255, .4);
+    border-radius: 10px;
+}
+
+.QuestCard header {
+    max-width: 100%;
+
+    font-size: 2.5rem;
+    line-height: 3rem;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.QuestCard footer {
+    max-width: 100%;
+
+    font-size: 1.5rem;
+    line-height: 2rem;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 /* Quest */

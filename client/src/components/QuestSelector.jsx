@@ -4,6 +4,8 @@ function QuestSelector() {
   return (
     <div className="QuestSelector Glass">
       <QuestCard>Hello</QuestCard>
+      <QuestCard>Hello</QuestCard>
+      <QuestCard>Hello</QuestCard>
     </div>
   );
 }

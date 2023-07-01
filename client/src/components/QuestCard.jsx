@@ -1,7 +1,11 @@
 
 function QuestCard(props) {
+
     return (
-      <div className="QuestCard">{props.children}</div>
+      <div className="QuestCard">
+        <header>Title Text</header>
+        <footer>Objective Text</footer>
+      </div>
     );
   }
   
