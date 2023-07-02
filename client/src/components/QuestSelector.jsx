@@ -3,9 +3,9 @@ import QuestCard from './QuestCard'
 function QuestSelector() {
   return (
     <div className="QuestSelector Glass">
-      <QuestCard>Hello</QuestCard>
-      <QuestCard>Hello</QuestCard>
-      <QuestCard>Hello</QuestCard>
+      <QuestCard title="Title Text">Objective Text</QuestCard>
+      <QuestCard title="Title Text">Objective Text</QuestCard>
+      <QuestCard title="Title Text">Objective Text</QuestCard>
     </div>
   );
 }

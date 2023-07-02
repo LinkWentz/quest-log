@@ -3,8 +3,8 @@ function QuestCard(props) {
 
     return (
       <div className="QuestCard Glint">
-        <header>Title Text</header>
-        <footer>Objective Text</footer>
+        <header>{props.title}</header>
+        <footer>{props.children}</footer>
       </div>
     );
   }
