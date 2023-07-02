@@ -95,6 +95,13 @@
     white-space: nowrap;
 }
 
+.QuestSelector button {
+    border: none;
+    outline: none;
+    font-size: 2rem;
+    font-family: inherit;
+}
+
 /* Quest */
 
 .Quest {

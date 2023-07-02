@@ -6,6 +6,7 @@ function QuestSelector() {
       <QuestCard title="Title Text">Objective Text</QuestCard>
       <QuestCard title="Title Text">Objective Text</QuestCard>
       <QuestCard title="Title Text">Objective Text</QuestCard>
+      <button className="QuestCard Glint">+</button>
     </div>
   );
 }
