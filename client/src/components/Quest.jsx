@@ -14,6 +14,7 @@ function Quest() {
                 <Objective>Objective Text</Objective>
             </form>
         </footer>
+        <button className="editButton Glint">Edit</button>
     </div>
   );
 }
