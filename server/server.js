@@ -1,14 +1,18 @@
 require('dotenv').config();
 
+// Packages
 const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oidc');
-
-const app = express();
+// Routers
+const api = require(path.resolve( __dirname, "./api.js"));
 
 /*----- Config -----*/
+// Server and 
+const app = express();
+
 // Environment Variables
 const PORT = process.env['PORT'];
 
@@ -67,6 +71,9 @@ app.get('/oauth2/redirect/google', passport.authenticate('google', {
     successRedirect: '/',
     failureRedirect: '/login'
 }));
+
+// Database API
+app.use(ensureAuthenticated, api);
 
 // Default
 app.get('/', (req, res, next) => {
