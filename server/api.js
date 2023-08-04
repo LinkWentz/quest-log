@@ -18,8 +18,34 @@ const pool = new pg.Pool({
 });
 
 /*---- Routes -----*/
+// Middleware
+api.use('/:user', (req, res, next) => {
+    if (req.user.id != req.params.user && req.params.user != 0){
+        res.status(401);
+        res.send('Request Not Authorized');
+        return;
+    }
+    next();
+})
+
+// Quest Logs
 api.get('/:user', async (req, res) => {
-    res.send('User ID: ' + req.params.user);
+    try {
+        const users_quests_logs = await pool.query(`SELECT * FROM quest_logs WHERE user_id = ${req.params.user}`);
+        
+        if (users_quests_logs.rows.length == 0) {
+            res.status(404);
+            res.send([]);
+            return;
+        }
+
+        res.send(users_quests_logs.rows);
+    }
+    catch {
+        res.status(404);
+        res.send([]);
+    }
+    return;
 });
 
-module.exports = api
+module.exports = api;
