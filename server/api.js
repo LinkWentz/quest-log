@@ -31,15 +31,16 @@ api.use('/:user', (req, res, next) => {
 // Quest Logs
 api.get('/:user', async (req, res) => {
     try {
-        const users_quests_logs = await pool.query(`SELECT * FROM quest_logs WHERE user_id = ${req.params.user}`);
-        
-        if (users_quests_logs.rows.length == 0) {
+        let result = await pool.query(`SELECT * FROM quest_logs WHERE user_id = ${req.params.user} ORDER BY created_at`);
+        result = result.rows;
+
+        if (!result) {
             res.status(404);
             res.send([]);
             return;
         }
 
-        res.send(users_quests_logs.rows);
+        res.send(result);
     }
     catch {
         res.status(404);
@@ -47,5 +48,68 @@ api.get('/:user', async (req, res) => {
     }
     return;
 });
+
+api.get('/:user/:questLog', async (req, res) => {
+    try {
+        let result = await pool.query(`SELECT * FROM quests WHERE log_id = ${req.params.questLog} ORDER BY created_at`);
+        result = result.rows;
+
+        result = await result.slice(parseInt(req.query.start) || 0, ((parseInt(req.query.start) || 0) + parseInt(req.query.limit)) || -1);
+        console.log(((req.query.start || 0) + req.query.limit) || -1);
+
+        if (!result) {
+            res.status(404);
+            res.send([]);
+            return;
+        }
+
+        res.send(result);
+    }
+    catch {
+        res.status(404);
+        res.send([]);
+    }
+    return;
+});
+
+api.get('/:user/:questLog/:quest', async (req, res) => {
+    try {
+        let result = await pool.query(`SELECT * FROM steps WHERE quest_id = ${req.params.quest} AND position_in_quest = ${req.query.step || '(SELECT MAX(position_in_quest) FROM steps)'} ORDER BY position_in_quest LIMIT 1`);
+        result = result.rows;
+
+        if (!result) {
+            res.status(404);
+            res.send([]);
+            return;
+        }
+
+        res.send(result);
+    }
+    catch {
+        res.status(404);
+        res.send([]);
+    }
+    return;
+});
+
+api.get('/:user/:questLog/:quest/:step', async (req, res) => {
+    try {
+        let result = await pool.query(`SELECT * FROM objectives WHERE step_id = ${req.params.step} ORDER BY created_at`);
+        result = result.rows;
+
+        if (!result) {
+            res.status(404);
+            res.send([]);
+            return;
+        }
+
+        res.send(result);
+    }
+    catch {
+        res.status(404);
+        res.send([]);
+    }
+    return;
+})
 
 module.exports = api;
