@@ -3,6 +3,7 @@ require('dotenv').config();
 // Packages
 const path = require('path');
 const express = require('express');
+const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oidc');
@@ -12,6 +13,7 @@ const api = require(path.resolve( __dirname, "./api.js"));
 /*----- Config -----*/
 // Server Setup
 const app = express();
+app.use(bodyParser.json());
 
 // Environment Variables
 const PORT = process.env['PORT'];
