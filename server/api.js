@@ -41,12 +41,10 @@ api.get('/:user', async (req, res) => {
             throw new Error('No records found!');
         }
 
-        res.status(200);
-        res.send(result);
+        res.status(200).send(result);
     }
     catch {
-        res.status(404);
-        res.send([]);
+        res.status(404).send([]);
     }
     return;
 });
@@ -66,12 +64,10 @@ api.get('/:user/:questLog', async (req, res) => {
             throw new Error('No records found!');
         }
 
-        res.status(200);
-        res.send(result);
+        res.status(200).send(result);
     }
     catch {
-        res.status(404);
-        res.send([]);
+        res.status(404).send();
     }
     return;
 });
@@ -91,12 +87,10 @@ api.get('/:user/:questLog/:quest', async (req, res) => {
             throw new Error('No records found!');
         }
 
-        res.status(200);
-        res.send(result);
+        res.status(200).send(result);
     }
     catch {
-        res.status(404);
-        res.send([]);
+        res.status(404).send([]);
     }
     return;
 });
@@ -114,12 +108,10 @@ api.get('/:user/:questLog/:quest/:step', async (req, res) => {
             throw new Error('No records found!');
         }
 
-        res.status(200);
-        res.send(result);
+        res.status(200).send(result);
     }
     catch {
-        res.status(404);
-        res.send([]);
+        res.status(404).send([]);
     }
     return;
 });
