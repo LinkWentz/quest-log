@@ -124,4 +124,97 @@ api.get('/:user/:questLog/:quest/:step', async (req, res) => {
     return;
 });
 
+// Put Routes
+api.put('/:user', async (req, res) => {
+    try {
+        const query = `INSERT INTO quest_logs
+                       (id, 
+                        user_id, 
+                        title, 
+                        created_at)
+                       VALUES 
+                       (DEFAULT, 
+                        ${req.params.user}, 
+                        '${req.body.quest_log_title}', 
+                        NOW())`;
+        let result = await pool.query(query);
+
+        res.status(201).send('Success!');
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).send();
+    }
+});
+
+api.put('/:user/:questLog', async (req, res) => {
+    try {
+        const query = `INSERT INTO quests
+                       (id, 
+                        log_id, 
+                        title, 
+                        created_at)
+                       VALUES 
+                       (DEFAULT, 
+                        ${req.params.questLog}, 
+                        '${req.body.quest_title}', 
+                        NOW())`;
+        let result = await pool.query(query);
+
+        res.status(201).send('Success!');
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).send();
+    }
+});
+
+api.put('/:user/:questLog/:quest', async (req, res) => {
+    try {
+        const query = `INSERT INTO steps
+                       (id, 
+                        quest_id,
+                        title, 
+                        body, 
+                        created_at)
+                       VALUES 
+                       (DEFAULT, 
+                        ${req.params.quest},
+                        '${req.body.step_title}',
+                        '${req.body.step_body}',
+                        NOW())`;
+        let result = await pool.query(query);
+
+        res.status(201).send('Success!');
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).send();
+    }
+});
+
+api.put('/:user/:questLog/:quest/:step', async (req, res) => {
+    try {
+        const query = `INSERT INTO objectives
+                       (id, 
+                        step_id,
+                        statement,
+                        complete,
+                        created_at)
+                       VALUES 
+                       (DEFAULT, 
+                        ${req.params.step}, 
+                        '${req.body.objective_statement}',
+                        ${req.body.objective_complete},
+                        NOW())`;
+        let result = await pool.query(query);
+
+        res.status(201).send('Success!');
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).send();
+    }
+});
+
 module.exports = api;
