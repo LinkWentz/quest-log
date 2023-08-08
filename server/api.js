@@ -209,8 +209,8 @@ api.post('/:user/:questLog/:quest/:step', async (req, res) => {
     }
 });
 
-// Put Routes
-api.put('/:user/:questLog', async (req, res) => {
+// Patch Routes
+api.patch('/:user/:questLog', async (req, res) => {
     try {
         const query = `UPDATE quest_logs
                        SET title = '${req.body.quest_log_title}'
@@ -225,7 +225,7 @@ api.put('/:user/:questLog', async (req, res) => {
     }
 });
 
-api.put('/:user/:questLog/:quest', async (req, res) => {
+api.patch('/:user/:questLog/:quest', async (req, res) => {
     try {
         const query = `UPDATE quests
                        SET title = '${req.body.quest_title}'
@@ -240,7 +240,7 @@ api.put('/:user/:questLog/:quest', async (req, res) => {
     }
 });
 
-api.put('/:user/:questLog/:quest/:step', async (req, res) => {
+api.patch('/:user/:questLog/:quest/:step', async (req, res) => {
     try {
         const query = `UPDATE steps
                        SET title = '${req.body.step_title}', 
@@ -256,7 +256,7 @@ api.put('/:user/:questLog/:quest/:step', async (req, res) => {
     }
 });
 
-api.put('/:user/:questLog/:quest/:step/:objective', async (req, res) => {
+api.patch('/:user/:questLog/:quest/:step/:objective', async (req, res) => {
     try {
         const query = `UPDATE objectives
                        SET statement = '${req.body.objective_statement}', 
