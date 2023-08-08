@@ -116,8 +116,8 @@ api.get('/:user/:questLog/:quest/:step', async (req, res) => {
     return;
 });
 
-// Put Routes
-api.put('/:user', async (req, res) => {
+// Post Routes
+api.post('/:user', async (req, res) => {
     try {
         const query = `INSERT INTO quest_logs
                        (id, 
@@ -139,7 +139,7 @@ api.put('/:user', async (req, res) => {
     }
 });
 
-api.put('/:user/:questLog', async (req, res) => {
+api.post('/:user/:questLog', async (req, res) => {
     try {
         const query = `INSERT INTO quests
                        (id, 
@@ -161,7 +161,7 @@ api.put('/:user/:questLog', async (req, res) => {
     }
 });
 
-api.put('/:user/:questLog/:quest', async (req, res) => {
+api.post('/:user/:questLog/:quest', async (req, res) => {
     try {
         const query = `INSERT INTO steps
                        (id, 
@@ -185,7 +185,7 @@ api.put('/:user/:questLog/:quest', async (req, res) => {
     }
 });
 
-api.put('/:user/:questLog/:quest/:step', async (req, res) => {
+api.post('/:user/:questLog/:quest/:step', async (req, res) => {
     try {
         const query = `INSERT INTO objectives
                        (id, 
