@@ -209,4 +209,67 @@ api.post('/:user/:questLog/:quest/:step', async (req, res) => {
     }
 });
 
+// Put Routes
+api.put('/:user/:questLog', async (req, res) => {
+    try {
+        const query = `UPDATE quest_logs
+                       SET title = '${req.body.quest_log_title}'
+                       WHERE id = ${req.params.questLog}`;
+        let result = await pool.query(query);
+
+        res.status(201).send('Success!');
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).send();
+    }
+});
+
+api.put('/:user/:questLog/:quest', async (req, res) => {
+    try {
+        const query = `UPDATE quests
+                       SET title = '${req.body.quest_title}'
+                       WHERE id = ${req.params.quest}`;
+        let result = await pool.query(query);
+
+        res.status(201).send('Success!');
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).send();
+    }
+});
+
+api.put('/:user/:questLog/:quest/:step', async (req, res) => {
+    try {
+        const query = `UPDATE steps
+                       SET title = '${req.body.step_title}', 
+                           body = '${req.body.step_body}'
+                       WHERE id = ${req.params.step}`;
+        let result = await pool.query(query);
+
+        res.status(201).send('Success!');
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).send();
+    }
+});
+
+api.put('/:user/:questLog/:quest/:step/:objective', async (req, res) => {
+    try {
+        const query = `UPDATE objectives
+                       SET statement = '${req.body.objective_statement}', 
+                           complete = ${req.body.objective_complete}
+                       WHERE id = ${req.params.objective}`;
+        let result = await pool.query(query);
+
+        res.status(201).send('Success!');
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).send();
+    }
+});
+
 module.exports = api;
