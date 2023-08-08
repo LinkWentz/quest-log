@@ -55,12 +55,12 @@ api.get('/:user/:questLog', async (req, res) => {
     try {
         const query = `SELECT * FROM quests 
                        WHERE log_id = ${req.params.questLog} 
-                       ORDER BY created_at`;
+                       ORDER BY created_at
+                       OFFSET ${parseInt(req.query.start) || 0}
+                       LIMIT ${parseInt(req.query.limit) || 10}`;
 
         let result = await pool.query(query);
         result = result.rows;
-
-        result = await result.slice(parseInt(req.query.start) || 0, ((parseInt(req.query.start) || 0) + parseInt(req.query.limit)) || -1);
 
         if (!result) {
             throw new Error('No records found!');
