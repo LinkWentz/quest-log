@@ -79,9 +79,9 @@ api.get('/:user/:questLog', async (req, res) => {
 api.get('/:user/:questLog/:quest', async (req, res) => {
     try {
         const query = `SELECT * FROM steps 
-                       WHERE quest_id = ${req.params.quest} AND 
-                       position_in_quest = ${req.query.step || '(SELECT MAX(position_in_quest) FROM steps)'} 
-                       ORDER BY position_in_quest 
+                       WHERE quest_id = ${req.params.quest}
+                       ORDER BY created_at DESC
+                       OFFSET ${parseInt(req.query.step) || 0}
                        LIMIT 1`;
 
         let result = await pool.query(query);
