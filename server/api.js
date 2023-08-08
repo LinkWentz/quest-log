@@ -21,8 +21,7 @@ const pool = new pg.Pool({
 // Middleware
 api.use('/:user', (req, res, next) => {
     if (req.user.id != req.params.user && req.params.user != 0){
-        res.status(401);
-        res.send('Request Not Authorized');
+        res.status(401).send();
         return;
     }
     return next();

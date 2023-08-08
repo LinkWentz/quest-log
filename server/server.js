@@ -10,7 +10,7 @@ const GoogleStrategy = require('passport-google-oidc');
 const api = require(path.resolve( __dirname, "./api.js"));
 
 /*----- Config -----*/
-// Server and 
+// Server Setup
 const app = express();
 
 // Environment Variables
@@ -60,7 +60,7 @@ function ensureAuthenticated(req, res, next) {
         next();
     } 
     else {
-        res.redirect('/login');
+        res.status(401).send();
     }
 }
 
