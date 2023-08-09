@@ -272,4 +272,61 @@ api.patch('/:user/:questLog/:quest/:step/:objective', async (req, res) => {
     }
 });
 
+// Delete Routes
+api.delete('/:user/:questLog', async (req, res) => {
+    try {
+        const query = `DELETE FROM quest_logs
+                       WHERE id = ${req.params.questLog}`;
+        let result = await pool.query(query);
+
+        res.status(200).send('Success!');
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).send();
+    }
+});
+
+api.delete('/:user/:questLog/:quest', async (req, res) => {
+    try {
+        const query = `DELETE FROM quests
+                       WHERE id = ${req.params.quest}`;
+        let result = await pool.query(query);
+
+        res.status(200).send('Success!');
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).send();
+    }
+});
+
+api.delete('/:user/:questLog/:quest/:step', async (req, res) => {
+    try {
+        const query = `DELETE FROM steps
+                       WHERE id = ${req.params.step}`;
+        let result = await pool.query(query);
+
+        res.status(200).send('Success!');
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).send();
+    }
+});
+
+api.delete('/:user/:questLog/:quest/:step/:objective', async (req, res) => {
+    try {
+        const query = `DELETE FROM objectives
+                       WHERE id = ${req.params.objective}`;
+        let result = await pool.query(query);
+
+        res.status(200).send('Success!');
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).send();
+    }
+});
+
 module.exports = api;
