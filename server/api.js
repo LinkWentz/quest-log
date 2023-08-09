@@ -20,11 +20,11 @@ const pool = new pg.Pool({
 /*---- Routes -----*/
 // Middleware
 api.use('/:user', (req, res, next) => {
-    if (req.user.id != req.params.user && req.params.user != 0){
-        res.status(401).send();
-        return;
+    if (req.params.user == 0 || req.user.id == req.params.user){
+        return next();
     }
-    return next();
+    res.status(401).send();
+    return;
 });
 
 // Get Routes

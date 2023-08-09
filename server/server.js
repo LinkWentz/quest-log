@@ -75,7 +75,13 @@ app.get('/oauth2/redirect/google', passport.authenticate('google', {
 }));
 
 // Database API
-app.use(ensureAuthenticated, api);
+if (process.argv.slice(2) == 'test') {
+    app.use(api);
+}
+else {
+    app.use(ensureAuthenticated, api);
+}
+
 
 // Default
 app.get('/', (req, res, next) => {
