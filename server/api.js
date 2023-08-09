@@ -37,14 +37,15 @@ api.get('/:user', async (req, res) => {
         let result = await pool.query(query);
         result = result.rows;
 
-        if (!result) {
-            throw new Error('No records found!');
+        if (result.length == 0) {
+            res.status(404).send();   
         }
 
         res.status(200).send(result);
     }
-    catch {
-        res.status(404).send([]);
+    catch (err) {
+        console.log(err);
+        res.status(500).send();
     }
     return;
 });
@@ -60,14 +61,15 @@ api.get('/:user/:questLog', async (req, res) => {
         let result = await pool.query(query);
         result = result.rows;
 
-        if (!result) {
-            throw new Error('No records found!');
+        if (result.length == 0) {
+            res.status(404).send();   
         }
 
         res.status(200).send(result);
     }
-    catch {
-        res.status(404).send();
+    catch (err) {
+        console.log(err);
+        res.status(500).send();
     }
     return;
 });
@@ -83,14 +85,15 @@ api.get('/:user/:questLog/:quest', async (req, res) => {
         let result = await pool.query(query);
         result = result.rows;
 
-        if (!result) {
-            throw new Error('No records found!');
+        if (result.length == 0) {
+            res.status(404).send();   
         }
 
         res.status(200).send(result);
     }
-    catch {
-        res.status(404).send([]);
+    catch (err) {
+        console.log(err);
+        res.status(500).send();
     }
     return;
 });
@@ -104,14 +107,15 @@ api.get('/:user/:questLog/:quest/:step', async (req, res) => {
         let result = await pool.query(query);
         result = result.rows;
 
-        if (!result) {
-            throw new Error('No records found!');
+        if (result.length == 0) {
+            res.status(404).send();   
         }
 
         res.status(200).send(result);
     }
-    catch {
-        res.status(404).send([]);
+    catch (err) {
+        console.log(err);
+        res.status(500).send();
     }
     return;
 });
@@ -131,7 +135,7 @@ api.post('/:user', async (req, res) => {
                         NOW())`;
         let result = await pool.query(query);
 
-        res.status(201).send('Success!');
+        res.status(201).send();
     }
     catch (err) {
         console.log(err);
@@ -153,7 +157,7 @@ api.post('/:user/:questLog', async (req, res) => {
                         NOW())`;
         let result = await pool.query(query);
 
-        res.status(201).send('Success!');
+        res.status(201).send();
     }
     catch (err) {
         console.log(err);
@@ -177,7 +181,7 @@ api.post('/:user/:questLog/:quest', async (req, res) => {
                         NOW())`;
         let result = await pool.query(query);
 
-        res.status(201).send('Success!');
+        res.status(201).send();
     }
     catch (err) {
         console.log(err);
@@ -201,7 +205,7 @@ api.post('/:user/:questLog/:quest/:step', async (req, res) => {
                         NOW())`;
         let result = await pool.query(query);
 
-        res.status(201).send('Success!');
+        res.status(201).send();
     }
     catch (err) {
         console.log(err);
@@ -217,7 +221,7 @@ api.patch('/:user/:questLog', async (req, res) => {
                        WHERE id = ${req.params.questLog}`;
         let result = await pool.query(query);
 
-        res.status(201).send('Success!');
+        res.status(201).send();
     }
     catch (err) {
         console.log(err);
@@ -232,7 +236,7 @@ api.patch('/:user/:questLog/:quest', async (req, res) => {
                        WHERE id = ${req.params.quest}`;
         let result = await pool.query(query);
 
-        res.status(201).send('Success!');
+        res.status(201).send();
     }
     catch (err) {
         console.log(err);
@@ -248,7 +252,7 @@ api.patch('/:user/:questLog/:quest/:step', async (req, res) => {
                        WHERE id = ${req.params.step}`;
         let result = await pool.query(query);
 
-        res.status(201).send('Success!');
+        res.status(201).send();
     }
     catch (err) {
         console.log(err);
@@ -264,7 +268,7 @@ api.patch('/:user/:questLog/:quest/:step/:objective', async (req, res) => {
                        WHERE id = ${req.params.objective}`;
         let result = await pool.query(query);
 
-        res.status(201).send('Success!');
+        res.status(201).send();
     }
     catch (err) {
         console.log(err);
@@ -279,7 +283,7 @@ api.delete('/:user/:questLog', async (req, res) => {
                        WHERE id = ${req.params.questLog}`;
         let result = await pool.query(query);
 
-        res.status(200).send('Success!');
+        res.status(200).send();
     }
     catch (err) {
         console.log(err);
@@ -293,7 +297,7 @@ api.delete('/:user/:questLog/:quest', async (req, res) => {
                        WHERE id = ${req.params.quest}`;
         let result = await pool.query(query);
 
-        res.status(200).send('Success!');
+        res.status(200).send();
     }
     catch (err) {
         console.log(err);
@@ -307,7 +311,7 @@ api.delete('/:user/:questLog/:quest/:step', async (req, res) => {
                        WHERE id = ${req.params.step}`;
         let result = await pool.query(query);
 
-        res.status(200).send('Success!');
+        res.status(200).send();
     }
     catch (err) {
         console.log(err);
@@ -321,7 +325,7 @@ api.delete('/:user/:questLog/:quest/:step/:objective', async (req, res) => {
                        WHERE id = ${req.params.objective}`;
         let result = await pool.query(query);
 
-        res.status(200).send('Success!');
+        res.status(200).send();
     }
     catch (err) {
         console.log(err);
