@@ -27,7 +27,7 @@ api.use('/:user', (req, res, next) => {
 });
 
 // Get Routes
-api.get('/:user', (req, res, next) => {
+api.get('/:user/questlogs', (req, res, next) => {
     pool.query(`SELECT * FROM quest_logs
                 WHERE user_id = ${req.params.user} 
                 ORDER BY created_at`)
@@ -38,7 +38,7 @@ api.get('/:user', (req, res, next) => {
     .catch(next);
 });
 
-api.get('/:user/:questLog', (req, res, next) => {
+api.get('/:user/quests/:questLog', (req, res, next) => {
     pool.query(`SELECT * FROM quests 
                 WHERE log_id = ${req.params.questLog} 
                 ORDER BY created_at
@@ -51,7 +51,7 @@ api.get('/:user/:questLog', (req, res, next) => {
     .catch(next);
 });
 
-api.get('/:user/:questLog/:quest', (req, res, next) => {
+api.get('/:user/steps/:quest', (req, res, next) => {
     pool.query(`SELECT * FROM steps 
                 WHERE quest_id = ${req.params.quest}
                 ORDER BY created_at DESC
@@ -64,7 +64,7 @@ api.get('/:user/:questLog/:quest', (req, res, next) => {
     .catch(next);
 });
 
-api.get('/:user/:questLog/:quest/:step', (req, res, next) => {
+api.get('/:user/objectives/:step', (req, res, next) => {
     pool.query(`SELECT * FROM objectives 
                 WHERE step_id = ${req.params.step} 
                 ORDER BY created_at`)
@@ -75,7 +75,7 @@ api.get('/:user/:questLog/:quest/:step', (req, res, next) => {
     .catch(next);
 });
 
-api.get('/:user', (req, res) => {
+api.get('/:user/*', (req, res) => {
     if (res.locals.result.rows.length == 0) {
         return res.status(404).send();
     }
@@ -84,7 +84,7 @@ api.get('/:user', (req, res) => {
 })
 
 // Post Routes
-api.post('/:user', (req, res, next) => {
+api.post('/:user/questlog', (req, res, next) => {
     pool.query(`INSERT INTO quest_logs
                 (id, user_id, title, created_at)
                 VALUES 
@@ -92,7 +92,7 @@ api.post('/:user', (req, res, next) => {
     .then(() => {next()}).catch(next);
 });
 
-api.post('/:user/:questLog', (req, res, next) => {
+api.post('/:user/quest/:questLog', (req, res, next) => {
     pool.query(`INSERT INTO quests
                 (id, log_id, title, created_at)
                 VALUES 
@@ -100,7 +100,7 @@ api.post('/:user/:questLog', (req, res, next) => {
     .then(() => {next()}).catch(next);
 });
 
-api.post('/:user/:questLog/:quest', (req, res, next) => {
+api.post('/:user/step/:quest', (req, res, next) => {
     pool.query(`INSERT INTO steps
                 (id, quest_id, title, body, created_at)
                 VALUES 
@@ -108,7 +108,7 @@ api.post('/:user/:questLog/:quest', (req, res, next) => {
     .then(() => {next()}).catch(next);
 });
 
-api.post('/:user/:questLog/:quest/:step', (req, res, next) => {
+api.post('/:user/objective/:step', (req, res, next) => {
     pool.query(`INSERT INTO objectives
                 (id, step_id, statement, complete, created_at)
                 VALUES
@@ -116,69 +116,69 @@ api.post('/:user/:questLog/:quest/:step', (req, res, next) => {
     .then(() => {next()}).catch(next);
 });
 
-api.post('/:user', (req, res) => {
+api.post('/:user/*', (req, res) => {
     return res.status(201).send();
 });
 
 // Patch Routes
-api.patch('/:user/:questLog', (req, res, next) => {
+api.patch('/:user/questlogs/:questLog', (req, res, next) => {
     pool.query(`UPDATE quest_logs
                 SET title = '${req.body.quest_log_title}'
                 WHERE id = ${req.params.questLog}`)
     .then(() => {next()}).catch(next);
 });
 
-api.patch('/:user/:questLog/:quest', (req, res, next) => {
+api.patch('/:user/quests/:quest', (req, res, next) => {
     pool.query(`UPDATE quests
                 SET title = '${req.body.quest_title}'
                 WHERE id = ${req.params.quest}`)
     .then(() => {next()}).catch(next);
 });
 
-api.patch('/:user/:questLog/:quest/:step', (req, res, next) => {
+api.patch('/:user/steps/:step', (req, res, next) => {
     pool.query(`UPDATE steps
                 SET title = '${req.body.step_title}', body = '${req.body.step_body}'
                 WHERE id = ${req.params.step}`)
     .then(() => {next()}).catch(next);
 });
 
-api.patch('/:user/:questLog/:quest/:step/:objective', (req, res, next) => {
+api.patch('/:user/objectives/:objective', (req, res, next) => {
     pool.query(`UPDATE objectives
                 SET statement = '${req.body.objective_statement}', complete = ${req.body.objective_complete}
                 WHERE id = ${req.params.objective}`)
     .then(() => {next()}).catch(next);
 });
 
-api.patch('/:user', (req, res) => {
+api.patch('/:user/*', (req, res) => {
     return res.status(201).send();
 });
 
 // Delete Routes
-api.delete('/:user/:questLog', (req, res, next) => {
+api.delete('/:user/questlogs/:questLog', (req, res, next) => {
     pool.query(`DELETE FROM quest_logs
                 WHERE id = ${req.params.questLog}`)
     .then(() => {next()}).catch(next);
 });
 
-api.delete('/:user/:questLog/:quest', (req, res, next) => {
+api.delete('/:user/quests/:quest', (req, res, next) => {
     pool.query(`DELETE FROM quests
                 WHERE id = ${req.params.quest}`)
     .then(() => {next()}).catch(next);
 });
 
-api.delete('/:user/:questLog/:quest/:step', (req, res, next) => {
+api.delete('/:user/steps/:step', (req, res, next) => {
     pool.query(`DELETE FROM steps
                 WHERE id = ${req.params.step}`)
     .then(() => {next()}).catch(next);
 });
 
-api.delete('/:user/:questLog/:quest/:step/:objective', (req, res, next) => {
+api.delete('/:user/objectives/:objective', (req, res, next) => {
     pool.query(`DELETE FROM objectives
                 WHERE id = ${req.params.objective}`)
     .then(() => {next()}).catch(next);
 });
 
-api.delete('/:user', (req, res) => {
+api.delete('/:user/*', (req, res) => {
     return res.status(200).send();
 });
 
