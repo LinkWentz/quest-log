@@ -28,9 +28,11 @@ api.use('/:user', (req, res, next) => {
 
 // Get Routes
 api.get('/:user/questlogs', (req, res, next) => {
-    pool.query(`SELECT * FROM quest_logs
-                WHERE user_id = ${req.params.user} 
-                ORDER BY created_at`)
+    pool.query({text: 
+               `SELECT * FROM quest_logs
+                WHERE user_id = $1
+                ORDER BY created_at`,
+                values: [req.params.user]})
     .then((result) => {
         res.locals.result = result;
         next();
@@ -39,12 +41,12 @@ api.get('/:user/questlogs', (req, res, next) => {
 });
 
 api.get('/:user/quests/:questLog', (req, res, next) => {
-    pool.query(`SELECT * FROM quests 
-                WHERE log_id = ${req.params.questLog} 
-                AND user_id = ${req.params.user}
+    pool.query({text: 
+               `SELECT * FROM quests 
+                WHERE log_id = $1 AND user_id = $1
                 ORDER BY created_at
-                OFFSET ${parseInt(req.query.start) || 0}
-                LIMIT ${parseInt(req.query.limit) || 10}`)
+                OFFSET $4 LIMIT $5`,
+                values: [req.params.questLog, req.params.user]})
     .then((result) => {
         res.locals.result = result;
         next();
@@ -53,12 +55,12 @@ api.get('/:user/quests/:questLog', (req, res, next) => {
 });
 
 api.get('/:user/steps/:quest', (req, res, next) => {
-    pool.query(`SELECT * FROM steps 
-                WHERE quest_id = ${req.params.quest}
-                AND user_id = ${req.params.user}
+    pool.query({text: 
+               `SELECT * FROM steps 
+                WHERE quest_id = $1 AND user_id = $2
                 ORDER BY created_at DESC
-                OFFSET ${parseInt(req.query.step) || 0}
-                LIMIT 1`)
+                OFFSET $3 LIMIT 1`,
+                values: [req.params.quest, req.params.user]})
     .then((result) => {
         res.locals.result = result;
         next();
@@ -67,10 +69,11 @@ api.get('/:user/steps/:quest', (req, res, next) => {
 });
 
 api.get('/:user/objectives/:step', (req, res, next) => {
-    pool.query(`SELECT * FROM objectives 
-                WHERE step_id = ${req.params.step} 
-                AND user_id = ${req.params.user}
-                ORDER BY created_at`)
+    pool.query({text: 
+               `SELECT * FROM objectives 
+                WHERE step_id = $1 AND user_id = $2
+                ORDER BY created_at`,
+                values: [req.params.step, req.params.user]})
     .then((result) => {
         res.locals.result = result;
         next();
@@ -87,35 +90,43 @@ api.get('/:user/*', (req, res) => {
 })
 
 // Post Routes
-api.post('/:user/questlogs', (req, res, next) => {
-    pool.query(`INSERT INTO quest_logs
+api.post('/:user/questlog', (req, res, next) => {
+    pool.query({text: 
+               `INSERT INTO quest_logs
                 (id, user_id, title, created_at)
                 VALUES 
-                (DEFAULT, ${req.params.user}, '${req.body.quest_log_title}', NOW())`)
+                (DEFAULT, $1, $2, NOW())`,
+                values: [req.params.user, req.body.quest_log_title]})
     .then(() => {next()}).catch(next);
 });
 
 api.post('/:user/quest/:questLog', (req, res, next) => {
-    pool.query(`INSERT INTO quests
+    pool.query({text: 
+               `INSERT INTO quests
                 (id, log_id, user_id, title, created_at)
                 VALUES 
-                (DEFAULT, ${req.params.questLog}, ${req.params.user}, '${req.body.quest_title}', NOW())`)
+                (DEFAULT, $1, $2, $3, NOW())`,
+                values: [req.params.questLog, req.params.user, req.body.quest_title]})
     .then(() => {next()}).catch(next);
 });
 
 api.post('/:user/step/:quest', (req, res, next) => {
-    pool.query(`INSERT INTO steps
+    pool.query({text: 
+               `INSERT INTO steps
                 (id, quest_id, user_id, title, body, created_at)
                 VALUES 
-                (DEFAULT, ${req.params.quest}, ${req.params.user}, '${req.body.step_title}', '${req.body.step_body}', NOW())`)
+                (DEFAULT, $1, $2, $3, $4, NOW())`,
+                values: [req.params.quest, req.params.user, req.body.step_title, req.body.step_body]})
     .then(() => {next()}).catch(next);
 });
 
 api.post('/:user/objective/:step', (req, res, next) => {
-    pool.query(`INSERT INTO objectives
+    pool.query({text: 
+               `INSERT INTO objectives
                 (id, step_id, user_id, statement, complete, created_at)
                 VALUES
-                (DEFAULT, ${req.params.step}, ${req.params.user}, '${req.body.objective_statement}', ${req.body.objective_complete}, NOW())`)
+                (DEFAULT, $1, $2, $3, $4, NOW())`,
+                values: [req.params.step, req.params.user, req.body.objective_statement, req.body.objective_complete]})
     .then(() => {next()}).catch(next);
 });
 
@@ -125,34 +136,38 @@ api.post('/:user/*', (req, res) => {
 
 // Patch Routes
 api.patch('/:user/questlogs/:questLog', (req, res, next) => {
-    pool.query(`UPDATE quest_logs
-                SET title = '${req.body.quest_log_title}'
-                WHERE id = ${req.params.questLog}
-                AND user_id = ${req.params.user}`)
+    pool.query({text: 
+               `UPDATE quest_logs
+                SET title = $1
+                WHERE id = $2 AND user_id = $3`,
+                values: [req.body.quest_title, req.params.questLog, req.params.user]})
     .then(() => {next()}).catch(next);
 });
 
 api.patch('/:user/quests/:quest', (req, res, next) => {
-    pool.query(`UPDATE quests
-                SET title = '${req.body.quest_title}'
-                WHERE id = ${req.params.quest}
-                AND user_id = ${req.params.user}`)
+    pool.query({text: 
+               `UPDATE quests 
+                SET title = $1
+                WHERE id = $2 AND user_id = $3`,
+                values: [req.body.quest_title, req.params.quest, req.params.user]})
     .then(() => {next()}).catch(next);
 });
 
 api.patch('/:user/steps/:step', (req, res, next) => {
-    pool.query(`UPDATE steps
-                SET title = '${req.body.step_title}', body = '${req.body.step_body}'
-                WHERE id = ${req.params.step}
-                AND user_id = ${req.params.user}`)
+    pool.query({text: 
+               `UPDATE steps
+                SET title = $1, body = $2
+                WHERE id = $3 AND user_id = $4`,
+                values: [req.body.step_title, req.body.step_body, req.params.step, req.params.user]})
     .then(() => {next()}).catch(next);
 });
 
 api.patch('/:user/objectives/:objective', (req, res, next) => {
-    pool.query(`UPDATE objectives
-                SET statement = '${req.body.objective_statement}', complete = ${req.body.objective_complete}
-                WHERE id = ${req.params.objective}
-                AND user_id = ${req.params.user}`)
+    pool.query({text: 
+               `UPDATE objectives
+                SET statement = $1, complete = $2
+                WHERE id = $3 AND user_id = $4`,
+                values: [req.body.objective_statement, req.body.objective_complete, req.params.objective, req.params.user]})
     .then(() => {next()}).catch(next);
 });
 
@@ -162,30 +177,34 @@ api.patch('/:user/*', (req, res) => {
 
 // Delete Routes
 api.delete('/:user/questlogs/:questLog', (req, res, next) => {
-    pool.query(`DELETE FROM quest_logs
-                WHERE id = ${req.params.questLog}
-                AND user_id = ${req.params.user}`)
+    pool.query({text: 
+               `DELETE FROM quest_logs
+                WHERE id = $1 AND user_id = $2`,
+                values: [req.params.questLog, req.params.user]})
     .then(() => {next()}).catch(next);
 });
 
 api.delete('/:user/quests/:quest', (req, res, next) => {
-    pool.query(`DELETE FROM quests
-                WHERE id = ${req.params.quest}
-                AND user_id = ${req.params.user}`)
+    pool.query({text: 
+               `DELETE FROM quests
+                WHERE id = $1 AND user_id = $2`,
+                values: [req.params.quest, req.params.user]})
     .then(() => {next()}).catch(next);
 });
 
 api.delete('/:user/steps/:step', (req, res, next) => {
-    pool.query(`DELETE FROM steps
-                WHERE id = ${req.params.step}
-                AND user_id = ${req.params.user}`)
+    pool.query({text: 
+               `DELETE FROM steps
+                WHERE id = $1 AND user_id = $2`,
+                values: [req.params.step, req.params.user]})
     .then(() => {next()}).catch(next);
 });
 
 api.delete('/:user/objectives/:objective', (req, res, next) => {
-    pool.query(`DELETE FROM objectives
-                WHERE id = ${req.params.objective}
-                AND user_id = ${req.params.user}`)
+    pool.query({text: 
+               `DELETE FROM objectives
+                WHERE id = $1 AND user_id = $2`,
+                values: [req.params.objective, req.params.user]})
     .then(() => {next()}).catch(next);
 });
 
