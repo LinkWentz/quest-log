@@ -5,6 +5,9 @@ function QuestCard(props) {
       <div className="QuestCard Glint">
         <header>{props.title}</header>
         <footer>{props.children}</footer>
+        <div className="statusButtons complete">✓</div>
+        <div className="statusButtons defeat">✕</div>
+        <div className="statusButtons delete">🗑</div>
       </div>
     );
   }
