@@ -218,6 +218,54 @@
     cursor: pointer;
 }
 
+/* Objective */
+
+.Objective {
+    display: flex;
+    position: relative;
+
+    margin: 0.25rem 0;
+    padding: 0 1rem;
+    min-width: 50%;
+    max-width: 50rem;
+
+    font-size: 2.5rem;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.4);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    align-items: center;
+}
+
+.Objective input {
+    height: 0;
+    width: 0;
+}
+
+.Objective:has(input:checked) {
+    background: linear-gradient(150deg, rgba(100, 255, 100, 0.5), rgba(100, 255, 100, 0.7), rgba(255, 255, 255, 0.4));
+    background-size: 400% 400%;
+    animation: complete 0.5s ease;
+    background-position: 0% 50%;
+}
+
+@keyframes complete {
+    from{
+        background-position: 100% 50%;
+    }
+    to{
+        background-position: 0% 50%;
+    }
+}
+
 /* Scrollbar */
 
 .Glass::-webkit-scrollbar, .Glass *::-webkit-scrollbar {
