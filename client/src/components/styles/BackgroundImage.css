@@ -6,6 +6,8 @@
     height: 110%;
     width: 110%;
 
+    background-color: #000;
+
     background-size: cover;
     background-position: cover;
 }

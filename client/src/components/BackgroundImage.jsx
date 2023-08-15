@@ -5,7 +5,7 @@ import { MousePositionContext } from '../App'
 
 function BackgroundImage() {
 
-    const [color, setColor] = useState('#ffff00');
+    const [color, setColor] = useState('#000000');
     const [backgroundImage, setBackgroundImage] = useState(null);
 
     const mousePosition = useContext(MousePositionContext);
