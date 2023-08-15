@@ -68,6 +68,32 @@
     to {background-position: 0% 50%}
 }
 
+.statusButtons {
+    display: flex;
+
+    box-sizing: border-box;
+    aspect-ratio: 1;
+
+    font-size: 1.25rem;
+    border-radius: 9999px;
+
+    transition: 0.1s;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.statusButtons.complete {
+    background-color: rgba(100, 255, 100, 1);
+}
+
+.statusButtons.defeat {
+    background-color: rgba(255, 100, 100, 1);
+}
+
+.statusButtons.delete {
+    background-color: rgba(150, 150, 150, 1);
+}
 /* Quest Selector */
 
 .QuestSelector {
@@ -119,35 +145,21 @@
 
 .QuestCard .statusButtons {
     position: absolute;
-    display: flex;
     left: 101%;
 
-    box-sizing: border-box;
     height: 30%;
-    aspect-ratio: 1;
-
-    font-size: 1.25rem;
-    border-radius: 9999px;
-    
-    transition: 0.1s;
-
-    align-items: center;
-    justify-content: center;
 }
 
 .QuestCard .complete {
     top: 4%;
-    background-color: rgba(100, 200, 100, .5);
 }
 
 .QuestCard .defeat {
     top: 35%;
-    background-color: rgba(200, 100, 100, .5);
 }
 
 .QuestCard .delete {
     bottom: 4%;
-    background-color: rgba(150, 150, 150, .5);
 }
 
 .QuestCard:hover .statusButtons {
@@ -258,35 +270,21 @@
 
 .Objective .statusButtons {
     position: absolute;
-    display: flex;
     top: 125%;
 
-    box-sizing: border-box;
     height: 50%;
-    aspect-ratio: 1;
-
-    font-size: 1.25rem;
-    border-radius: 9999px;
-    
-    transition: 0.1s;
-
-    align-items: center;
-    justify-content: center;
 }
 
 .Objective .complete {
     right: 11%;
-    background-color: rgba(100, 255, 100, 1);
 }
 
 .Objective .defeat {
     right: 6%;
-    background-color: rgba(255, 100, 100, 1);
 }
 
 .Objective .delete {
     right: 1%;
-    background-color: rgba(150, 150, 150, 1);
 }
 
 .Objective:hover .statusButtons {
