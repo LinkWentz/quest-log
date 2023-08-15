@@ -229,25 +229,6 @@
     background-color: #000000;
 }
 
-.Quest .editButton {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-
-    padding: 0 2rem;
-
-    background-color: rgba(255, 255, 255, .4);
-    border-radius: 0 0 10px 10px;
-    font-size: 2rem;
-    font-family: inherit;
-    line-height: 3.5rem;
-    border: none;
-    outline: none;
-
-    cursor: pointer;
-}
-
 /* Objective */
 
 .Objective {

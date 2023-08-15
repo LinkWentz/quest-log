@@ -12,7 +12,6 @@ function Quest() {
                 <Objective/>
                 <Objective/>
             </footer>
-            <button className="editButton Glint">Edit</button>
         </div>
     );
 }
