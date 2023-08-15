@@ -1,9 +1,16 @@
+import { useState } from 'react';
+
 function Objective(props) {
+    
+    const [content, setContent] = useState({
+        statement: 'Objective Statement',
+        completed: null
+    });
+
     return (
-        <label className="Objective Glint">
-            {props.children}
-            <input type="checkbox"/>
-        </label>
+        <div className={`Objective Glint ${content.completed == true ? 'Complete' : ''} ${content.completed == false ? 'Defeat' : ''}`}>
+            {content.statement}
+        </div>
     )
 }
 export default Objective

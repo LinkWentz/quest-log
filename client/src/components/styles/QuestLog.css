@@ -245,19 +245,21 @@
     align-items: center;
 }
 
-.Objective input {
-    height: 0;
-    width: 0;
-}
-
-.Objective:has(input:checked) {
+.Objective.Complete {
     background: linear-gradient(150deg, rgba(100, 255, 100, 0.5), rgba(100, 255, 100, 0.7), rgba(255, 255, 255, 0.4));
     background-size: 400% 400%;
-    animation: complete 0.5s ease;
+    animation: applyStatus 0.5s ease;
     background-position: 0% 50%;
 }
 
-@keyframes complete {
+.Objective.Defeat {
+    background: linear-gradient(130deg, rgba(255, 100, 100, 0.5), rgba(255, 100, 100, 0.7), rgba(255, 255, 255, 0.4));
+    background-size: 400% 400%;
+    animation: applyStatus 0.5s ease;
+    background-position: 0% 50%;
+}
+
+@keyframes applyStatus {
     from{
         background-position: 100% 50%;
     }
