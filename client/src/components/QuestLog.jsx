@@ -4,12 +4,12 @@ import Quest from './Quest'
 
 function QuestLog() {
 
-  return (
-    <div className="QuestLog">
-      <QuestSelector/>
-      <Quest/>
-    </div>
-  );
+    return (
+        <div className="QuestLog">
+            <QuestSelector />
+            <Quest />
+        </div>
+    );
 }
 
 export default QuestLog

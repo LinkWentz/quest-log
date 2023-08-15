@@ -11,13 +11,13 @@ function BackgroundImage() {
     const mousePosition = useContext(MousePositionContext);
 
     return (
-      <div className="BackgroundImage" style={{
-        backgroundColor: color,
-        backgroundImage: `url(${backgroundImage})`,
-        top: `${-(mousePosition.y-0.5) * 1.5 - 5}%`,
-        left: `${-(mousePosition.x-0.5) * 1.5 - 5}%`
-      }}/>
+        <div className="BackgroundImage" style={{
+            backgroundColor: color,
+            backgroundImage: `url(${backgroundImage})`,
+            top: `${-(mousePosition.y - 0.5) * 1.5 - 5}%`,
+            left: `${-(mousePosition.x - 0.5) * 1.5 - 5}%`
+        }} />
     );
-  }
-  
-  export default BackgroundImage
+}
+
+export default BackgroundImage
