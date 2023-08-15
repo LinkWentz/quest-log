@@ -7,7 +7,7 @@ function BackgroundImage() {
     const [backgroundImage, setBackgroundImage] = useState(null);
 
     return (
-      <div className="BackgroundImage" style={{backgroundColor: color, backgroundImage: backgroundImage}}/>
+      <div className="BackgroundImage" style={{backgroundColor: color, backgroundImage: `url(${backgroundImage})`}}/>
     );
   }
   
