@@ -9,7 +9,7 @@ function QuestCard(props) {
     });
 
     return (
-        <div className={`QuestCard Interactable ${content.completed == true ? 'Complete' : ''} ${content.completed == false ? 'Defeat' : ''}`}>
+        <div key={props.key + ' completed: ' + content.completed} className={`QuestCard Interactable ${content.completed == true ? 'Complete' : ''} ${content.completed == false ? 'Defeat' : ''}`}>
             <header>{content.title}</header>
             <footer>{content.first_objective}</footer>
             <div className="statusButtons complete" onClick={() => {setContent({...content, completed: true})}}>✓</div>
