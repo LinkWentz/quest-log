@@ -8,7 +8,7 @@ function Objective(props) {
     });
 
     return (
-        <div className={`Objective Glint ${content.completed == true ? 'Complete' : ''} ${content.completed == false ? 'Defeat' : ''}`}>
+        <div className={`Objective Interactable ${content.completed == true ? 'Complete' : ''} ${content.completed == false ? 'Defeat' : ''}`}>
             {content.statement}
         </div>
     )

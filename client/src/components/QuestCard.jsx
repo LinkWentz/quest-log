@@ -2,7 +2,7 @@
 function QuestCard(props) {
 
     return (
-      <div className="QuestCard Glint">
+      <div className="QuestCard Interactable">
         <header>{props.title}</header>
         <footer>{props.children}</footer>
         <div className="statusButtons complete">✓</div>
