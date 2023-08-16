@@ -186,18 +186,29 @@
 /* Quest */
 
 .Quest {
-    display: inline-block;
-    
     margin: 0;
+    height: 100%;
+    width: 100%;
+
+    overflow: hidden;
+
+    z-index: 10;
+}
+
+.Quest section {
+    display: inline-block;
+
     padding: 40px 40px 0 40px;
     height: 100%;
     width: 100%;
 
     overflow-y: auto;
     overflow-x: hidden;
+
+    z-index: 15;
 }
 
-.Quest header {
+.Quest section header {
     display: flex;
 
     height: auto; 
@@ -211,7 +222,7 @@
     align-items: center;
 }
 
-.Quest main {
+.Quest section main {
     text-align: start;
     font-size: 2.5rem;
     line-height: 3.75rem;
@@ -219,14 +230,14 @@
     overflow-x: hidden;
 }
 
-.Quest footer {
+.Quest section footer {
     margin-bottom: 20rem;
 
     overflow-y: auto;
     overflow-x: hidden;
 }
 
-.Quest .break {
+.Quest section .break {
     display: block;
     position: relative;
     left: 2%;
@@ -237,6 +248,56 @@
     width: 96%;
 
     background-color: #000000;
+}
+
+.Quest nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+
+    z-index: 20;
+}
+
+.Quest nav button {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    border: none;
+
+    font-size: 1.25em;
+    min-height: 0;
+    min-width: 0;
+    height: 7%;
+    aspect-ratio: 1;
+
+    z-index: 15;
+}
+
+.Quest .next {
+    top: 50%;
+    right: 0;
+    transform: translateX(50%) translateY(-50%);
+}
+
+.Quest .next::after {
+    position: relative;
+    right: 25%;
+    content: '>';
+}
+
+.Quest .last {
+    transform: translateX(-50%) translateY(-50%);
+    top: 50%;
+    left: 0;
+}
+
+.Quest .last::after {
+    position: relative;
+    left: 25%;
+    content: '<';
 }
 
 /* Objective */
@@ -294,10 +355,10 @@
 }
 
 .Glass::-webkit-scrollbar-track-piece, .Glass *::-webkit-scrollbar-track-piece {
-    background-color: rgba(255, 255, 255, .4);
+    background-color: rgba(200, 200, 200, 1);
 }
 
-.Glass::-webkit-scrollbar-track-piece:start:vertical {
+.Glass::-webkit-resizer::-webkit-scrollbar-track-piece:start:vertical {
     margin-top: 5rem;
     border-radius: 9999px 0 0 0;
 }
@@ -307,19 +368,29 @@
     border-radius: 0 0 0 9999px;
 }
 
+.Glass section::-webkit-scrollbar-track-piece:start:vertical {
+    margin-top: 5rem;
+    border-radius: 9999px 0 0 0;
+}
+
+.Glass section::-webkit-scrollbar-track-piece:end:vertical {
+    margin-bottom: 5rem;
+    border-radius: 0 0 0 9999px;
+}
+
 .Glass *::-webkit-scrollbar-track-piece:vertical {
     border-radius: 9999px;
 }
 
 .Glass::-webkit-scrollbar-thumb, .Glass *::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, .5);
+    background-color: rgba(255, 255, 255, 1);
 }
  
 .Glass::-webkit-scrollbar-thumb:horizontal, .Glass *::-webkit-scrollbar-thumb:horizontal {
     border-radius: 9999px;
 }
 
-.Glass::-webkit-scrollbar-thumb:vertical {
+.Glass::-webkit-scrollbar-thumb:vertical, .Glass section::-webkit-scrollbar-thumb:vertical{
     border-radius: 9999px 0 0 9999px;
 }
 
