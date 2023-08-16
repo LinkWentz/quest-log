@@ -12,6 +12,7 @@ function Quest() {
                     <Objective/>
                     <Objective/>
                     <Objective/>
+                    <div className="newObjective Objective Interactable"/>
                 </footer>
             </section>
             <nav>
