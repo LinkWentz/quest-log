@@ -108,4 +108,5 @@
 
 .newQuestLog::after {
     content: '+';
+    font-size: 3rem;
 }

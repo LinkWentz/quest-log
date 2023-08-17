@@ -88,8 +88,12 @@
 .QuestSelector button {
     border: none;
     outline: none;
-    font-size: 2rem;
     font-family: inherit;
+}
+
+.QuestSelector button::after {
+    content: '+';
+    font-size: 3rem;
 }
 
 /* Quest */
@@ -107,7 +111,7 @@
 .Quest section {
     display: inline-block;
 
-    padding: 40px 40px 0 40px;
+    padding: 2.5rem 2.5rem 0 2.5rem;
     height: 100%;
     width: 100%;
 
@@ -179,7 +183,7 @@
     font-size: 1.25em;
     min-height: 0;
     min-width: 0;
-    height: 7%;
+    height: 4.5rem;
     aspect-ratio: 1;
 
     z-index: 15;
@@ -237,7 +241,7 @@
     align-items: center;
     justify-content: center;
     content: '+';
-    font-size: 5rem;
+    font-size: 3rem;
     line-height: 0;
 }
 
