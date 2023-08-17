@@ -1,0 +1,75 @@
+.SettingsMenu {
+    display: flex;
+    position: absolute;
+    top: -20%;
+    right: 0;
+
+    font-size: 2rem;
+
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+
+    height: 25%;
+    width: 9%;
+    padding: 0 0.25rem;
+
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    transition: 0.2s;
+
+    z-index: 30;
+}
+
+.SettingsMenu form {
+    height: 80%;
+}
+
+.SettingsMenu label {
+    font-size: 1.3rem;
+}
+
+.SettingsMenu input {
+    height: 2rem;
+    width: 100%;
+
+    border-radius: 2px;
+    border: none;
+    outline: none;
+}
+
+.SettingsMenu input:focus-within{
+    border: none;
+}
+
+.SettingsMenu::after {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    height: 20%;
+    aspect-ratio: 1;
+
+    content: '⛭';
+    transition: 0.2s;
+
+    pointer-events: none;
+}
+
+.SettingsMenu:hover:after {
+    transform: rotate(45deg);
+}
+
+.SettingsMenu:focus-within {
+    top: 0;
+}
