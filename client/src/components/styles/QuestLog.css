@@ -1,11 +1,11 @@
 .QuestLog {
     display: grid;
     position: absolute;
-    top: 0;
+    top: 5%;
     left: 0;
 
     padding: 30px;
-    height: 100%;
+    height: 95%;
     width: 100%;
 
     grid-template-columns: 3fr 7fr;

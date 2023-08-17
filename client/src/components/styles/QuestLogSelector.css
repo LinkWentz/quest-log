@@ -1,0 +1,111 @@
+.QuestLogSelector {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    height: 5%;
+    width: 90%;
+
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+
+    align-items: end;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.Tab {
+    display: flex;
+    position: relative;
+
+    padding: 0 2rem;
+    flex: 1 1 0;
+    height: 90%;
+    min-width: 0;
+    width: 0;
+    max-width: 20rem;
+
+    border-radius: 1rem 1rem 0 0;
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 10;
+}
+
+.Tab .content {
+    display: flex;
+
+    height: 100%;
+    width: 100%;
+
+    font-size: 1.5rem;
+    line-height: 0;
+
+    align-items: center;
+    justify-content: center;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: left;
+    overflow: hidden;
+}
+
+.Tab.Selected {
+    min-width: fit-content;
+
+    background-color: white;
+
+    z-index: 11;
+}
+
+.Tab .overlap {
+    visibility: hidden;
+
+    position: absolute;
+
+    height: 100%;
+    aspect-ratio: 1;
+    
+    fill: white;
+
+    z-index: 11;
+}
+
+.Tab.Selected .overlap {
+    visibility: visible;
+}
+
+.Tab .overlap.left {
+    right: 100%;
+}
+
+.Tab .overlap.right {
+    left: 100%;
+}
+
+.newQuestLog {
+    display: flex;
+    position: relative;
+
+    padding: 0 2rem;
+    flex: 0 1 0;
+    height: 90%;
+    min-width: 0;
+    width: 0;
+    max-width: 20rem;
+    font-size: 4rem;
+
+    border-radius: 1rem 1rem 0 0;
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 10;
+}
+
+.newQuestLog::after {
+    content: '+';
+}

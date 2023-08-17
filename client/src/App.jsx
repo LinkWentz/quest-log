@@ -1,5 +1,6 @@
 import './App.css'
 import BackgroundImage from './components/BackgroundImage'
+import QuestLogSelector from './components/QuestLogSelector'
 import QuestLog from './components/QuestLog'
 import { useState, useEffect, createContext } from 'react'
 
@@ -22,6 +23,7 @@ function App() {
   return (
     <MousePositionContext.Provider value={mousePositionState}>
       <BackgroundImage/>
+      <QuestLogSelector/>
       <QuestLog/>
     </MousePositionContext.Provider>
   )
