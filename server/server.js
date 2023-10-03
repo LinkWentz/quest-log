@@ -4,6 +4,7 @@ require('dotenv').config();
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const session = require('express-session');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oidc');
@@ -20,6 +21,12 @@ const PORT = process.env['PORT'];
 
 // Folder Access
 app.use(express.static(__dirname + '/app'));
+
+// Open Cors Policy If Testing
+
+if (process.argv.slice(2) == 'test') {
+    app.use(cors({origin: '*'}));
+}
 
 /*----- Passport Setup -----*/
 // Strategy
