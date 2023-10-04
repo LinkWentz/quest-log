@@ -18,6 +18,14 @@ const pool = new pg.Pool({
 });
 
 /*---- Routes -----*/
+
+api.use('/*', (req, res, next) => {
+    if (req.user == undefined) {
+        req.user = { id: 0 }
+    }
+    next();
+});
+
 // Get Routes
 api.get('/questlogs', (req, res, next) => {
     pool.query({text: 
@@ -72,7 +80,7 @@ api.get('/objectives/:step', (req, res, next) => {
 });
 
 api.get('/*', (req, res) => {
-    if (res.locals.result.rows.length == 0) {
+if (res.locals.result == undefined || res.locals.result.rows.length == 0) {
         return res.status(404).send();
     }
 

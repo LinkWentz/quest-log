@@ -65,9 +65,9 @@ app.use(passport.authenticate('session'));
 
 // Gating Middleware
 function ensureAuthenticated(req, res, next) {
-    if (req.isAuthenticated()){
+    if (req.isAuthenticated() || req.user == undefined){
         next();
-    } 
+    }
     else {
         res.status(401).send();
     }
