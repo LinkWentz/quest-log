@@ -7,12 +7,16 @@ function Objective(props) {
         completed: null
     });
 
+    const deleteObjective = () => {
+
+    };
+
     return (
         <div key={props.key + ' completed: ' + content.completed} className={`Objective Interactable ${content.completed == true ? 'Complete' : ''} ${content.completed == false ? 'Defeat' : ''}`}>
             {content.statement}
-            <div className="statusButtons complete" onClick={() => {setContent({...content, completed: true})}}>✓</div>
-            <div className="statusButtons defeat" onClick={() => {setContent({...content, completed: false})}}>✕</div>
-            <div className="statusButtons delete" onClick={() => {setContent({...content, completed: null})}}>🗑</div>
+            <div className="statusButtons complete" onClick={() => {setContent({...content, completed: content.completed != true ? true : null})}}>✓</div>
+            <div className="statusButtons defeat" onClick={() => {setContent({...content, completed: content.completed != false ? false : null})}}>✕</div>
+            <div className="statusButtons delete" onClick={() => {deleteObjective()}}>🗑</div>
         </div>
     )
 }
