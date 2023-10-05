@@ -40,6 +40,10 @@
     overflow: hidden;
 }
 
+.QuestCard.Selected {
+    background-color: white;
+}
+
 .QuestCard header {
     max-width: 100%;
 
