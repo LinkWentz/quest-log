@@ -134,7 +134,6 @@ api.post('/*', (req, res) => {
 
 // Patch Routes
 api.patch('/questlogs/:questLog', (req, res, next) => {
-    console.log([req.body.quest_log_title, req.params.questLog, req.user.id]);
     pool.query({text: 
                `UPDATE quest_logs
                 SET title = $1
