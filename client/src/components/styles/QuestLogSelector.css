@@ -76,6 +76,7 @@
 
 .Tab.Selected .overlap {
     visibility: visible;
+    pointer-events: none;
 }
 
 .Tab .overlap.left {
