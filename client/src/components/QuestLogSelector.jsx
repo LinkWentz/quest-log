@@ -4,6 +4,7 @@ import { useState, useEffect, useContext } from 'react';
 import { SelectedIDsContext } from '../App'
 
 function QuestLogSelector() {
+    
     const ctx = useContext(SelectedIDsContext);
     const [questLogs, setQuestLogs] = useState([]);
     const [questLogElements, setQuestLogElements] = useState([]);
@@ -31,13 +32,13 @@ function QuestLogSelector() {
             const currentQuestLogIsSelected = (questLog == selectedQuestLog) ? true : false;
 
             newQuestLogElements.push(
-                <Tab key={'Quest_Log_' + questLog}
+                <Tab key={'Quest_Log_' + questLog} questLogID={currentQuestLog.id}
                 selected={currentQuestLogIsSelected}
                 onClick={() => {setSelectedQuestLog(questLog)}}>
                     {currentQuestLog.title}
                 </Tab>
-            );
-        }
+                );
+            }
         setQuestLogElements(newQuestLogElements);
     };
 
