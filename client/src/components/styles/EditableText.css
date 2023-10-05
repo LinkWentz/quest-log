@@ -1,3 +1,7 @@
 .EditableText {
     outline: none;
 }
+
+[contentEditable=true]:empty:before {
+    content:attr(placeholder)
+}

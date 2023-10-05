@@ -1,8 +1,10 @@
 import './styles/EditableText.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 
 function EditableText(props) {
+ 
+    const initialState = useRef(props.children);
 
     const [content, setContent]= useState(props.children);
 
@@ -23,7 +25,7 @@ function EditableText(props) {
     };
 
     return (
-        <span className="EditableText" contentEditable='true' onInput={updateContent}>{props.children}</span>
+        <span className="EditableText" contentEditable='true' placeholder={initialState.current} onInput={updateContent}>{props.children}</span>
     )
 }
 
