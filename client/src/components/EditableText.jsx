@@ -16,16 +16,11 @@ function EditableText(props) {
 
     const updateContent = (e) => {
         const newContent = e.target.innerText;
-        if (newContent.length > 0) {
-            setContent(newContent);
-        }
-        else {
-            setContent(props.placeholder);
-        }
+        setContent(newContent);
     };
 
     return (
-        <span className="EditableText" contentEditable='true' placeholder={initialState.current} onInput={updateContent}>{props.children}</span>
+        <span className="EditableText" contentEditable={true} suppressContentEditableWarning={true} placeholder={initialState.current} onInput={updateContent}>{props.children}</span>
     )
 }
 
