@@ -4,7 +4,7 @@ import { useState, useEffect, useContext } from 'react';
 import { SelectedIDsContext } from '../App'
 
 function QuestLogSelector() {
-    
+
     const ctx = useContext(SelectedIDsContext);
     const [questLogs, setQuestLogs] = useState([]);
     const [questLogElements, setQuestLogElements] = useState([]);
@@ -13,15 +13,6 @@ function QuestLogSelector() {
     const fetchQuestLogList = async () => {
         const newQuestLogs = await (await fetch(`http://localhost:3000/questlogs`)).json();
         await setQuestLogs(newQuestLogs);
-    };
-
-    const updateSelectedQuestLog = () => {
-        if (questLogs && questLogs.length > selectedQuestLog) {
-            ctx.setSelectedIDs({
-                ...ctx.selectedIDs,
-                selectedQuestLogID: questLogs[selectedQuestLog].id
-            });
-        }
     };
 
     const buildQuestLogElements = () => {
@@ -42,6 +33,29 @@ function QuestLogSelector() {
         setQuestLogElements(newQuestLogElements);
     };
 
+    const updateSelectedQuestLog = () => {
+        if (questLogs && questLogs.length > selectedQuestLog) {
+            ctx.setSelectedIDs({
+                ...ctx.selectedIDs,
+                selectedQuestLogID: questLogs[selectedQuestLog].id
+            });
+        }
+    };
+
+    const createNewQuestLog = async () => {
+        await fetch(`http://localhost:3000/questlog/`, {
+            method: 'POST',
+            body: JSON.stringify({
+                quest_log_title: 'Default Title'
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            }
+        });
+
+        fetchQuestLogList();
+    }
+
     useEffect(() => {
         fetchQuestLogList();
     }, []);
@@ -57,7 +71,7 @@ function QuestLogSelector() {
     return (
         <div className="QuestLogSelector Glass">
             {questLogElements}
-            <div className="newQuestLog Interactable"/>
+            <div className="newQuestLog Interactable" onClick={createNewQuestLog}/>
         </div>
     );
 }
