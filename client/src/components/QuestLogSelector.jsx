@@ -25,6 +25,7 @@ function QuestLogSelector() {
             newQuestLogElements.push(
                 <Tab key={'Quest_Log_' + questLog} questLogID={currentQuestLog.id}
                 selected={currentQuestLogIsSelected}
+                fetchQuestLogList={fetchQuestLogList}
                 onClick={() => {setSelectedQuestLog(questLog)}}>
                     {currentQuestLog.title}
                 </Tab>

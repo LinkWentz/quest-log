@@ -24,6 +24,14 @@ function Tab(props) {
         });
     };
 
+    const deleteQuestLog = async () => {
+        await fetch(`http://localhost:3000/questlogs/${props.questLogID}`, {
+            method: 'DELETE'
+        });
+
+        props.fetchQuestLogList();
+    };
+
     return (
         <div className={`Tab ${props.selected ? 'Selected' : 'Interactable'}`} onClick={props.onClick}>
             <svg className="overlap left" viewBox="0 0 1 1">
@@ -38,6 +46,7 @@ function Tab(props) {
                 :
                     <div className="content">{props.children}</div>
             }
+            <div className="statusButtons delete" onClick={() => {deleteQuestLog()}}>🗑</div>
 
             <svg className="overlap right" viewBox="0 0 1 1">
                 <path d="M 0,1 L 0,0.5 A 0.5,0.5 0,0,0 0.5,1 L 0.5,1 Z"/>
