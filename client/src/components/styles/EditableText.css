@@ -1,7 +1,8 @@
 .EditableText {
     outline: none;
+    z-index: 200;
 }
 
-[contentEditable=true]:empty:before {
+[contentEditable=true]:empty:not(:focus):before {
     content:attr(placeholder)
 }

@@ -3,8 +3,6 @@ import { useState, useEffect, useRef } from 'react';
 
 
 function EditableText(props) {
- 
-    const initialState = useRef(props.children);
 
     const [content, setContent]= useState(props.children);
 
@@ -15,12 +13,17 @@ function EditableText(props) {
     }, [content]);
 
     const updateContent = (e) => {
+        if (e.target.innerText.length <= 1) {
+            console.log('a')
+            e.preventDefault()
+            return;
+        }
         const newContent = e.target.innerText;
         setContent(newContent);
     };
 
     return (
-        <span className="EditableText" contentEditable={true} suppressContentEditableWarning={true} placeholder={initialState.current} onInput={updateContent}>{props.children}</span>
+        <span><span className="EditableText" contentEditable={true} suppressContentEditableWarning={true} onInput={updateContent} placeholder='...'>{props.children}</span>&nbsp;</span>
     )
 }
 
