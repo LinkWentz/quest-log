@@ -1,5 +1,5 @@
 import './styles/QuestLogSelector.css'
-import Tab from './Tab'
+import QuestLog from './QuestLog'
 import { useState, useEffect, useContext } from 'react';
 import { SelectedIDsContext } from '../App'
 
@@ -23,12 +23,12 @@ function QuestLogSelector() {
             const currentQuestLogIsSelected = (questLog == selectedQuestLog) ? true : false;
 
             newQuestLogElements.push(
-                <Tab key={'Quest_Log_' + questLog} questLogID={currentQuestLog.id}
+                <QuestLog key={'Quest_Log_' + questLog} questLogID={currentQuestLog.id}
                 selected={currentQuestLogIsSelected}
                 fetchQuestLogList={fetchQuestLogList}
                 onClick={() => {setSelectedQuestLog(questLog)}}>
                     {currentQuestLog.title}
-                </Tab>
+                </QuestLog>
                 );
             }
         setQuestLogElements(newQuestLogElements);

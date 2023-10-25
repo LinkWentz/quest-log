@@ -1,4 +1,4 @@
-import QuestCard from './QuestCard'
+import Quest from './Quest'
 import { useState, useEffect, useContext } from 'react';
 import { SelectedIDsContext } from '../App'
 
@@ -33,11 +33,11 @@ function QuestSelector() {
             const currentQuestIsSelected = (quest == selectedQuestCard) ? true : false;
 
             newQuestCardElements.push(
-                <QuestCard key={'Quest_' + quest}
+                <Quest key={'Quest_' + quest}
                 selected={currentQuestIsSelected}
                 onClick={() => {setSelectedQuestCard(quest)}}
                 title={currentQuest.title}>
-                </QuestCard>
+                </Quest>
             );
         }
 
@@ -59,7 +59,7 @@ function QuestSelector() {
     return (
         <div className="QuestSelector Glass">
             {questCardElements}
-            <button className="QuestCard Interactable"/>
+            <button className="Quest Interactable"/>
         </div>
     );
 }

@@ -16,7 +16,7 @@
     overflow: hidden;
 }
 
-.Tab {
+.QuestLog {
     display: flex;
     position: relative;
 
@@ -35,7 +35,7 @@
     z-index: 10;
 }
 
-.Tab .content {
+.QuestLog .content {
     display: flex;
 
     height: 100%;
@@ -53,7 +53,7 @@
     overflow: hidden;
 }
 
-.Tab.Selected {
+.QuestLog.Selected {
     min-width: fit-content;
 
     background-color: white;
@@ -61,7 +61,7 @@
     z-index: 11;
 }
 
-.Tab .overlap {
+.QuestLog .overlap {
     visibility: hidden;
 
     position: absolute;
@@ -74,16 +74,16 @@
     z-index: 11;
 }
 
-.Tab.Selected .overlap {
+.QuestLog.Selected .overlap {
     visibility: visible;
     pointer-events: none;
 }
 
-.Tab .overlap.left {
+.QuestLog .overlap.left {
     right: 100%;
 }
 
-.Tab .overlap.right {
+.QuestLog .overlap.right {
     left: 100%;
 }
 

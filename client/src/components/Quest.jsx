@@ -1,24 +1,20 @@
-import Objective from './Objective';
+import { useState, useEffect } from 'react';
 
-function Quest() {
+function Quest(props) {
+
+    const [content, setContent] = useState({
+        title: props.title || 'Quest Title',
+        first_objective: 'No Quest Objectives In Latest Step',
+        completed: null
+    });
+
     return (
-        <div className="Quest Glass">
-            <section>
-                <header>Title Text</header>
-                <div className="break" />
-                <main>Text describing whatever quest you're on, why you're on it, why you have to do what you have to do, what you feel about it, etc.</main>
-                <div className="break" />
-                <footer>
-                    <Objective/>
-                    <Objective/>
-                    <Objective/>
-                    <div className="newObjective Objective Interactable"/>
-                </footer>
-            </section>
-            <nav>
-                <button className="next Interactable"/>
-                <button className="last Interactable"/>
-            </nav>
+        <div key={props.key + ' completed: ' + content.completed} className={`Quest Interactable ${props.selected ? 'Selected' : ''} ${content.completed == true ? 'Complete' : ''} ${content.completed == false ? 'Defeat' : ''}`}>
+            <header>{content.title}</header>
+            <footer>{content.first_objective}</footer>
+            <div className="statusButtons complete" onClick={() => {setContent({...content, completed: content.completed != true ? true : null})}}>✓</div>
+            <div className="statusButtons defeat" onClick={() => {setContent({...content, completed: content.completed != false ? false : null})}}>✕</div>
+            <div className="statusButtons delete" onClick={() => {deleteQuest()}}>🗑</div>
         </div>
     );
 }

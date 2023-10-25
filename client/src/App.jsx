@@ -1,10 +1,9 @@
 import './App.css'
-import './components/styles/QuestLog.css'
 import BackgroundImage from './components/BackgroundImage'
 import QuestLogSelector from './components/QuestLogSelector'
 import SettingsMenu from './components/SettingsMenu'
 import QuestSelector from './components/QuestSelector'
-import Quest from './components/Quest'
+import StepDisplay from './components/StepDisplay'
 import { useState, useEffect, createContext } from 'react'
 
 export const MousePositionContext = createContext({x: 0.5, y: 0.5});
@@ -34,7 +33,7 @@ function App() {
           <QuestLogSelector/>
           <SettingsMenu></SettingsMenu>
           <QuestSelector/>
-          <Quest/>
+          <StepDisplay/>
         </div>
       </MousePositionContext.Provider>
     </SelectedIDsContext.Provider>

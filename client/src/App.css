@@ -106,3 +106,344 @@
 .statusButtons.delete {
   background-color: rgba(150, 150, 150, 1);
 }
+
+.App {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Quest Selector */
+
+.QuestSelector {
+  display: inline-block;
+
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  
+  margin: 0;
+  padding: 20px;
+  height: 94%;
+  width: 30%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.QuestSelector:first-child .Quest {
+  margin-top: 0;
+}
+
+.Quest { 
+  position: relative;
+
+  margin: 0.5rem 0;
+  padding: 0.5rem 1.5rem;
+  width: 100%;
+
+  overflow: hidden;
+}
+
+.Quest.Selected {
+  background-color: white;
+}
+
+.Quest header {
+  max-width: 100%;
+
+  font-size: 2.5rem;
+  line-height: 3rem;
+  text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.Quest footer {
+  max-width: 100%;
+
+  font-size: 1.5rem;
+  line-height: 2rem;
+  text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.Quest .statusButtons {
+  position: absolute;
+  left: 100%;
+
+  height: 29%;
+}
+
+.Quest .complete {
+  top: 4%;
+}
+
+.Quest .defeat {
+  top: 35%;
+}
+
+.Quest .delete {
+  bottom: 4%;
+}
+
+.Quest:hover .statusButtons {
+  transform: translateX(-120%);
+}
+
+.QuestSelector button {
+  border: none;
+  outline: none;
+  font-family: inherit;
+}
+
+.QuestSelector button::after {
+  content: '+';
+  font-size: 3rem;
+}
+
+/* Quest */
+
+.StepDisplay {
+  display: inline-block;
+
+  position: absolute;
+  bottom: 0;
+  right: 0;
+
+  margin: 0;
+  height: 94%;
+  width: 69%;
+
+  overflow: hidden;
+
+  z-index: 10;
+}
+
+.StepDisplay section {
+  display: inline-block;
+
+  padding: 2.5rem 2.5rem 0 2.5rem;
+  height: 100%;
+  width: 100%;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  z-index: 15;
+}
+
+.StepDisplay section header {
+  display: flex;
+
+  height: auto; 
+  min-height: auto;
+
+  text-align: start;
+  line-height: 7rem;
+  font-size: 7rem;
+  overflow: hidden;
+
+  align-items: center;
+}
+
+.StepDisplay section main {
+  text-align: start;
+  font-size: 2.5rem;
+  line-height: 3.75rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.StepDisplay section footer {
+  margin-bottom: 20rem;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.StepDisplay section .break {
+  display: block;
+  position: relative;
+  left: 2%;
+
+  margin: 1.5rem 0;
+  padding: 0px;
+  height: 0.1rem;
+  width: 96%;
+
+  background-color: #000000;
+}
+
+.StepDisplay nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+
+  z-index: 20;
+}
+
+.StepDisplay nav button {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: none;
+
+  font-size: 1.25em;
+  min-height: 0;
+  min-width: 0;
+  height: 4.5rem;
+  aspect-ratio: 1;
+
+  z-index: 15;
+}
+
+.StepDisplay .next {
+  top: 50%;
+  right: 0;
+  transform: translateX(50%) translateY(-50%);
+}
+
+.StepDisplay .next::after {
+  position: relative;
+  right: 25%;
+  content: '>';
+}
+
+.StepDisplay .last {
+  transform: translateX(-50%) translateY(-50%);
+  top: 50%;
+  left: 0;
+}
+
+.StepDisplay .last::after {
+  position: relative;
+  left: 25%;
+  content: '<';
+}
+
+/* Objective */
+
+.Objective {
+  display: flex;
+  position: relative;
+
+  margin: 0.25rem 0;
+  padding: 0 1rem;
+  min-width: 50%;
+  max-width: 50rem;
+  min-height: 3.8rem;
+
+  font-size: 2.5rem;
+  border-radius: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+
+  align-items: center;
+}
+
+.Objective.newObjective::after {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  content: '+';
+  font-size: 3rem;
+  line-height: 0;
+}
+
+.Objective .statusButtons {
+  position: absolute;
+  top: 125%;
+
+  height: 50%;
+}
+
+.Objective .complete {
+  right: 11%;
+}
+
+.Objective .defeat {
+  right: 6%;
+}
+
+.Objective .delete {
+  right: 1%;
+}
+
+.Objective:hover .statusButtons {
+  transform: translateY(-200%);
+}
+
+/* Scrollbar */
+
+.Glass::-webkit-scrollbar, .Glass *::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+.Glass::-webkit-scrollbar-track, .Glass *::-webkit-scrollbar-track {
+  background: transprent;
+}
+
+.Glass::-webkit-scrollbar-track-piece, .Glass *::-webkit-scrollbar-track-piece {
+  background-color: rgba(200, 200, 200, 1);
+}
+
+.Glass::-webkit-resizer::-webkit-scrollbar-track-piece:start:vertical {
+  margin-top: 5rem;
+  border-radius: 9999px 0 0 0;
+}
+
+.Glass::-webkit-scrollbar-track-piece:end:vertical {
+  margin-bottom: 5rem;
+  border-radius: 0 0 0 9999px;
+}
+
+.Glass section::-webkit-scrollbar-track-piece:start:vertical {
+  margin-top: 5rem;
+  border-radius: 9999px 0 0 0;
+}
+
+.Glass section::-webkit-scrollbar-track-piece:end:vertical {
+  margin-bottom: 5rem;
+  border-radius: 0 0 0 9999px;
+}
+
+.Glass *::-webkit-scrollbar-track-piece:vertical {
+  border-radius: 9999px;
+}
+
+.Glass::-webkit-scrollbar-thumb, .Glass *::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.Glass::-webkit-scrollbar-thumb:horizontal, .Glass *::-webkit-scrollbar-thumb:horizontal {
+  border-radius: 9999px;
+}
+
+.Glass::-webkit-scrollbar-thumb:vertical, .Glass section::-webkit-scrollbar-thumb:vertical{
+  border-radius: 9999px 0 0 9999px;
+}
+
+.Glass *::-webkit-scrollbar-thumb:vertical {
+  border-radius: 9999px;
+}
+
+.Glass::-webkit-scrollbar-thumb:hover, .Glass *::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to right, rgba(255, 255, 255), transparent);
+}
+
+.Glass::-webkit-scrollbar-corner, .Glass *::-webkit-scrollbar-corner, .Glass::-webkit-resizer, .Glass *::-webkit-resizer {
+  background-color: transparent;
+  pointer-events: none;
+}

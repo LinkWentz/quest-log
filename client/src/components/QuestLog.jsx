@@ -2,7 +2,7 @@ import './styles/QuestLogSelector.css'
 import { useState, useEffect } from 'react';
 import EditableText from './EditableText';
 
-function Tab(props) {
+function QuestLog(props) {
 
     const [content, setContent] = useState({
         title: props.children
@@ -33,7 +33,7 @@ function Tab(props) {
     };
 
     return (
-        <div className={`Tab ${props.selected ? 'Selected' : 'Interactable'}`} onClick={props.onClick}>
+        <div className={`QuestLog ${props.selected ? 'Selected' : 'Interactable'}`} onClick={props.onClick}>
             <svg className="overlap left" viewBox="0 0 1 1">
                 <path d="M 1,1 L 1,0.5 A 0.5,0.5 0,0,1 0.5,1 L 0.5,1 Z"/>
             </svg>
@@ -55,4 +55,4 @@ function Tab(props) {
     );
 }
 
-export default Tab
+export default QuestLog
