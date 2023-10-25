@@ -1,12 +1,17 @@
 import './styles/BackgroundImage.css'
-import { useState } from 'react'
-import { useContext } from 'react'
-import { MousePositionContext } from '../App'
+import { useState, useContext, useEffect } from 'react'
+import { MousePositionContext, BackgroundImageURLContext } from '../App'
 
 function BackgroundImage() {
 
+    const { backgroundImageURL } = useContext(BackgroundImageURLContext);
+
     const [color, setColor] = useState('#000000');
     const [backgroundImage, setBackgroundImage] = useState(null);
+
+    useEffect(() => {
+        setBackgroundImage(backgroundImageURL);
+    }, [backgroundImageURL]);
 
     const mousePosition = useContext(MousePositionContext);
 
