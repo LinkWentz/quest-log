@@ -40,6 +40,19 @@ api.get('/questlogs', (req, res, next) => {
     .catch(next);
 });
 
+api.get('/questlog/:questLog', (req, res, next) => {
+    pool.query({text: 
+               `SELECT * FROM quest_logs
+                WHERE user_id = $1 AND id = $2
+                ORDER BY created_at`,
+                values: [req.user.id, req.params.questLog]})
+    .then((result) => {
+        res.locals.result = result;
+        next();
+    })
+    .catch(next);
+});
+
 api.get('/quests/:questLog', (req, res, next) => {
     pool.query({text: 
                `SELECT * FROM quests 
@@ -59,6 +72,28 @@ api.get('/steps/:quest', (req, res, next) => {
                 WHERE quest_id = $1 AND user_id = $2
                 ORDER BY created_at DESC`,
                 values: [req.params.quest, req.user.id]})
+    .then((result) => {
+        res.locals.result = result;
+        next();
+    })
+    .catch(next);
+});
+
+api.get('/latestobjective/:quest', (req, res, next) => {
+    pool.query({text: 
+                `WITH latest_step (id) AS 
+                (SELECT * FROM steps
+                WHERE quest_id = 15 AND user_id = 0
+                ORDER BY created_at DESC
+                LIMIT 1)
+                
+                SELECT objectives.* FROM objectives, latest_step
+                WHERE objectives.step_id = latest_step.id
+                AND objectives.user_id = 0
+                AND objectives.completed is NULL
+                ORDER BY objectives.created_at DESC
+                LIMIT 1;`,
+                values: [req.params.step, req.user.id]})
     .then((result) => {
         res.locals.result = result;
         next();
@@ -91,20 +126,20 @@ if (res.locals.result == undefined || res.locals.result.rows.length == 0) {
 api.post('/questlog', (req, res, next) => {
     pool.query({text: 
                `INSERT INTO quest_logs
-                (id, user_id, title, created_at)
+                (id, user_id, title, background_image_url, created_at)
                 VALUES 
-                (DEFAULT, $1, $2, NOW())`,
-                values: [req.user.id, req.body.quest_log_title]})
+                (DEFAULT, $1, $2, $3, NOW())`,
+                values: [req.user.id, req.body.quest_log_title, req.body.quest_log_background_image_url]})
     .then(() => {next()}).catch(next);
 });
 
 api.post('/quest/:questLog', (req, res, next) => {
     pool.query({text: 
                `INSERT INTO quests
-                (id, log_id, user_id, title, created_at)
+                (id, log_id, user_id, title, completed, created_at)
                 VALUES 
-                (DEFAULT, $1, $2, $3, NOW())`,
-                values: [req.params.questLog, req.user.id, req.body.quest_title]})
+                (DEFAULT, $1, $2, $3, $4, NOW())`,
+                values: [req.params.questLog, req.user.id, req.body.quest_title, req.body.quest_completed]})
     .then(() => {next()}).catch(next);
 });
 
@@ -121,10 +156,10 @@ api.post('/step/:quest', (req, res, next) => {
 api.post('/objective/:step', (req, res, next) => {
     pool.query({text: 
                `INSERT INTO objectives
-                (id, step_id, user_id, statement, complete, created_at)
+                (id, step_id, user_id, statement, completed, created_at)
                 VALUES
                 (DEFAULT, $1, $2, $3, $4, NOW())`,
-                values: [req.params.step, req.user.id, req.body.objective_statement, req.body.objective_complete]})
+                values: [req.params.step, req.user.id, req.body.objective_statement, req.body.objective_completed]})
     .then(() => {next()}).catch(next);
 });
 
@@ -133,6 +168,15 @@ api.post('/*', (req, res) => {
 });
 
 // Patch Routes
+api.patch('/questlogs/:questLog/backgroundimageurl', (req, res, next) => {
+    pool.query({text: 
+               `UPDATE quest_logs
+                SET background_image_url = $1
+                WHERE id = $2 AND user_id = $3`,
+                values: [req.body.quest_log_background_image_url, req.params.questLog, req.user.id]})
+    .then(() => {next()}).catch(next);
+});
+
 api.patch('/questlogs/:questLog', (req, res, next) => {
     pool.query({text: 
                `UPDATE quest_logs
@@ -145,9 +189,9 @@ api.patch('/questlogs/:questLog', (req, res, next) => {
 api.patch('/quests/:quest', (req, res, next) => {
     pool.query({text: 
                `UPDATE quests 
-                SET title = $1
-                WHERE id = $2 AND user_id = $3`,
-                values: [req.body.quest_title, req.params.quest, req.user.id]})
+                SET title = $1, completed = $2
+                WHERE id = $3 AND user_id = $4`,
+                values: [req.body.quest_title, req.body.quest_completed, req.params.quest, req.user.id]})
     .then(() => {next()}).catch(next);
 });
 
@@ -163,9 +207,9 @@ api.patch('/steps/:step', (req, res, next) => {
 api.patch('/objectives/:objective', (req, res, next) => {
     pool.query({text: 
                `UPDATE objectives
-                SET statement = $1, complete = $2
+                SET statement = $1, completed = $2
                 WHERE id = $3 AND user_id = $4`,
-                values: [req.body.objective_statement, req.body.objective_complete, req.params.objective, req.user.id]})
+                values: [req.body.objective_statement, req.body.objective_completed, req.params.objective, req.user.id]})
     .then(() => {next()}).catch(next);
 });
 
