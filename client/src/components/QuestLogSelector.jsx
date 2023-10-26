@@ -11,8 +11,14 @@ function QuestLogSelector() {
     const [selectedQuestLog, setSelectedQuestLog] = useState(0);
 
     const fetchQuestLogList = async () => {
-        const newQuestLogs = await (await fetch(`http://localhost:3000/questlogs`)).json();
-        await setQuestLogs(newQuestLogs);
+        try {
+            const newQuestLogs = await (await fetch(`http://localhost:3000/questlogs`)).json();
+            await setQuestLogs(newQuestLogs);
+            return true;
+        }
+        catch {
+            return false;
+        }
     };
 
     const buildQuestLogElements = () => {
@@ -67,6 +73,7 @@ function QuestLogSelector() {
 
     useEffect(() => {
         buildQuestLogElements();
+        updateSelectedQuestLog();
     }, [selectedQuestLog, questLogs]);
 
     return (
