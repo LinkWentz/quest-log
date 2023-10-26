@@ -72,8 +72,14 @@ function QuestLogSelector() {
     }, [selectedQuestLog]);
 
     useEffect(() => {
-        buildQuestLogElements();
-        updateSelectedQuestLog();
+        // Make sure there is a selected quest log if the last quest log in the array is deleted
+        if(selectedQuestLog > questLogs.length - 1) {
+            setSelectedQuestLog(0);
+        }
+        else {
+            buildQuestLogElements();
+            updateSelectedQuestLog();
+        }
     }, [selectedQuestLog, questLogs]);
 
     return (
