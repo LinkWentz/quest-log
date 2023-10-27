@@ -14,7 +14,6 @@ function EditableText(props) {
 
     const updateContent = (e) => {
         if (e.target.innerText.length <= 1) {
-            console.log('a')
             e.preventDefault()
             return;
         }
