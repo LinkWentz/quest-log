@@ -196,6 +196,7 @@
 }
 
 .QuestSelector button {
+  margin-top: 0;
   border: none;
   outline: none;
   font-family: inherit;
