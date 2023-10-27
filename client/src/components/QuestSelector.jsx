@@ -4,26 +4,40 @@ import { SelectedIDsContext } from '../App'
 
 function QuestSelector() {
 
-    const ctx = useContext(SelectedIDsContext);
+    const {selectedIDs, setSelectedIDs} = useContext(SelectedIDsContext);
     const [quests, setQuests] = useState([]);
     const [questCardElements, setQuestCardElements] = useState([]);
     const [selectedQuestCard, setSelectedQuestCard] = useState(0);
 
     const fetchQuestList = async () => {
-        if (ctx.selectedIDs.selectedQuestLogID != undefined){
-            const newQuests = await (await fetch(`http://localhost:3000/quests/${ctx.selectedIDs.selectedQuestLogID}`)).json();
+        if (selectedIDs.selectedQuestLogID != undefined){
+            const newQuests = await (await fetch(`http://localhost:3000/quests/${selectedIDs.selectedQuestLogID}`)).json();
             await setQuests(newQuests);
         }
     };
 
     const updateSelectedQuest = () => {
         if (quests && quests.length > selectedQuestCard) {
-            ctx.setSelectedIDs({
-                ...ctx.selectedIDs,
+            setSelectedIDs({
+                ...selectedIDs,
                 selectedQuestID: quests[selectedQuestCard].id
             });
         }
     };
+    
+    const createNewQuest = async () => {
+        await fetch(`http://localhost:3000/quest/${selectedIDs.selectedQuestLogID}`, {
+            method: 'POST',
+            body: JSON.stringify({
+                quest_title: 'Default Title'
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            }
+        });
+
+        fetchQuestList();
+    }
 
     const buildQuestCardElements = () => {
         const newQuestCardElements = [];
@@ -33,10 +47,12 @@ function QuestSelector() {
             const currentQuestIsSelected = (quest == selectedQuestCard) ? true : false;
 
             newQuestCardElements.push(
-                <Quest key={'Quest_' + quest}
+                <Quest key={'Quest_' + currentQuest.id} questID={currentQuest.id}
                 selected={currentQuestIsSelected}
                 onClick={() => {setSelectedQuestCard(quest)}}
-                title={currentQuest.title}>
+                title={currentQuest.title}
+                fetchQuestList={() => {fetchQuestList()}}
+                completed={currentQuest.completed}>
                 </Quest>
             );
         }
@@ -46,7 +62,7 @@ function QuestSelector() {
 
     useEffect(() => {
         fetchQuestList();
-    }, [ctx.selectedIDs]);
+    }, [selectedIDs]);
 
     useEffect(() => {
         updateSelectedQuest();
@@ -59,7 +75,7 @@ function QuestSelector() {
     return (
         <div className="QuestSelector Glass">
             {questCardElements}
-            <button className="Quest Interactable"/>
+            <button className="Quest Interactable" onClick={createNewQuest}/>
         </div>
     );
 }
