@@ -29,7 +29,7 @@ function QuestLog(props) {
             method: 'DELETE'
         });
 
-        props.fetchQuestLogList();
+        props.afterQuestLogDeletion();
     };
 
     return (

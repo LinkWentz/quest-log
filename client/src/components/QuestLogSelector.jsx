@@ -12,7 +12,10 @@ function QuestLogSelector() {
 
     const fetchQuestLogList = async () => {
         try {
-            const newQuestLogs = await (await fetch(`http://localhost:3000/questlogs`)).json();
+            const newQuestLogs = await (await fetch(`http://localhost:3000/questlogs`)).json(); 
+            if (newQuestLogs == questLogs) {
+                return false;
+            }
             await setQuestLogs(newQuestLogs);
             return true;
         }
@@ -20,6 +23,11 @@ function QuestLogSelector() {
             return false;
         }
     };
+
+    const afterQuestLogDeletion = () => {
+        setSelectedQuestLog(selectedQuestLog > 0 ? selectedQuestLog - 1 : 0);
+        fetchQuestLogList();
+    }
 
     const buildQuestLogElements = () => {
         const newQuestLogElements = [];
@@ -31,7 +39,7 @@ function QuestLogSelector() {
             newQuestLogElements.push(
                 <QuestLog key={'Quest_Log_' + questLog} questLogID={currentQuestLog.id}
                 selected={currentQuestLogIsSelected}
-                fetchQuestLogList={fetchQuestLogList}
+                afterQuestLogDeletion={afterQuestLogDeletion}
                 onClick={() => {setSelectedQuestLog(questLog)}}>
                     {currentQuestLog.title}
                 </QuestLog>
@@ -72,14 +80,8 @@ function QuestLogSelector() {
     }, [selectedQuestLog]);
 
     useEffect(() => {
-        // Make sure there is a selected quest log if the last quest log in the array is deleted
-        if(selectedQuestLog > questLogs.length - 1) {
-            setSelectedQuestLog(0);
-        }
-        else {
-            buildQuestLogElements();
-            updateSelectedQuestLog();
-        }
+        buildQuestLogElements();
+        updateSelectedQuestLog();
     }, [selectedQuestLog, questLogs]);
 
     return (
