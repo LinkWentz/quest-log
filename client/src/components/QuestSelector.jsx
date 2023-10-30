@@ -1,5 +1,5 @@
 import Quest from './Quest'
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, useRef } from 'react';
 import { SelectedIDsContext } from '../App'
 
 function QuestSelector() {
@@ -8,6 +8,7 @@ function QuestSelector() {
     const [quests, setQuests] = useState([]);
     const [questCardElements, setQuestCardElements] = useState([]);
     const [selectedQuestCard, setSelectedQuestCard] = useState(0);
+    const previousQuestLogID = useRef(0);
 
     const fetchQuestList = async () => {
         if (selectedIDs.selectedQuestLogID != undefined){
@@ -15,6 +16,15 @@ function QuestSelector() {
             await setQuests(newQuests);
         }
     };
+
+    const makeAutomatedSelection = () => {
+        setSelectedQuestCard(selectedQuestCard > 0 ? selectedQuestCard - 1 : 0);
+    }
+
+    const afterQuestDeletion = () => {
+        makeAutomatedSelection();
+        fetchQuestList();
+    }
 
     const updateSelectedQuest = () => {
         if (quests && quests.length > selectedQuestCard) {
@@ -51,7 +61,7 @@ function QuestSelector() {
                 selected={currentQuestIsSelected}
                 onClick={() => {setSelectedQuestCard(quest)}}
                 title={currentQuest.title}
-                fetchQuestList={() => {fetchQuestList()}}
+                afterQuestDeletion={afterQuestDeletion}
                 completed={currentQuest.completed}>
                 </Quest>
             );
@@ -62,6 +72,11 @@ function QuestSelector() {
 
     useEffect(() => {
         fetchQuestList();
+        if (previousQuestLogID.current != selectedIDs.selectedQuestLogID) {
+            makeAutomatedSelection();
+            previousQuestLogID.current = selectedIDs.selectedQuestLogID;
+        }
+
     }, [selectedIDs]);
 
     useEffect(() => {

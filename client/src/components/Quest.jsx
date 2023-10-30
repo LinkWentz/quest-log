@@ -31,7 +31,7 @@ function Quest(props) {
             method: 'DELETE'
         });
 
-        props.fetchQuestList();
+        props.afterQuestDeletion();
     }
 
     return (
