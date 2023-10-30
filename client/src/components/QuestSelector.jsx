@@ -69,7 +69,12 @@ function QuestSelector() {
     }, [selectedQuestCard]);
 
     useEffect(() => {
+        // Make sure there is a selected quest if the last quest in the array is deleted
+        if(selectedQuestCard > quests.length - 1) {
+            setSelectedQuestCard(0);
+        }
         buildQuestCardElements();
+        updateSelectedQuest();
     }, [quests, selectedQuestCard]);
 
     return (
