@@ -20,6 +20,7 @@ function QuestLogSelector() {
             return true;
         }
         catch {
+            await setQuestLogs([]);
             return false;
         }
     };

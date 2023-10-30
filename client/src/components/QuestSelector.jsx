@@ -12,8 +12,18 @@ function QuestSelector() {
 
     const fetchQuestList = async () => {
         if (selectedIDs.selectedQuestLogID != undefined){
-            const newQuests = await (await fetch(`http://localhost:3000/quests/${selectedIDs.selectedQuestLogID}`)).json();
-            await setQuests(newQuests);
+            try {
+                const newQuests = await (await fetch(`http://localhost:3000/quests/${selectedIDs.selectedQuestLogID}`)).json();
+                if (newQuests == quests) {
+                    return false;
+                }
+                await setQuests(newQuests);
+                return true;
+            }
+            catch {
+                await setQuests([]);
+                return false;
+            }
         }
     };
 
@@ -52,19 +62,21 @@ function QuestSelector() {
     const buildQuestCardElements = () => {
         const newQuestCardElements = [];
 
-        for (const quest in quests) {
-            const currentQuest = quests[quest];
-            const currentQuestIsSelected = (quest == selectedQuestCard) ? true : false;
-
-            newQuestCardElements.push(
-                <Quest key={'Quest_' + currentQuest.id} questID={currentQuest.id}
-                selected={currentQuestIsSelected}
-                onClick={() => {setSelectedQuestCard(quest)}}
-                title={currentQuest.title}
-                afterQuestDeletion={afterQuestDeletion}
-                completed={currentQuest.completed}>
-                </Quest>
-            );
+        if (quests.length != 0) {
+            for (const quest in quests) {
+                const currentQuest = quests[quest];
+                const currentQuestIsSelected = (quest == selectedQuestCard) ? true : false;
+    
+                newQuestCardElements.push(
+                    <Quest key={'Quest_' + currentQuest.id} questID={currentQuest.id}
+                    selected={currentQuestIsSelected}
+                    onClick={() => {setSelectedQuestCard(quest)}}
+                    title={currentQuest.title}
+                    afterQuestDeletion={afterQuestDeletion}
+                    completed={currentQuest.completed}>
+                    </Quest>
+                );
+            }   
         }
 
         setQuestCardElements(newQuestCardElements);
