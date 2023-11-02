@@ -2,6 +2,7 @@ import './styles/QuestLogSelector.css'
 import QuestLog from './QuestLog'
 import { useState, useEffect, useContext } from 'react';
 import { SelectedIDsContext } from '../App'
+import API from '../scripts/API';
 
 function QuestLogSelector() {
 
@@ -10,24 +11,14 @@ function QuestLogSelector() {
     const [questLogElements, setQuestLogElements] = useState([]);
     const [selectedQuestLog, setSelectedQuestLog] = useState(0);
 
-    const fetchQuestLogList = async () => {
-        try {
-            const newQuestLogs = await (await fetch(`http://localhost:3000/questlogs`)).json(); 
-            if (newQuestLogs == questLogs) {
-                return false;
-            }
-            await setQuestLogs(newQuestLogs);
-            return true;
-        }
-        catch {
-            await setQuestLogs([]);
-            return false;
-        }
+    const refreshQuestLogList = async () => {
+        const newQuestLogs = await API.get.questLogsForUser();
+        setQuestLogs(newQuestLogs);
     };
 
     const afterQuestLogDeletion = () => {
         setSelectedQuestLog(selectedQuestLog > 0 ? selectedQuestLog - 1 : 0);
-        fetchQuestLogList();
+        refreshQuestLogList();
     }
 
     const buildQuestLogElements = () => {
@@ -59,21 +50,12 @@ function QuestLogSelector() {
     };
 
     const createNewQuestLog = async () => {
-        await fetch(`http://localhost:3000/questlog/`, {
-            method: 'POST',
-            body: JSON.stringify({
-                quest_log_title: 'Default Title'
-            }),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            }
-        });
-
-        fetchQuestLogList();
+        await API.create.questLogForUser({ title: 'Default Title', backgroundImageURL: ''});
+        refreshQuestLogList();
     }
 
     useEffect(() => {
-        fetchQuestLogList();
+        refreshQuestLogList();
     }, []);
 
     useEffect(() => {

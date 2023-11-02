@@ -1,6 +1,7 @@
 import Quest from './Quest'
 import { useState, useEffect, useContext, useRef } from 'react';
 import { SelectedIDsContext } from '../App'
+import API from '../scripts/API';
 
 function QuestSelector() {
 
@@ -10,21 +11,9 @@ function QuestSelector() {
     const [selectedQuestCard, setSelectedQuestCard] = useState(0);
     const previousQuestLogID = useRef(0);
 
-    const fetchQuestList = async () => {
-        if (selectedIDs.selectedQuestLogID != undefined){
-            try {
-                const newQuests = await (await fetch(`http://localhost:3000/quests/${selectedIDs.selectedQuestLogID}`)).json();
-                if (newQuests == quests) {
-                    return false;
-                }
-                await setQuests(newQuests);
-                return true;
-            }
-            catch {
-                await setQuests([]);
-                return false;
-            }
-        }
+    const refreshQuestList = async () => {
+        const newQuests = selectedIDs.selectedQuestLogID ? await API.get.questsForQuestLog(selectedIDs.selectedQuestLogID) : [];
+        setQuests(newQuests);
     };
 
     const makeAutomatedSelection = () => {
@@ -33,7 +22,7 @@ function QuestSelector() {
 
     const afterQuestDeletion = () => {
         makeAutomatedSelection();
-        fetchQuestList();
+        refreshQuestList();
     }
 
     const updateSelectedQuest = () => {
@@ -46,17 +35,8 @@ function QuestSelector() {
     };
     
     const createNewQuest = async () => {
-        await fetch(`http://localhost:3000/quest/${selectedIDs.selectedQuestLogID}`, {
-            method: 'POST',
-            body: JSON.stringify({
-                quest_title: 'Default Title'
-            }),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            }
-        });
-
-        fetchQuestList();
+        await API.create.questForQuestLog(selectedIDs.selectedQuestLogID);
+        refreshQuestList();
     }
 
     const buildQuestCardElements = () => {
@@ -83,7 +63,7 @@ function QuestSelector() {
     };
 
     useEffect(() => {
-        fetchQuestList();
+        refreshQuestList();
         if (previousQuestLogID.current != selectedIDs.selectedQuestLogID) {
             makeAutomatedSelection();
             previousQuestLogID.current = selectedIDs.selectedQuestLogID;

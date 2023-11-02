@@ -1,6 +1,7 @@
 import './styles/SettingsMenu.css'
 import { BackgroundImageURLContext, SelectedIDsContext } from '../App'
 import { useContext, useEffect } from 'react';
+import API from '../scripts/API';
 
 function SettingsMenu() {
     const { setBackgroundImageURL } = useContext(BackgroundImageURLContext);
@@ -8,28 +9,21 @@ function SettingsMenu() {
     
     const onInput = (event) => {
         const newURL = event.target.value;
-
         setBackgroundImageURL(newURL);
         
         (async () => {
-            await fetch(`http://localhost:3000/questlogs/${selectedIDs.selectedQuestLogID}/backgroundimageurl`, {
-                method: 'PATCH',
-                body: JSON.stringify({
-                    quest_log_background_image_url: newURL
-                }),
-                headers: {
-                    'Content-type': 'application/json; charset=UTF-8',
-                }
-            })
+            await API.update.questLogBackgroundImage(selectedIDs.selectedQuestLogID, newURL);
         })();
     }
+    
 
     useEffect(() => {
-        if (selectedIDs.selectedQuestLogID) {
+        if (selectedIDs.selectedQuestLogID != null && selectedIDs.selectedQuestLogID) {
             (async () => {
-                let selectedQuestLog = {};
-                selectedQuestLog = await (await fetch(`http://localhost:3000/questlog/${selectedIDs.selectedQuestLogID}`)).json();
-                await setBackgroundImageURL(selectedQuestLog[0].background_image_url);
+                const selectedQuestLog = await API.get.questLog(selectedIDs.selectedQuestLogID);
+                if (selectedQuestLog.length > 0) {
+                    await setBackgroundImageURL(selectedQuestLog[0].background_image_url);
+                }
             })();
         }
     }, [selectedIDs]);

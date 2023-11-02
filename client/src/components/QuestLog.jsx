@@ -1,6 +1,7 @@
 import './styles/QuestLogSelector.css'
 import { useState, useEffect } from 'react';
 import EditableText from './EditableText';
+import API from '../scripts/API';
 
 function QuestLog(props) {
 
@@ -12,23 +13,12 @@ function QuestLog(props) {
         updateQuestLogData(content);
     }, [content]);
 
-    const updateQuestLogData = ({title}) => {
-        fetch(`http://localhost:3000/questlogs/${props.questLogID}`, {
-            method: 'PATCH',
-            body: JSON.stringify({
-                quest_log_title: title || null
-            }),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            }
-        });
+    const updateQuestLogData = ({ title }) => {
+        API.update.questLogTitle(props.questLogID, title);
     };
 
     const deleteQuestLog = async () => {
-        await fetch(`http://localhost:3000/questlogs/${props.questLogID}`, {
-            method: 'DELETE'
-        });
-
+        await API.delete.questLog(props.questLogID);
         props.afterQuestLogDeletion();
     };
 

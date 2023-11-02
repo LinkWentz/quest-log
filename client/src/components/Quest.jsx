@@ -1,5 +1,6 @@
 import EditableText from './EditableText';
 import { useState, useEffect } from 'react';
+import API from '../scripts/API';
 
 function Quest(props) {
 
@@ -14,23 +15,11 @@ function Quest(props) {
     }, [content])
 
     const updateQuestData = ({ title, completed }) => {
-        fetch(`http://localhost:3000/quests/${props.questID}`, {
-            method: 'PATCH',
-            body: JSON.stringify({
-                quest_title: title || null,
-                quest_completed: completed != undefined ? completed : null
-            }),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            }
-        });
+        API.update.quest(props.questID, { title, completed });
     }
 
     const deleteQuest = async () => {
-        await fetch(`http://localhost:3000/quests/${props.questID}`, {
-            method: 'DELETE'
-        });
-
+        await API.delete.quest(props.questID);
         props.afterQuestDeletion();
     }
 
