@@ -1,6 +1,7 @@
 import EditableText from './EditableText';
 import { useState, useEffect } from 'react';
 import API from '../scripts/API';
+import { CompleteButton, DefeatButton, DeleteButton } from './StatusButtons';
 
 function Quest(props) {
 
@@ -40,9 +41,9 @@ function Quest(props) {
             }    
             </header>
             <footer>{content.first_objective}</footer>
-            <div className="statusButtons complete" onClick={() => {setContent({...content, completed: content.completed != true ? true : null})}}>✓</div>
-            <div className="statusButtons defeat" onClick={() => {setContent({...content, completed: content.completed != false ? false : null})}}>✕</div>
-            <div className="statusButtons delete" onClick={() => {deleteQuest()}}>🗑</div>
+            <CompleteButton content={content} setContent={setContent} selected={props.selected} onlyClickableIfSelected/>
+            <DefeatButton content={content} setContent={setContent} selected={props.selected} onlyClickableIfSelected/>
+            <DeleteButton delete={deleteQuest} selected={props.selected} onlyClickableIfSelected/>
         </div>
     );
 }

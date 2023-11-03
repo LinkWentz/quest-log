@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { CompleteButton, DefeatButton, DeleteButton } from './StatusButtons';
 
 function Objective(props) {
     
@@ -14,9 +15,9 @@ function Objective(props) {
     return (
         <div key={props.key + ' completed: ' + content.completed} className={`Objective Interactable ${content.completed == true ? 'Complete' : ''} ${content.completed == false ? 'Defeat' : ''}`}>
             {content.statement}
-            <div className="statusButtons complete" onClick={() => {setContent({...content, completed: content.completed != true ? true : null})}}>✓</div>
-            <div className="statusButtons defeat" onClick={() => {setContent({...content, completed: content.completed != false ? false : null})}}>✕</div>
-            <div className="statusButtons delete" onClick={() => {deleteObjective()}}>🗑</div>
+            <CompleteButton content={content} setContent={setContent} selected={props.selected} onlyClickableIfSelected/>
+            <DefeatButton content={content} setContent={setContent} selected={props.selected} onlyClickableIfSelected/>
+            <DeleteButton delete={deleteObjective} selected={props.selected} onlyClickableIfSelected/>
         </div>
     )
 }
