@@ -39,8 +39,10 @@ function QuestSelector() {
     }
 
     // Rendering
-    const afterQuestDeletion = () => {
-        setSelectedQuest(selectedQuest > 0 ? selectedQuest - 1 : 0);
+    const afterQuestDeletion = (questWasSelected = false) => {
+        if (questWasSelected) {
+            setSelectedQuest(selectedQuest > 0 ? selectedQuest - 1 : 0);
+        }
         refreshQuestList();
     }
 

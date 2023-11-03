@@ -17,7 +17,7 @@ function Quest(props) {
 
     const deleteQuest = async () => {
         await API.delete.quest(props.questID);
-        props.afterQuestDeletion();
+        props.afterQuestDeletion(props.selected);
     }
 
     useEffect(() => {
