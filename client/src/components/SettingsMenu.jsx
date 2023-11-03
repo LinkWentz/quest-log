@@ -4,6 +4,7 @@ import { useContext, useEffect } from 'react';
 import API from '../scripts/API';
 
 function SettingsMenu() {
+    
     const { setBackgroundImageURL } = useContext(BackgroundImageURLContext);
     const { selectedIDs } = useContext(SelectedIDsContext);
     
@@ -16,7 +17,6 @@ function SettingsMenu() {
         })();
     }
     
-
     useEffect(() => {
         if (selectedIDs.selectedQuestLogID != null && selectedIDs.selectedQuestLogID) {
             (async () => {

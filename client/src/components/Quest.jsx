@@ -10,10 +10,6 @@ function Quest(props) {
         completed: props.completed != undefined ? props.completed : null
     });
 
-    useEffect(() => {
-        updateQuestData(content);
-    }, [content])
-
     const updateQuestData = ({ title, completed }) => {
         API.update.quest(props.questID, { title, completed });
     }
@@ -22,6 +18,10 @@ function Quest(props) {
         await API.delete.quest(props.questID);
         props.afterQuestDeletion();
     }
+
+    useEffect(() => {
+        updateQuestData(content);
+    }, [content])
 
     return (
         <div key={props.key + ' completed: ' + content.completed} 

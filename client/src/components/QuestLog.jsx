@@ -9,10 +9,6 @@ function QuestLog(props) {
         title: props.children
     });
 
-    useEffect(() => {
-        updateQuestLogData(content);
-    }, [content]);
-
     const updateQuestLogData = ({ title }) => {
         API.update.questLog(props.questLogID, { title: title });
     };
@@ -21,6 +17,10 @@ function QuestLog(props) {
         await API.delete.questLog(props.questLogID);
         props.afterQuestLogDeletion();
     };
+
+    useEffect(() => {
+        updateQuestLogData(content);
+    }, [content]);
 
     return (
         <div className={`QuestLog ${props.selected ? 'Selected' : 'Interactable'}`} onClick={props.onClick}>
