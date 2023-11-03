@@ -3,34 +3,34 @@ const hostname = 'http://localhost:3000';
 const API = {
     get : {
         questLogsForUser : async () => {
-            const results = await GET(hostname + `/questlogs`);
+            const results = await GET(hostname + `/questLogs`);
 
             return results;
         },
         questLog : async (questLogID) => {
-            const results = await GET(hostname + `/questlog/${questLogID}`);
+            const results = await GET(hostname + `/questLog/${questLogID}`);
 
             return results;
         },
         questsForQuestLog : async (questLogID) => {
-            const results = await GET(hostname + `/quests/${questLogID}`);
+            const results = await GET(hostname + `/questsInQuestLog/${questLogID}`);
 
             return results;
         },
         stepsForQuest : async (questID) => {
-            const results = await GET(hostname + `/steps/${questID}`);
+            const results = await GET(hostname + `/stepsInQuest/${questID}`);
 
             return results;
         },
         objectivesForStep : async (stepID) => {
-            const results = await GET(hostname + `/objectives/${stepID}`);
+            const results = await GET(hostname + `/objectivesInStep/${stepID}`);
 
             return results;
         },
     },
     create : {
         questLogForUser : async ({ title = '', backgroundImageURL = ''} = {}) => {
-            const result = await POST(hostname + `/questlog`, {
+            const result = await POST(hostname + `/questLog`, {
                 quest_log_title: title,
                 quest_log_background_image_url: backgroundImageURL
             });
@@ -38,7 +38,7 @@ const API = {
             return result;
         },
         questForQuestLog : async (questLogID, { title = '', completed = null } = {}) => {
-            const result = await POST(hostname + `/quest/${questLogID}`, {
+            const result = await POST(hostname + `/questInQuestLog/${questLogID}`, {
                 quest_title: title,
                 quest_completed: completed
             });
@@ -46,7 +46,7 @@ const API = {
             return result;
         },
         stepForQuest : async (questID, { title = '', body = '' } = {}) => {
-            const result = await POST(hostname + `/step/${questID}`, {
+            const result = await POST(hostname + `/stepInQuest/${questID}`, {
                 step_title: title,
                 step_body: body
             });
@@ -54,7 +54,7 @@ const API = {
             return result;
         },
         objectiveForStep : async (stepID, { statement = '', completed = null } = {}) => {
-            const result = await POST(hostname + `/objective/${stepID}`, {
+            const result = await POST(hostname + `/objectiveInStep/${stepID}`, {
                 objective_statement: statement,
                 objective_completed: completed
             });
@@ -63,65 +63,109 @@ const API = {
         },
     },
     update : {
-        questLogBackgroundImage : async (questLogID, backgroundImageURL = '') => {
-            console.log(backgroundImageURL);
+        questLog : async (questLogID, { title = undefined, backgroundImageURL = undefined } = {}) => {
+            let results = [];
 
-            const result = await PATCH(hostname + `/questlogs/${questLogID}/backgroundimageurl`, {
-                quest_log_background_image_url: backgroundImageURL
-            });
+            if (title !== undefined) {
+                const result = await PATCH(hostname + `/titleInQuestLog/${questLogID}`, {
+                    quest_log_title: title
+                });
 
-            return result;
+                results.push(result);
+            }
+
+            if (backgroundImageURL !== undefined) {
+                const result = await PATCH(hostname + `/backgroundImageURLInQuestLog/${questLogID}`, {
+                    quest_log_background_image_url: backgroundImageURL
+                });
+
+                results.push(result);
+            }
+
+            return results;
         },
-        questLogTitle : async (questLogID, title = '') => {
-            const result = await PATCH(hostname + `/questlogs/${questLogID}`, {
-                quest_log_title: title
-            });
+        quest : async (questID, { title = undefined, completed = undefined } = {}) => {
+            let results = [];
 
-            return result;
+            if (title !== undefined) {
+                const result = await PATCH(hostname + `/titleInQuest/${questID}`, {
+                    quest_title: title
+                });    
+
+                results.push(result);
+            }
+
+            if (completed !== undefined) {
+                const result = await PATCH(hostname + `/completedInQuest/${questID}`, {
+                    quest_completed: completed
+                });    
+
+                results.push(result);
+            }
+
+            return results;
         },
-        quest : async (questID, { title = '', completed = null}) => {
-            const result = await PATCH(hostname + `/quests/${questID}`, {
-                quest_title: title,
-                quest_completed: completed
-            });
+        step : async (stepID, { title = undefined, body = undefined } = {}) => {
+            let results = [];
 
-            return result;
+            if (title !== undefined) {
+                const result = await PATCH(hostname + `/titleInStep/${stepID}`, {
+                    step_title: title
+                });
+
+                results.push(result);
+            }
+
+            if (body !== undefined) {
+                const result = await PATCH(hostname + `/bodyInStep/${stepID}`, {
+                    step_body: body 
+                });
+
+                results.push(result);
+            }
+
+            return results;
         },
-        step : async (stepID, { title = '', body = '' } = {}) => {
-            const result = await PATCH(hostname + `/steps/${stepID}`, {
-                step_title: title,
-                step_body: body 
-            });
+        objective : async (objectiveID, { statement = undefined, completed = undefined } = {}) => {
+            let results = [];
 
-            return result;
-        },
-        objective : async (objectiveID, { statement = '', completed = null } = {}) => {
-            const result = await PATCH(hostname + `/objectives/${objectiveID}`, {
-                objective_statement: statement,
-                objective_completed: completed 
-            });
+            if (statement !== undefined) {
+                const result = await PATCH(hostname + `/statementInObjective/${objectiveID}`, {
+                    objective_statement: statement
+                });
 
-            return result;
+                results.push(result);
+            }
+
+            if (completed !== undefined) {
+                const result = await PATCH(hostname + `/completedInObjective/${objectiveID}`, {
+                    objective_completed: completed
+                });
+
+                results.push(result);
+            }
+
+            return results;
         }
     },
     delete : {
         questLog : async (questLogID) => {
-            const result = await DELETE(hostname + `/questlogs/${questLogID}`);
+            const result = await DELETE(hostname + `/questLog/${questLogID}`);
 
             return result;
         },
         quest : async (questID) => {
-            const result = await DELETE(hostname + `/quests/${questID}`);
+            const result = await DELETE(hostname + `/quest/${questID}`);
 
             return result;
         },
         step : async (stepID) => {
-            const result = await DELETE(hostname + `/steps/${stepID}`);
+            const result = await DELETE(hostname + `/step/${stepID}`);
 
             return result;
         },
         objective : async (objectiveID) => {
-            const result = await DELETE(hostname + `/objectives/${objectiveID}`);
+            const result = await DELETE(hostname + `/objective/${objectiveID}`);
 
             return result;
         },

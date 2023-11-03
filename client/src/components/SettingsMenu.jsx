@@ -12,7 +12,7 @@ function SettingsMenu() {
         setBackgroundImageURL(newURL);
         
         (async () => {
-            await API.update.questLogBackgroundImage(selectedIDs.selectedQuestLogID, newURL);
+            await API.update.questLog(selectedIDs.selectedQuestLogID, { backgroundImageURL: newURL });
         })();
     }
     

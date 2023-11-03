@@ -14,7 +14,7 @@ function QuestLog(props) {
     }, [content]);
 
     const updateQuestLogData = ({ title }) => {
-        API.update.questLogTitle(props.questLogID, title);
+        API.update.questLog(props.questLogID, { title: title });
     };
 
     const deleteQuestLog = async () => {
