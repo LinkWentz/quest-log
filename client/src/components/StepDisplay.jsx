@@ -46,18 +46,25 @@ function StepDisplay() {
     }
 
     useEffect(() => {
+        refreshStepList();
+    }, [selectedIDs]);
+
+    useEffect(() => {
+        setCurrentStep(0);
         if (steps.length > 0) {
             setContent(steps[currentStep]);
         }
-    }, [currentStep, steps]);
+    }, [steps]);
+
+    useEffect(() => {
+        if (steps.length > 0) {
+            setContent(steps[currentStep]);
+        }
+    }, [currentStep]);
 
     useEffect(() => {
         updateStepData(content);
     }, [content]);
-
-    useEffect(() => {
-        refreshStepList();
-    }, [selectedIDs]);
 
     return (
         <div className="StepDisplay Glass">
@@ -74,7 +81,7 @@ function StepDisplay() {
                 </footer>
             </section>
             <nav>
-                <button className="next Interactable" onClick={nextStep}/>
+                <button className="next Interactable" onClick={currentStep == 0 ? createNewStep : nextStep}/>
                 <button className="last Interactable" onClick={previousStep}/>
             </nav>
         </div>
