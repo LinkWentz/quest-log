@@ -3,6 +3,7 @@ import EditableText from './EditableText';
 import { useEffect, useState, useContext } from 'react';
 import { SelectedIDsContext } from '../App';
 import API from '../scripts/API';
+import { DeleteButton } from './StatusButtons';
 
 function StepDisplay() {
 
@@ -21,7 +22,7 @@ function StepDisplay() {
 
     const refreshStepList = async () => {
         const newSteps = selectedIDs.selectedQuestID ? await API.get.stepsForQuest(selectedIDs.selectedQuestID) : [];
-        setSteps(newSteps);
+        await setSteps(newSteps);
     }
 
     const createNewStep = async () => {
@@ -34,8 +35,9 @@ function StepDisplay() {
     }
 
     const deleteStep = async () => {
-        await API.delete.step(content.stepID);
-        previousStep();
+        await API.delete.step(currentStepID);
+        setCurrentStep(currentStep < steps.length - 2 ? currentStep : steps.length - 2);
+        refreshStepList();
     }
 
     const nextStep = () => {
@@ -60,14 +62,7 @@ function StepDisplay() {
             setCurrentStepID(steps[currentStep].id)
             setContent(steps[currentStep]);
         }
-    }, [steps]);
-
-    useEffect(() => {
-        if (steps.length > 0) {
-            setCurrentStepID(steps[currentStep].id)
-            setContent(steps[currentStep]);
-        }
-    }, [currentStep]);
+    }, [currentStep, steps]);
 
     useEffect(() => {
         (async () => {
@@ -89,6 +84,7 @@ function StepDisplay() {
                     <Objective/>
                     <div className="newObjective Objective Interactable"/>
                 </footer>
+                <DeleteButton delete={deleteStep}></DeleteButton>
             </section>
             <nav>
                 <button className="next Interactable" onClick={currentStep == 0 ? createNewStep : nextStep}/>
