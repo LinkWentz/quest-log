@@ -13,6 +13,7 @@ function StepDisplay() {
         body: ''
     }]);
     const [currentStep, setCurrentStep] = useState(0);
+    const [currentStepID, setCurrentStepID] = useState(null);
     const [content, setContent] = useState({
         title: '',
         body: ''
@@ -28,8 +29,8 @@ function StepDisplay() {
         refreshStepList();
     }
 
-    const updateStepData = ({ title, body }) => {
-        API.update.step(content.stepID, { title, body });
+    const updateStepData = async ({ title, body }) => {
+        await API.update.step(currentStepID, { title, body });
     }
 
     const deleteStep = async () => {
@@ -47,23 +48,32 @@ function StepDisplay() {
 
     useEffect(() => {
         refreshStepList();
+        setCurrentStep(0);
+        if (steps.length > 0) {
+            setCurrentStepID(steps[currentStep].id)
+            setContent(steps[currentStep]);
+        }
     }, [selectedIDs]);
 
     useEffect(() => {
-        setCurrentStep(0);
-        if (steps.length > 0) {
+        if (steps.length > 0 && steps[currentStep].id !== currentStepID) {
+            setCurrentStepID(steps[currentStep].id)
             setContent(steps[currentStep]);
         }
     }, [steps]);
 
     useEffect(() => {
         if (steps.length > 0) {
+            setCurrentStepID(steps[currentStep].id)
             setContent(steps[currentStep]);
         }
     }, [currentStep]);
 
     useEffect(() => {
-        updateStepData(content);
+        (async () => {
+            await updateStepData(content);
+            refreshStepList();
+        })();
     }, [content]);
 
     return (
