@@ -87,8 +87,8 @@ function StepDisplay() {
                 <DeleteButton delete={deleteStep}></DeleteButton>
             </section>
             <nav>
-                <button className="next Interactable" onClick={currentStep == 0 ? createNewStep : nextStep}/>
-                <button className="last Interactable" onClick={previousStep}/>
+                <button className={`${currentStep == 0 ? 'add' : 'next'} Interactable`} onClick={currentStep == 0 ? createNewStep : nextStep}/>
+                <button className="last Interactable" style={{visibility: currentStep == steps.length - 1 ? 'hidden' : 'visible'}} onClick={previousStep}/>
             </nav>
         </div>
     );

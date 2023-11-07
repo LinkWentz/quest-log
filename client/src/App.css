@@ -318,6 +318,18 @@
   content: '>';
 }
 
+.StepDisplay .add {
+  top: 50%;
+  right: 0;
+  transform: translateX(50%) translateY(-50%);
+}
+
+.StepDisplay .add::after {
+  position: relative;
+  right: 25%;
+  content: '+';
+}
+
 .StepDisplay .last {
   transform: translateX(-50%) translateY(-50%);
   top: 50%;
