@@ -173,11 +173,15 @@ const API = {
 }
 
 const GET = async (url) => {
+    if (url.includes('null') || url.includes('undefined')) {
+        return false;
+    }
+
     let response;
 
     try {
         response = await fetch(url);
-        response = response.json();
+        response = await response.json();
 
         return await response;
     }
@@ -187,6 +191,10 @@ const GET = async (url) => {
 }
 
 const POST = async (url, body) => {
+    if (url.includes('null') || url.includes('undefined')) {
+        return false;
+    }
+
     try{
         await fetch(url, {
             method: 'POST',
@@ -204,8 +212,12 @@ const POST = async (url, body) => {
 }
 
 const PATCH = async (url, body) => {
+    if (url.includes('null') || url.includes('undefined')) {
+        return false;
+    }
+
     try {
-        fetch(url, {
+        await fetch(url, {
             method: 'PATCH',
             body: JSON.stringify(body),
             headers: {
@@ -221,6 +233,10 @@ const PATCH = async (url, body) => {
 }
 
 const DELETE = async (url) => {
+    if (url.includes('null') || url.includes('undefined')) {
+        return false;
+    }
+
     try {
         await fetch(url, { method: 'DELETE' });
 

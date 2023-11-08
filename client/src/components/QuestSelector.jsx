@@ -20,6 +20,12 @@ function QuestSelector() {
                 selectedQuestID: quests[selectedQuest].id
             });
         }
+        else {
+            setSelectedIDs({
+                ...selectedIDs,
+                selectedQuestID: null
+            });
+        }
     };
 
     // When a new quest is selected

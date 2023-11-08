@@ -21,6 +21,12 @@ function QuestLogSelector() {
                 selectedQuestLogID: questLogs[selectedQuestLog].id
             });
         }
+        else {
+            setSelectedIDs({
+                ...selectedIDs,
+                selectedQuestLogID: null
+            });
+        }
     };
 
     // When a new quest log is selected
