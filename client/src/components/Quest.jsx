@@ -25,8 +25,7 @@ function Quest(props) {
     }, [content])
 
     return (
-        <div key={props.key + ' completed: ' + content.completed} 
-        className={
+        <div className={
             `Quest Interactable 
             ${props.selected ? 'Selected' : ''} 
             ${content.completed == true ? 'Complete' : ''} 
