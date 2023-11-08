@@ -4,7 +4,12 @@ import { useState, useEffect, useRef } from 'react';
 
 function EditableText(props) {
 
-    const [content, setContent]= useState(props.children);
+    const [content, setContent]= useState(props.children || props.placeholder);
+    
+    let editable = false;
+    if (props.selected || !props.onlyEditableIfSelected) {
+        editable = true;
+    }
 
     useEffect(() => {
         if (props.onContentChange){
@@ -13,16 +18,40 @@ function EditableText(props) {
     }, [content]);
 
     const updateContent = (e) => {
-        if (e.target.innerText.length <= 1) {
-            e.preventDefault()
-            return;
-        }
+        e.preventDefault();
+
         const newContent = e.target.innerText;
         setContent(newContent);
     };
 
+    const onFocus = (e) => {
+        if (props.onFocus) {
+            props.onFocus(e);
+        }
+    }
+
+    const onBlur = (e) => {
+        if (e.target.innerText == '') {
+            e.target.innerText = props.placeholder;
+        }
+
+        if (props.onBlur) {
+            props.onBlur(e);
+        }
+    }
+
     return (
-        <span><span className="EditableText" contentEditable={true} suppressContentEditableWarning={true} onInput={updateContent} placeholder='...'>{props.children}</span>&nbsp;</span>
+        <span>
+            <span className="EditableText" 
+            contentEditable={editable} 
+            suppressContentEditableWarning={true} 
+            onInput={updateContent}
+            onFocus={onFocus} 
+            onBlur={onBlur}>
+                {props.children || props.placeholder || '...'}
+            </span>
+            &nbsp;
+        </span>
     )
 }
 

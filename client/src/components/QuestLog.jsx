@@ -29,14 +29,9 @@ function QuestLog(props) {
                 <path d="M 1,1 L 1,0.5 A 0.5,0.5 0,0,1 0.5,1 L 0.5,1 Z"/>
             </svg>
 
-            {
-                props.selected ? 
-                    <div className="content">
-                        <EditableText onContentChange={(newText) => {setContent({ ...content, title: newText})}}>{props.children}</EditableText>
-                    </div>
-                :
-                    <div className="content">{props.children}</div>
-            }
+            <div className="content">
+                <EditableText onContentChange={(newText) => {setContent({ ...content, title: newText})}} placeholder='Quest Log Title' selected={props.selected} onlyEditableIfSelected>{props.children}</EditableText>
+            </div>
             <DeleteButton delete={deleteQuestLog} selected={props.selected} onlyClickableIfSelected/>
 
             <svg className="overlap right" viewBox="0 0 1 1">

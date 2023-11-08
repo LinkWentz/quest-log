@@ -41,7 +41,7 @@ function QuestLogSelector() {
     };
 
     const createNewQuestLog = async () => {
-        await API.create.questLogForUser({ title: 'Default Title', backgroundImageURL: ''});
+        await API.create.questLogForUser({ title: '', backgroundImageURL: ''});
         refreshQuestLogList();
     }
 

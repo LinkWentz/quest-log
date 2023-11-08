@@ -9,16 +9,12 @@ function StepDisplay() {
 
     const { selectedIDs } = useContext(SelectedIDsContext);
 
-    const [steps, setSteps] = useState([{
-        title: '',
-        body: ''
-    }]);
+    const [steps, setSteps] = useState([]);
+    const [content, setContent] = useState({});
     const [currentStep, setCurrentStep] = useState(0);
     const [currentStepID, setCurrentStepID] = useState(null);
-    const [content, setContent] = useState({
-        title: '',
-        body: ''
-    });
+
+    const [allowRefresh, setAllowRefresh] = useState(true);
 
     const refreshStepList = async () => {
         const newSteps = selectedIDs.selectedQuestID ? await API.get.stepsForQuest(selectedIDs.selectedQuestID) : [];
@@ -61,6 +57,15 @@ function StepDisplay() {
         }
     }
 
+    const enableRefresh = () => {
+        setAllowRefresh(true);
+        refreshStepList();
+    }
+
+    const disableRefresh = () => {
+        setAllowRefresh(false);
+    }
+
     useEffect(() => {
         setCurrentStep(0);
         refreshStepList();
@@ -73,7 +78,9 @@ function StepDisplay() {
     useEffect(() => {
         (async () => {
             await updateStepData(content);
-            refreshStepList();
+            if (allowRefresh) {
+                refreshStepList();
+            }
         })();
     }, [content]);
 
@@ -82,9 +89,9 @@ function StepDisplay() {
             return (
                 <div className="StepDisplay Glass">
                     <section>
-                        <header><EditableText onContentChange={(newText) => {setContent({...content, title: newText})}}>{content.title || '...'}</EditableText></header>
+                        <header><EditableText onContentChange={(newText) => {setContent({...content, title: newText})}} placeholder={'Step Title'} onFocus={disableRefresh} onBlur={enableRefresh}>{steps[currentStep].title}</EditableText></header>
                         <div className="break" />
-                        <main><EditableText onContentChange={(newText) => {setContent({...content, body: newText})}}>{content.body || '...'}</EditableText></main>
+                        <main><EditableText onContentChange={(newText) => {setContent({...content, body: newText})}} placeholder={'Step Body'} onFocus={disableRefresh} onBlur={enableRefresh}>{steps[currentStep].body}</EditableText></main>
                         <div className="break" />
                         <footer>
                             <Objective/>

@@ -65,7 +65,6 @@ function QuestSelector() {
                     questID={currentQuest.id}
                     selected={currentQuestIsSelected}
                     onClick={() => {setSelectedQuest(quest)}}
-                    title={currentQuest.title}
                     afterQuestDeletion={afterQuestDeletion}
                     completed={currentQuest.completed}>
                     </Quest>
