@@ -36,7 +36,13 @@ function StepDisplay() {
 
     const deleteStep = async () => {
         await API.delete.step(currentStepID);
-        setCurrentStep(currentStep < steps.length - 2 ? currentStep : steps.length - 2);
+        if (steps.length > 1) {
+            setCurrentStep(currentStep < steps.length - 2 ? currentStep : steps.length - 2);
+        } 
+        else {
+            setCurrentStep(0);
+        }
+
         refreshStepList();
     }
 
@@ -48,20 +54,20 @@ function StepDisplay() {
         setCurrentStep(currentStep < steps.length - 1 ? currentStep + 1 : steps.length - 1);
     }
 
-    useEffect(() => {
-        refreshStepList();
-        setCurrentStep(0);
-        if (steps.length > 0) {
-            setCurrentStepID(steps[currentStep].id)
+    const loadContentFromStepList = () => {
+        if (steps.length > 0 && steps[currentStep].id !== currentStepID) {
+            setCurrentStepID(steps[currentStep].id);
             setContent(steps[currentStep]);
         }
+    }
+
+    useEffect(() => {
+        setCurrentStep(0);
+        refreshStepList();
     }, [selectedIDs]);
 
     useEffect(() => {
-        if (steps.length > 0 && steps[currentStep].id !== currentStepID) {
-            setCurrentStepID(steps[currentStep].id)
-            setContent(steps[currentStep]);
-        }
+        loadContentFromStepList();
     }, [currentStep, steps]);
 
     useEffect(() => {
@@ -71,27 +77,46 @@ function StepDisplay() {
         })();
     }, [content]);
 
-    return (
-        <div className="StepDisplay Glass">
-            <section>
-                <header><EditableText onContentChange={(newText) => {setContent({...content, title: newText})}}>{content.title || '...'}</EditableText></header>
-                <div className="break" />
-                <main><EditableText onContentChange={(newText) => {setContent({...content, body: newText})}}>{content.body || '...'}</EditableText></main>
-                <div className="break" />
-                <footer>
-                    <Objective/>
-                    <Objective/>
-                    <Objective/>
-                    <div className="newObjective Objective Interactable"/>
-                </footer>
-                <DeleteButton delete={deleteStep}></DeleteButton>
-            </section>
-            <nav>
-                <button className={`${currentStep == 0 ? 'add' : 'next'} Interactable`} onClick={currentStep == 0 ? createNewStep : nextStep}/>
-                <button className="last Interactable" style={{visibility: currentStep == steps.length - 1 ? 'hidden' : 'visible'}} onClick={previousStep}/>
-            </nav>
-        </div>
-    );
+    if (selectedIDs.selectedQuestID) {
+        if (steps.length > 0){
+            return (
+                <div className="StepDisplay Glass">
+                    <section>
+                        <header><EditableText onContentChange={(newText) => {setContent({...content, title: newText})}}>{content.title || '...'}</EditableText></header>
+                        <div className="break" />
+                        <main><EditableText onContentChange={(newText) => {setContent({...content, body: newText})}}>{content.body || '...'}</EditableText></main>
+                        <div className="break" />
+                        <footer>
+                            <Objective/>
+                            <Objective/>
+                            <Objective/>
+                            <div className="newObjective Objective Interactable"/>
+                        </footer>
+                        <DeleteButton delete={deleteStep}></DeleteButton>
+                    </section>
+                    <nav>
+                        <button className={`${currentStep == 0 ? 'add' : 'next'} Interactable`} onClick={currentStep == 0 ? createNewStep : nextStep}/>
+                        <button className="last Interactable" style={{visibility: currentStep == steps.length - 1 ? 'hidden' : 'visible'}} onClick={previousStep}/>
+                    </nav>
+                </div>
+            );
+        }
+        else {
+            return (
+                <div className="StepDisplay Glass">
+                    <nav>
+                        <button className={`add Interactable`} onClick={createNewStep}/>
+                    </nav>
+                </div>
+            );
+        }
+    }
+    else {
+        return (
+            <div className="StepDisplay Glass"></div>
+        );
+    }
+
 }
 
 export default StepDisplay
