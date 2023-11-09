@@ -83,17 +83,17 @@ api.get('/latestObjectiveInQuest/:questID', (req, res, next) => {
     pool.query({text: 
                 `WITH latest_step (id) AS 
                 (SELECT * FROM steps
-                WHERE quest_id = 15 AND user_id = 0
+                WHERE quest_id = $1 AND user_id = $2
                 ORDER BY created_at DESC
                 LIMIT 1)
                 
                 SELECT objectives.* FROM objectives, latest_step
                 WHERE objectives.step_id = latest_step.id
-                AND objectives.user_id = 0
+                AND objectives.user_id = $2
                 AND objectives.completed is NULL
                 ORDER BY objectives.created_at DESC
                 LIMIT 1;`,
-                values: [req.params.stepID, req.user.id]})
+                values: [req.params.questID, req.user.id]})
     .then((result) => {
         res.locals.result = result;
         next();

@@ -22,11 +22,16 @@ const API = {
 
             return results;
         },
+        latestObjectiveForQuest : async (questID) => {
+            const results = await GET(hostname + `/latestObjectiveInQuest/${questID}`);
+
+            return results;
+        },
         objectivesForStep : async (stepID) => {
             const results = await GET(hostname + `/objectivesInStep/${stepID}`);
 
             return results;
-        },
+        }
     },
     create : {
         questLogForUser : async ({ title = '', backgroundImageURL = ''} = {}) => {

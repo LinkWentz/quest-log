@@ -7,9 +7,10 @@ function Quest(props) {
 
     const [content, setContent] = useState({
         title: props.title,
-        first_objective: 'No Quest Objectives In Latest Step',
         completed: props.completed != undefined ? props.completed : null
     });
+
+    const [latestObjective, setLatestObjective] = useState('No Unresolved Objectives In Latest Step');
 
     const updateQuestData = ({ title, completed }) => {
         API.update.quest(props.questID, { title, completed });
@@ -19,6 +20,24 @@ function Quest(props) {
         await API.delete.quest(props.questID);
         props.afterQuestDeletion(props.selected);
     }
+
+    const loadLatestQuestObjective = async () => {
+        const latestObjectives = (await API.get.latestObjectiveForQuest(props.questID));
+
+        if (latestObjectives.length == 0) {
+            return;
+        }
+
+        const latestObjective = latestObjectives[0];
+
+        if (latestObjective.statement != undefined && latestObjective.statement != '') {
+            setLatestObjective(latestObjective.statement);
+        }
+    }
+
+    useEffect(() => {
+        loadLatestQuestObjective();
+    }, []);
 
     useEffect(() => {
         updateQuestData(content);
@@ -36,7 +55,7 @@ function Quest(props) {
                     {props.title}
                 </EditableText>
             </header>
-            <footer>{content.first_objective}</footer>
+            <footer>{latestObjective}</footer>
             <CompleteButton content={content} setContent={setContent} selected={props.selected} onlyClickableIfSelected/>
             <DefeatButton content={content} setContent={setContent} selected={props.selected} onlyClickableIfSelected/>
             <DeleteButton delete={deleteQuest} selected={props.selected} onlyClickableIfSelected/>
