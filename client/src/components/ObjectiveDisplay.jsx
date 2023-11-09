@@ -14,6 +14,11 @@ function ObjectiveDisplay(props) {
         await setObjectives(newObjectives);
     };
 
+    const createNewObjective = async () => {
+        await API.create.objectiveForStep(props.stepID, { statement: '', completed: null });
+        refreshObjectiveList();
+    }
+
     const buildObjectiveElements = () => {
         const newObjectiveElements = [];
 
@@ -45,7 +50,7 @@ function ObjectiveDisplay(props) {
         buildObjectiveElements();
     }, [objectives, selectedObjective]);
 
-    return (<>{objectiveElements}<div className="newObjective Objective Interactable"/></>)
+    return (<>{objectiveElements}<div className="newObjective Objective Interactable" onClick={createNewObjective}/></>)
 }
 
 export default ObjectiveDisplay;
