@@ -8,8 +8,8 @@ function ObjectiveDisplay(props) {
 
     const [selectedObjective, setSelectedObjective] = useState(0);
 
+    // API interaction
     const refreshObjectiveList = async () => {
-        console.log(props.stepID);
         const newObjectives = await API.get.objectivesForStep(props.stepID);
         await setObjectives(newObjectives);
     };
@@ -19,6 +19,7 @@ function ObjectiveDisplay(props) {
         refreshObjectiveList();
     }
 
+    // Rendering
     const buildObjectiveElements = () => {
         const newObjectiveElements = [];
 
@@ -50,10 +51,12 @@ function ObjectiveDisplay(props) {
         refreshObjectiveList();
     }
 
+    // When step id changes
     useEffect(() => {
         refreshObjectiveList();
     }, [props.stepID]);
 
+    // When selected objective changes or new objective data is recieved
     useEffect(() => {
         buildObjectiveElements();
     }, [objectives, selectedObjective]);
