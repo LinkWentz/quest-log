@@ -16,6 +16,8 @@ function StepDisplay() {
 
     const [allowRefresh, setAllowRefresh] = useState(true);
 
+
+    // API interaction
     const refreshStepList = async () => {
         const newSteps = selectedIDs.selectedQuestID ? await API.get.stepsForQuest(selectedIDs.selectedQuestID) : [];
         await setSteps(newSteps);
@@ -42,6 +44,16 @@ function StepDisplay() {
         refreshStepList();
     }
 
+    const enableRefresh = () => {
+        setAllowRefresh(true);
+        refreshStepList();
+    }
+
+    const disableRefresh = () => {
+        setAllowRefresh(false);
+    }
+
+    // Rendering
     const nextStep = () => {
         setCurrentStep(currentStep > 0 ? currentStep - 1 : 0);
     }
@@ -57,24 +69,18 @@ function StepDisplay() {
         }
     }
 
-    const enableRefresh = () => {
-        setAllowRefresh(true);
-        refreshStepList();
-    }
-
-    const disableRefresh = () => {
-        setAllowRefresh(false);
-    }
-
+    // When a new quest is selected
     useEffect(() => {
         setCurrentStep(0);
         refreshStepList();
     }, [selectedIDs]);
 
+    // When a new step is selected or new step data is recieved
     useEffect(() => {
         loadContentFromStepList();
     }, [currentStep, steps]);
 
+    // When the client side step data for the currently rendered step changes
     useEffect(() => {
         (async () => {
             await updateStepData(content);
