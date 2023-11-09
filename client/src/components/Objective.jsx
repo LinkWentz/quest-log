@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { CompleteButton, DefeatButton, DeleteButton } from './StatusButtons';
+import API from '../scripts/API';
 
 function Objective(props) {
     
@@ -8,8 +9,9 @@ function Objective(props) {
         completed: props.completed || null
     });
 
-    const deleteObjective = () => {
-
+    const deleteObjective = async () => {
+        await API.delete.objective(props.objectiveID);
+        props.afterObjectiveDeletion(props.selected);
     };
 
     return (

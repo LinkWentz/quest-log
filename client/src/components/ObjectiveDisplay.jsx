@@ -32,6 +32,7 @@ function ObjectiveDisplay(props) {
                     objectiveID={currentObjective.id}
                     selected={currentObjectiveIsSelected}
                     completed={currentObjective.completed}
+                    afterObjectiveDeletion={afterObjectiveDeletion}
                     onClick={() => {setSelectedObjective(objective)}}>
                         {currentObjective.statement}
                     </Objective>
@@ -40,6 +41,13 @@ function ObjectiveDisplay(props) {
         }
 
         setObjectiveElements(newObjectiveElements);
+    }
+
+    const afterObjectiveDeletion = (objectiveWasSelected = false) => {
+        if (objectiveWasSelected) {
+            setSelectedObjective(selectedObjective > 0 ? selectedObjective - 1 : 0);
+        }
+        refreshObjectiveList();
     }
 
     useEffect(() => {
