@@ -1,4 +1,4 @@
-import Objective from './Objective';
+import ObjectiveDisplay from './ObjectiveDisplay';
 import EditableText from './EditableText';
 import { useEffect, useState, useContext } from 'react';
 import { SelectedIDsContext } from '../App';
@@ -100,10 +100,7 @@ function StepDisplay() {
                         <main><EditableText onContentChange={(newText) => {setContent({...content, body: newText})}} placeholder={'Step Body'} onFocus={disableRefresh} onBlur={enableRefresh}>{steps[currentStep].body}</EditableText></main>
                         <div className="break" />
                         <footer>
-                            <Objective/>
-                            <Objective/>
-                            <Objective/>
-                            <div className="newObjective Objective Interactable"/>
+                            <ObjectiveDisplay stepID={currentStepID}/>
                         </footer>
                         <DeleteButton delete={deleteStep}></DeleteButton>
                     </section>
