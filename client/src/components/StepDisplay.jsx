@@ -1,3 +1,4 @@
+import './styles/StepDisplay.css';
 import ObjectiveDisplay from './ObjectiveDisplay';
 import EditableText from './EditableText';
 import { useEffect, useState, useContext } from 'react';

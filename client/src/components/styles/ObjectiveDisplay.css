@@ -1,0 +1,52 @@
+.Objective {
+    display: flex;
+    position: relative;
+  
+    margin: 0.25rem 0;
+    padding: 0 1rem;
+    min-width: 50%;
+    max-width: 50rem;
+    min-height: 3.8rem;
+  
+    font-size: 2.5rem;
+    border-radius: 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  
+    align-items: center;
+  }
+  
+  .Objective.newObjective::after {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    content: '+';
+    font-size: 3rem;
+    line-height: 0;
+  }
+  
+  .Objective .statusButtons {
+    position: absolute;
+    top: 125%;
+  
+    height: 50%;
+  }
+  
+  .Objective .complete {
+    right: 11%;
+  }
+  
+  .Objective .defeat {
+    right: 6%;
+  }
+  
+  .Objective .delete {
+    right: 1%;
+  }
+  
+  .Objective:hover .statusButtons {
+    transform: translateY(-200%);
+  }

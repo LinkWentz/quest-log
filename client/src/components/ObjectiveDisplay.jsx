@@ -1,3 +1,4 @@
+import './styles/ObjectiveDisplay.css';
 import Objective from './Objective';
 import { useEffect, useState } from 'react';
 import API from '../scripts/API';

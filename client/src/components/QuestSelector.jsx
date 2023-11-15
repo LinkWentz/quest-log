@@ -1,3 +1,4 @@
+import './styles/QuestSelector.css';
 import Quest from './Quest'
 import { useState, useEffect, useContext } from 'react';
 import { SelectedIDsContext } from '../App'

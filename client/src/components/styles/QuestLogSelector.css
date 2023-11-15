@@ -27,7 +27,7 @@
     width: 0;
     max-width: 20rem;
 
-    border-radius: 1rem 1rem 0 0;
+    border-bottom: 0.2rem red solid;
 
     align-items: center;
     justify-content: center;
@@ -56,35 +56,9 @@
 .QuestLog.Selected {
     min-width: fit-content;
 
-    background-color: white;
+    border-bottom: 0.2rem #5CF1F9 solid;
 
     z-index: 11;
-}
-
-.QuestLog .overlap {
-    visibility: hidden;
-
-    position: absolute;
-
-    height: 100%;
-    aspect-ratio: 1;
-    
-    fill: white;
-
-    z-index: 11;
-}
-
-.QuestLog.Selected .overlap {
-    visibility: visible;
-    pointer-events: none;
-}
-
-.QuestLog .overlap.left {
-    right: 100%;
-}
-
-.QuestLog .overlap.right {
-    left: 100%;
 }
 
 .newQuestLog {
