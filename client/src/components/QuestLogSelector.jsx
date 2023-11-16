@@ -85,7 +85,7 @@ function QuestLogSelector() {
     }, [selectedQuestLog, questLogs]);
 
     return (
-        <div className="QuestLogSelector Glass">
+        <div className="QuestLogSelector Background">
             {questLogElements}
             <div className="newQuestLog Interactable" onClick={createNewQuestLog}/>
         </div>
