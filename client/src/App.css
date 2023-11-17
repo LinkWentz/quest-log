@@ -10,7 +10,7 @@
 blue_text: #5CF1F9
 grey_text: #99948F
 gold_border: #A47928
-red: #FF5F58
+red: #FF5F58 #FF6157
 
 */
 
@@ -31,6 +31,10 @@ red: #FF5F58
 
   overflow: hidden;
 }
+
+/*.Interactable.Selected, .Interactable.Complete.Selected, .Interactable.Defeat.Selected, .Interactable.Selected:hover {
+  background-color: white;
+}*/
 
 .Interactable:hover {
   color: #5CF1F9;
@@ -55,34 +59,6 @@ red: #FF5F58
 .Glass.Defeat {
   background-color: rgba(255, 100, 100, .4);
   box-shadow: inset 0 0 9999px rgba(255, 100, 100, .7), 0 0 20px rgba(0, 0, 0, .5);
-}
-
-.Interactable.Selected, .Interactable.Complete.Selected, .Interactable.Defeat.Selected, .Interactable.Selected:hover {
-  background-color: white;
-}
-
-.Interactable.Complete {
-  background: linear-gradient(150deg, rgba(100, 255, 100, 0.5), rgba(100, 255, 100, 0.7), rgba(255, 255, 255, 0.4));
-  background-size: 400% 400%;
-  animation: glint 0.5s ease;
-  background-position: 0% 50%;
-}
-
-.Interactable.Defeat {
-  background: linear-gradient(130deg, rgba(255, 100, 100, 0.5), rgba(255, 100, 100, 0.7), rgba(255, 255, 255, 0.4));
-  background-size: 400% 400%;
-  animation: glint 0.5s ease;
-  background-position: 0% 50%;
-}
-
-@keyframes glint {
-  from {
-      background-position: 100% 50%;
-  }
-
-  to {
-      background-position: 0% 50%
-  }
 }
 
 /* Status Editing Buttons */
@@ -132,64 +108,44 @@ red: #FF5F58
 
 /* Scrollbar */
 
-.Glass::-webkit-scrollbar, .Glass *::-webkit-scrollbar {
-  width: 0.5rem;
-  height: 0.5rem;
+html {
+  scrollbar-color: #FF6157 #431617;
+  scrollbar-width: thin;
+ }
+
+*::-webkit-scrollbar {
+  width: 1.8rem;
+  overflow-y: visible;
+  background: transparent;
 }
 
-.Glass::-webkit-scrollbar-track, .Glass *::-webkit-scrollbar-track {
-  background: transprent;
+*::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-.Glass::-webkit-scrollbar-track-piece, .Glass *::-webkit-scrollbar-track-piece {
-  background-color: rgba(200, 200, 200, 1);
+*::-webkit-scrollbar-track-piece {
+  background: linear-gradient(90deg, 
+    transparent 12.5%, 
+    rgba(0, 0, 0, 0.1) 40%, 
+    #431617 40%,
+    #431617 60%, 
+    rgba(0, 0, 0, 0.1) 60%, 
+    transparent 87.5%);
 }
 
-.Glass::-webkit-resizer::-webkit-scrollbar-track-piece:start:vertical {
-  margin-top: 5rem;
-  border-radius: 9999px 0 0 0;
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgb(255, 98, 87, 0.2) 30%, 
+    rgb(255, 98, 87, 0.2) 40%, 
+    #FF6157 40%, 
+    #FF6157 60%, 
+    rgb(255, 98, 87, 0.2) 60%, 
+    rgb(255, 98, 87, 0.2) 70%, 
+    transparent 100%);
 }
 
-.Glass::-webkit-scrollbar-track-piece:end:vertical {
-  margin-bottom: 5rem;
-  border-radius: 0 0 0 9999px;
-}
-
-.Glass section::-webkit-scrollbar-track-piece:start:vertical {
-  margin-top: 5rem;
-  border-radius: 9999px 0 0 0;
-}
-
-.Glass section::-webkit-scrollbar-track-piece:end:vertical {
-  margin-bottom: 5rem;
-  border-radius: 0 0 0 9999px;
-}
-
-.Glass *::-webkit-scrollbar-track-piece:vertical {
-  border-radius: 9999px;
-}
-
-.Glass::-webkit-scrollbar-thumb, .Glass *::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 1);
-}
-
-.Glass::-webkit-scrollbar-thumb:horizontal, .Glass *::-webkit-scrollbar-thumb:horizontal {
-  border-radius: 9999px;
-}
-
-.Glass::-webkit-scrollbar-thumb:vertical, .Glass section::-webkit-scrollbar-thumb:vertical{
-  border-radius: 9999px 0 0 9999px;
-}
-
-.Glass *::-webkit-scrollbar-thumb:vertical {
-  border-radius: 9999px;
-}
-
-.Glass::-webkit-scrollbar-thumb:hover, .Glass *::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to right, rgba(255, 255, 255), transparent);
-}
-
-.Glass::-webkit-scrollbar-corner, .Glass *::-webkit-scrollbar-corner, .Glass::-webkit-resizer, .Glass *::-webkit-resizer {
+*::-webkit-scrollbar-corner, *::-webkit-resizer {
   background-color: transparent;
   pointer-events: none;
 }

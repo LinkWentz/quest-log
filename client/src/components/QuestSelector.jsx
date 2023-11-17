@@ -89,7 +89,7 @@ function QuestSelector() {
     }, [quests, selectedQuest]);
 
     return (
-        <div className="QuestSelector Glass">
+        <div className="QuestSelector Background">
             {questElements}
             <button className="Quest Interactable" onClick={createNewQuest}/>
         </div>
