@@ -29,10 +29,11 @@ function SettingsMenu() {
     }, [selectedIDs]);
 
     return (
-        <div className="SettingsMenu Glass" tabIndex='0'>
+        <div className="SettingsMenu Background" tabIndex='0'>
+            <header>Settings</header>
             <form>
                 <label htmlFor="backgroundImageURL">Background Image URL</label>
-                <input className="Interactable" name="backgroundImageURL" type='text' onInput={onInput}/>
+                <input className="Interactable" name="backgroundImageURL" type='text' placeholder="..." onInput={onInput}/>
             </form>
         </div>
     );
