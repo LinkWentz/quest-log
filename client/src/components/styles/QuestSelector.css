@@ -35,11 +35,11 @@
     top: 0;
     left: 0;
 
-    fill: rgba(21, 15, 22, 0.7);
+    fill: var(--questBackground);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 
-    stroke: rgba(164, 121, 40, 1);
+    stroke: var(--goldBorder);
     stroke-width: 1px;
 
     height: 100%;
@@ -78,11 +78,11 @@
     line-height: 1.55rem;
     text-align: left;
     text-overflow: ellipsis;
-    text-shadow: #99948F 0px 0px 2px;
+    text-shadow: 0px 0px 2px;
     overflow: hidden;
     white-space: nowrap;
 
-    color: #99948F;
+    color: var(--greyText);
 
     z-index: 13;
   }
@@ -118,7 +118,7 @@
     border: none;
     outline: none;
     font-family: inherit;
-    color: #FF5F58;
+    color: var(---redText);
   }
   
   .QuestSelector button::after {

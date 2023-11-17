@@ -1,18 +1,8 @@
 #root {
   margin: 0 auto;
   text-align: center;
-  color: #5CF1F9;
+  color: var(--blueText);
 }
-
-/* 
-
------Cyberpunk UI Colors-----
-blue_text: #5CF1F9
-grey_text: #99948F
-gold_border: #A47928
-red: #FF5F58 #FF6157
-
-*/
 
 /* Cyberpunk Effects */
 
@@ -37,7 +27,7 @@ red: #FF5F58 #FF6157
 }*/
 
 .Interactable:hover {
-  color: #5CF1F9;
+  color: var(--blueText);
   text-shadow: 0px 0px 10px;
 }
 
@@ -109,7 +99,7 @@ red: #FF5F58 #FF6157
 /* Scrollbar */
 
 html {
-  scrollbar-color: #FF6157 #431617;
+  scrollbar-color: var(--redText) var(--redBackground);
   scrollbar-width: thin;
  }
 
@@ -127,8 +117,8 @@ html {
   background: linear-gradient(90deg, 
     transparent 12.5%, 
     rgba(0, 0, 0, 0.1) 40%, 
-    #431617 40%,
-    #431617 60%, 
+    var(--redBackground) 40%,
+    var(--redBackground) 60%, 
     rgba(0, 0, 0, 0.1) 60%, 
     transparent 87.5%);
 }
@@ -136,12 +126,12 @@ html {
 *::-webkit-scrollbar-thumb {
   background: linear-gradient(90deg, 
     transparent 0%, 
-    rgb(255, 98, 87, 0.2) 30%, 
-    rgb(255, 98, 87, 0.2) 40%, 
-    #FF6157 40%, 
-    #FF6157 60%, 
-    rgb(255, 98, 87, 0.2) 60%, 
-    rgb(255, 98, 87, 0.2) 70%, 
+    var(--redGlow) 30%, 
+    var(--redGlow) 40%, 
+    var(--redText) 40%, 
+    var(--redText) 60%, 
+    var(--redGlow) 60%, 
+    var(--redGlow) 70%, 
     transparent 100%);
 }
 
