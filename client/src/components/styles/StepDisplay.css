@@ -34,39 +34,76 @@
     min-height: auto;
   
     text-align: start;
-    line-height: 7rem;
-    font-size: 7rem;
+    line-height: 2.3rem;
+    font-size: 2.3rem;
     overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    color: #FF6157;
+    text-shadow: 0px 0px 10px #FF6157;
   
     align-items: center;
   }
+
+  .StepDisplay section > header > div {
+    display: flex;
+  
+    height: auto; 
+    min-height: auto;
+
+    min-width: fit-content;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    color: #FF6157;
+    text-shadow: 0px 0px 10px #FF6157;
+  
+    align-items: center;
+  }
+
+  .StepDisplay section header::after {
+    display: block;
+    position: relative;
+
+    content: '';
+  
+    flex-grow: 1;
+    flex-shrink: 1;
+
+    padding: 0px;
+    height: 0.1rem;
+    width: 100%;
+  
+    background-color: #431617;
+  }
   
   .StepDisplay section main {
-    text-align: start;
-    font-size: 2.5rem;
-    line-height: 3.75rem;
     overflow-y: auto;
     overflow-x: hidden;
   }
-  
+
   .StepDisplay section footer {
-    margin-bottom: 20rem;
-  
+    text-align: start;
+    font-size: 2rem;
+    line-height: 3.1rem;
     overflow-y: auto;
     overflow-x: hidden;
+
+    color: #FF6157;
   }
   
   .StepDisplay section .break {
     display: block;
     position: relative;
-    left: 2%;
   
-    margin: 1.5rem 0;
+    margin: 1.3rem 0;
     padding: 0px;
     height: 0.1rem;
-    width: 96%;
+    width: 100%;
   
-    background-color: #000000;
+    background-color: #431617;
   }
   
   .StepDisplay nav {
@@ -129,4 +166,8 @@
     position: relative;
     left: 25%;
     content: '<';
+  }
+
+  .StepDisplay .delete {
+    display: none;
   }

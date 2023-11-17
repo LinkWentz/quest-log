@@ -94,15 +94,15 @@ function StepDisplay() {
     if (selectedIDs.selectedQuestID) {
         if (steps.length > 0){
             return (
-                <div className="StepDisplay Glass">
+                <div className="StepDisplay Background">
                     <section>
-                        <header><EditableText onContentChange={(newText) => {setContent({...content, title: newText})}} placeholder={'Step Title'} onFocus={disableRefresh} onBlur={enableRefresh}>{steps[currentStep].title}</EditableText></header>
-                        <div className="break" />
-                        <main><EditableText onContentChange={(newText) => {setContent({...content, body: newText})}} placeholder={'Step Body'} onFocus={disableRefresh} onBlur={enableRefresh}>{steps[currentStep].body}</EditableText></main>
-                        <div className="break" />
-                        <footer>
+                        <header><div><EditableText onContentChange={(newText) => {setContent({...content, title: newText})}} placeholder={'Step Title'} onFocus={disableRefresh} onBlur={enableRefresh}>{steps[currentStep].title}</EditableText></div></header>
+                        <main>
                             <ObjectiveDisplay stepID={currentStepID}/>
-                        </footer>
+                        </main>
+                        <div className="break" />
+                        <footer><EditableText onContentChange={(newText) => {setContent({...content, body: newText})}} placeholder={'Step Body'} onFocus={disableRefresh} onBlur={enableRefresh}>{steps[currentStep].body}</EditableText></footer>
+                        <div className="break" />
                         <DeleteButton delete={deleteStep}></DeleteButton>
                     </section>
                     <nav>
@@ -114,7 +114,7 @@ function StepDisplay() {
         }
         else {
             return (
-                <div className="StepDisplay Glass">
+                <div className="StepDisplay Background">
                     <nav>
                         <button className={`add Interactable`} onClick={createNewStep}/>
                     </nav>
@@ -124,7 +124,7 @@ function StepDisplay() {
     }
     else {
         return (
-            <div className="StepDisplay Glass"></div>
+            <div className="StepDisplay Background"></div>
         );
     }
 
