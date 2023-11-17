@@ -30,6 +30,7 @@
     align-items: center;
     justify-content: center;
     content: '+';
+    font-family: sans-serif;
     font-size: 3rem;
     line-height: 0;
     color: var(--redText);
