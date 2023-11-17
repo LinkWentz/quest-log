@@ -4,7 +4,7 @@
     top: 0;
     left: 0;
 
-    height: 5%;
+    height: 7.25%;
     width: 100%;
 
     border-top-left-radius: 0;
@@ -41,7 +41,7 @@
     padding: 0 1rem;
     margin: 0 0.2rem;
     flex: 1 1 0;
-    height: 90%;
+    height: 66%;
     min-width: 0;
     width: 0;
     max-width: 20rem;
@@ -67,7 +67,7 @@
     height: 100%;
     width: 100%;
 
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     line-height: 0;
 
     align-items: center;
