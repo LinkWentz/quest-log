@@ -126,4 +126,10 @@
   .QuestSelector button::after {
     content: '+';
     font-size: 3rem;
+
+    color: var(--redText);
+  }
+
+  .QuestSelector button:hover::after {
+    color: var(--blueText);
   }
