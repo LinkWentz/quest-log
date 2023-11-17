@@ -25,9 +25,8 @@ function QuestLog(props) {
     return (
         <div className={`QuestLog ${props.selected ? 'Selected' : 'Interactable'}`} onClick={props.onClick}>
             <div className="content">
-                <EditableText onContentChange={(newText) => {setContent({ ...content, title: newText})}} placeholder='Quest Log Title' selected={props.selected} onlyEditableIfSelected>{props.children}</EditableText>
+                &nbsp;<EditableText onContentChange={(newText) => {setContent({ ...content, title: newText})}} placeholder='Quest Log Title' selected={props.selected} onlyEditableIfSelected>{props.children}</EditableText>
             </div>
-            <DeleteButton delete={deleteQuestLog} selected={props.selected} onlyClickableIfSelected/>
         </div>
     );
 }
