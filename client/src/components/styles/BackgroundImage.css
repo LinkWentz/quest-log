@@ -1,13 +1,31 @@
 .BackgroundImage {
     position: absolute;
-    top: -10%;
-    left: -10%;
+    top: 0;
+    left: 0;
 
-    height: 110%;
-    width: 110%;
+    height: 100%;
+    width: 100%;
 
     background-color: #000;
 
     background-size: cover;
     background-position: cover;
+}
+
+.BackgroundImage::after {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+
+    content: '';
+
+    height: 100%;
+    width: 100%;
+
+    background-color: rgba(0, 0, 0, 0.9);
+    background: 
+        radial-gradient(ellipse 105% 52% at 20% 0%, rgba(255, 95, 87, 0.25) 0%, rgba(255, 95, 87, 0.25) 20%, transparent 100%),
+        radial-gradient(ellipse 100% 100% at 35% 35%, transparent 0%, black 45%),
+        linear-gradient(rgba(0, 0, 0, 0.9) 100%, rgba(0, 0, 0, 0.9) 100%);
 }
