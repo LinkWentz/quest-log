@@ -2,22 +2,28 @@
     display: flex;
     position: relative;
   
-    margin: 0.25rem 0;
+    margin: 0.5rem 0;
     padding: 0 1rem;
     min-width: 50%;
-    max-width: 50rem;
-    min-height: 3.8rem;
+    max-width: 100%;
+    min-height: 4.1rem;
   
-    font-size: 2.5rem;
-    border-radius: 10px;
+    font-size: 2rem;
     text-overflow: ellipsis;
     white-space: nowrap;
-    overflow: hidden;
+    overflow: visible;
   
     align-items: center;
   }
+
+  .Objective * {
+    position: relative;
+
+    z-index: 13;
+  }
   
   .Objective.newObjective::after {
+    position: relative;
     height: 100%;
     width: 100%;
     display: flex;
@@ -26,9 +32,38 @@
     content: '+';
     font-size: 3rem;
     line-height: 0;
+    color: var(--redText);
+
+    z-index: 13;
   }
-  
+
+  .Objective.newObjective:hover::after {
+    color: var(--blueText);
+    text-shadow: 0px 0px 10px;
+  }
+
+  .Objective > svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    fill: var(--objectiveBackground);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    stroke: var(--redBackground);
+    stroke-width: 0.5px;
+
+    height: 100%;
+    width: 100%;
+
+    overflow: visible;
+    z-index: 12;
+  }
+
   .Objective .statusButtons {
+    visibility: hidden;
+
     position: absolute;
     top: 125%;
   
