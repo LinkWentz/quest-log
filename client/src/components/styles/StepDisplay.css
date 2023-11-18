@@ -1,175 +1,173 @@
 .StepDisplay {
-    display: inline-block;
-  
-    position: absolute;
-    bottom: 0;
-    right: 0;
-  
-    margin-right: 7%;
-    margin-left: 0.75%;
+  display: inline-block;
 
-    height: 88%;
-    width: 43.5%;
-  
-    overflow: hidden;
-  
-    z-index: 10;
-  }
-  
-  .StepDisplay section {
-    display: inline-block;
-  
-    padding: 2.5rem 2.5rem 0 2.5rem;
-    height: 100%;
-    width: 100%;
-  
-    overflow-y: auto;
-    overflow-x: hidden;
-  
-    z-index: 15;
-  }
-  
-  .StepDisplay section header {
-    display: flex;
-  
-    height: auto; 
-    min-height: auto;
-  
-    text-align: start;
-    line-height: 2.3rem;
-    font-size: 2.3rem;
-    font-weight: bold;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 
-    color: var(--redText);
-    text-shadow: 0px 0px 10px var(--redText);
-  
-    align-items: center;
-  }
+  margin-right: 7%;
+  margin-left: 0.75%;
 
-  .StepDisplay section > header > div {
-    display: flex;
-  
-    height: auto; 
-    min-height: auto;
+  height: 88%;
+  width: 43.5%;
 
-    min-width: fit-content;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  overflow: hidden;
 
-    color: var(--redText);
-    text-shadow: 0px 0px 10px var(--redText);
-  
-    align-items: center;
-  }
+  z-index: 10;
+}
 
-  .StepDisplay section header::after {
-    display: block;
-    position: relative;
+.StepDisplay section {
+  display: inline-block;
 
-    content: '';
-  
-    flex-grow: 1;
-    flex-shrink: 1;
+  padding: 2.5rem 2.5rem 0 2.5rem;
+  height: 100%;
+  width: 100%;
 
-    padding: 0px;
-    height: 0.1rem;
-    width: 100%;
-  
-    background-color: var(--redBackground);
-  }
-  
-  .StepDisplay section main {
-    margin-top: 2rem;
+  overflow-y: auto;
+  overflow-x: hidden;
 
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
+  z-index: 15;
+}
 
-  .StepDisplay section footer {
-    text-align: start;
-    font-size: 2rem;
-    line-height: 3.1rem;
-    overflow-y: auto;
-    overflow-x: hidden;
+.StepDisplay section header {
+  display: flex;
 
-    color: var(--redText);
-  }
-  
-  .StepDisplay section .break {
-    display: block;
-    position: relative;
-  
-    margin: 1.3rem 0;
-    padding: 0px;
-    height: 0.1rem;
-    width: 100%;
-  
-    background-color: var(--redBackground);
-  }
-  
-  .StepDisplay nav {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-  
-    z-index: 20;
-  }
-  
-  .StepDisplay nav button {
-    position: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 9999px;
-    border: none;
-  
-    font-size: 1.25em;
-    min-height: 0;
-    min-width: 0;
-    height: 4.5rem;
-    aspect-ratio: 1;
-  
-    z-index: 15;
-  }
-  
-  .StepDisplay .next {
-    top: 50%;
-    right: 0;
-    transform: translateX(50%) translateY(-50%);
-  }
-  
-  .StepDisplay .next::after {
-    position: relative;
-    right: 25%;
-    content: '>';
-  }
-  
-  .StepDisplay .add {
-    top: 50%;
-    right: 0;
-    transform: translateX(50%) translateY(-50%);
-  }
-  
-  .StepDisplay .add::after {
-    position: relative;
-    right: 25%;
-    content: '+';
-    font-family: sans-serif;
-  }
-  
-  .StepDisplay .last {
-    transform: translateX(-50%) translateY(-50%);
-    top: 50%;
-    left: 0;
-  }
-  
-  .StepDisplay .last::after {
-    position: relative;
-    left: 25%;
-    content: '<';
-  }
+  height: auto;
+  min-height: auto;
+
+  text-align: start;
+  line-height: 2.3rem;
+  font-size: 2.3rem;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  color: var(--redText);
+  text-shadow: 0px 0px 10px var(--redText);
+
+  align-items: center;
+}
+
+.StepDisplay section>header>div {
+  display: flex;
+
+  height: auto;
+  min-height: auto;
+
+  min-width: fit-content;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  color: var(--redText);
+  text-shadow: 0px 0px 10px var(--redText);
+
+  align-items: center;
+}
+
+.StepDisplay section header::after {
+  display: block;
+  position: relative;
+
+  content: '';
+
+  flex-grow: 1;
+  flex-shrink: 1;
+
+  padding: 0px;
+  height: 0.1rem;
+  width: 100%;
+
+  background-color: var(--redBackground);
+}
+
+.StepDisplay section main {
+  margin-top: 2rem;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.StepDisplay section footer {
+  text-align: start;
+  font-size: 2rem;
+  line-height: 3.1rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  color: var(--redText);
+}
+
+.StepDisplay section .break {
+  display: block;
+  position: relative;
+
+  margin: 1.3rem 0;
+  padding: 0px;
+  height: 0.1rem;
+  width: 100%;
+
+  background-color: var(--redBackground);
+}
+
+/* Nav */
+
+.StepDisplay>section>nav {
+  position: relative;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+
+  top: 0;
+  left: 0;
+  height: 4rem;
+  width: 100%;
+}
+
+.StepDisplay>section>nav>.statusButtons {
+  min-height: 70%;
+}
+
+.StepDisplay>section>nav>button {
+  color: var(--redText);
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 3rem;
+}
+
+.StepDisplay .next::after {
+  content: '>';
+}
+
+.StepDisplay .add::after {
+  content: '+';
+}
+
+.StepDisplay .last::after {
+  content: '<';
+}
+
+.StepDisplay .addFirst {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+
+  height: 4rem;
+  width: 4rem;
+
+  font-size: 4rem;
+
+  border: none;
+
+  color: var(--redText);
+}
+
+.StepDisplay .addFirst:hover {
+  text-shadow: 0px 0px 5px;
+  color: var(--blueText);
+}

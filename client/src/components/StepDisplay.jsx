@@ -103,12 +103,12 @@ function StepDisplay() {
                         <div className="break" />
                         <footer><EditableText onContentChange={(newText) => {setContent({...content, body: newText})}} placeholder={'Step Body'} onFocus={disableRefresh} onBlur={enableRefresh}>{steps[currentStep].body}</EditableText></footer>
                         <div className="break" />
-                        <DeleteButton delete={deleteStep}></DeleteButton>
+                        <nav>
+                            <button className="last Interactable" style={{visibility: currentStep == steps.length - 1 ? 'hidden' : 'visible'}} onClick={previousStep}/>
+                            <DeleteButton delete={deleteStep}></DeleteButton>
+                            <button className={`${currentStep == 0 ? 'add' : 'next'} Interactable`} onClick={currentStep == 0 ? createNewStep : nextStep}/>
+                        </nav>
                     </section>
-                    <nav>
-                        <button className={`${currentStep == 0 ? 'add' : 'next'} Interactable`} onClick={currentStep == 0 ? createNewStep : nextStep}/>
-                        <button className="last Interactable" style={{visibility: currentStep == steps.length - 1 ? 'hidden' : 'visible'}} onClick={previousStep}/>
-                    </nav>
                 </div>
             );
         }
@@ -116,7 +116,7 @@ function StepDisplay() {
             return (
                 <div className="StepDisplay Background">
                     <nav>
-                        <button className={`add Interactable`} onClick={createNewStep}/>
+                        <button className={`add addFirst Interactable`} onClick={createNewStep}/>
                     </nav>
                 </div>
             );
