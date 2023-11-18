@@ -110,10 +110,35 @@
     width: 99%;
 
     overflow: visible;
-    z-index: 11;
+    z-index: 10;
 }
 
-.Quest>svg{
+.Quest>.statusSymbol {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    aspect-ratio: 1;
+    z-index: 20;
+}
+
+.statusSymbol>svg {
+    position: absolute;
+    height: 60%;
+    top: 20%;
+    left: 20%;
+}
+
+.statusSymbol>.ExclamationPointIcon>g>circle:nth-child(2) {
+    fill: transparent;
+    stroke: transparent;
+}
+
+.statusSymbol>.ExclamationPointIcon>g>path {
+    fill: var(--goldText);
+}
+
+.Quest>.CutCornerCard {
     position: absolute;
     top: 0;
     left: 0;
@@ -135,11 +160,11 @@
     stroke: var(--goldQuestBorder);
 }
 
-.Quest:hover>svg, .Quest:active>svg, .Quest.Selected>svg {
+.Quest:hover>.CutCornerCard, .Quest:active>.CutCornerCard, .Quest.Selected>.CutCornerCard {
     fill: var(--goldQuestBackgroundActive);
 }
 
-.Quest.Selected>svg {
+.Quest.Selected>.CutCornerCard {
     stroke: var(--goldText);
 }
 
@@ -148,11 +173,11 @@
     stroke: var(--redQuestBorder);
 }
 
-.Quest.Complete:hover>svg, .Quest.Complete:active>svg, .Quest.Complete.Selected>svg {
+.Quest.Complete:hover>.CutCornerCard, .Quest.Complete:active>.CutCornerCard, .Quest.Complete.Selected>.CutCornerCard {
     fill: var(--redQuestBackgroundActive);
 }
 
-.Quest.Complete.Selected>svg {
+.Quest.Complete.Selected>.CutCornerCard {
     stroke: var(--redText);
 }
 
@@ -161,17 +186,18 @@
     stroke: var(--greenQuestBorder);
 }
 
-.Quest.Defeat:hover>svg, .Quest.Defeat:active>svg, .Quest.Selected>svg {
+.Quest.Defeat:hover>.CutCornerCard, .Quest.Defeat:active>.CutCornerCard, .Quest.Selected>.CutCornerCard {
     fill: var(--greenQuestBackgroundActive);
 }
 
-.Quest.Defeat.Selected>svg {
+.Quest.Defeat.Selected>.CutCornerCard {
     stroke: var(--greenText);
 }
 
 .Quest header {
     max-width: 100%;
     margin: 0.65rem 0;
+    margin-left: 4.5rem;
 
     font-size: 1.8rem;
     font-weight: bold;
@@ -194,6 +220,7 @@
     max-width: 100%;
     margin-top: 0.65rem;
     margin-bottom: 0.7rem;
+    margin-left: 4.5rem;
 
     font-size: 1.55rem;
     line-height: 1.55rem;

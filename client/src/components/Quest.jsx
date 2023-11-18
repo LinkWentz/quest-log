@@ -1,6 +1,7 @@
 import EditableText from './EditableText';
 import { CutCornerCard } from './SVGs';
 import { useState, useEffect } from 'react';
+import { CompassIcon, CheckmarkIcon, ExclamationPointIcon } from './SVGs';
 import { CompleteButton, DefeatButton, DeleteButton } from './StatusButtons';
 import API from '../scripts/API';
 
@@ -52,6 +53,11 @@ function Quest(props) {
             ${content.completed == false ? 'Defeat' : ''}`}
         onClick={props.onClick}>
             <CutCornerCard />
+            <div className="statusSymbol">
+                {content.completed === true ? <CheckmarkIcon/> : <></>}
+                {content.completed === false ? <CompassIcon/> : <></>}
+                {content.completed === null ? <ExclamationPointIcon/> : <></>}
+            </div>
             <header>
                 <EditableText placeholder='Quest Title' onContentChange={(newText) => {setContent({ ...content, title: newText})}} selected={props.selected} onlyEditableIfSelected>
                     {props.title}
