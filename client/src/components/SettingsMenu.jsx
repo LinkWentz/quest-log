@@ -5,7 +5,7 @@ import API from '../scripts/API';
 
 function SettingsMenu() {
     
-    const { setBackgroundImageURL } = useContext(BackgroundImageURLContext);
+    const { backgroundImageURL, setBackgroundImageURL } = useContext(BackgroundImageURLContext);
     const { selectedIDs } = useContext(SelectedIDsContext);
     
     const onInput = (event) => {
@@ -33,7 +33,7 @@ function SettingsMenu() {
             <header>Settings</header>
             <form>
                 <label htmlFor="backgroundImageURL">Background Image URL</label>
-                <input className="Interactable" name="backgroundImageURL" type='text' placeholder="..." onInput={onInput}/>
+                <input className="Interactable" name="backgroundImageURL" type='text' placeholder="..." onInput={onInput} value={backgroundImageURL} />
             </form>
         </div>
     );
