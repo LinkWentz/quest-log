@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { CompleteButton, DefeatButton, DeleteButton } from './StatusButtons';
-import { CutCornerCard } from './SVGs';
+import { CutCornerCard, CheckboxIcon } from './SVGs';
 import EditableText from './EditableText';
 import API from '../scripts/API';
 
@@ -20,6 +20,27 @@ function Objective(props) {
         props.afterObjectiveDeletion(props.selected);
     };
 
+    const toggleCompleted = () => {
+        let newCompletionState;
+        switch (content.completed) {
+            case true: 
+                newCompletionState = false;
+                break;
+            case false: 
+                newCompletionState = null;
+                break;
+            case null:
+                newCompletionState = true;
+                break;
+        }
+
+        setContent({
+            ...content,
+            completed: newCompletionState
+        });
+        console.log(newCompletionState);
+    }
+
     useEffect(() => {
         updateObjectiveData(content);
     }, [content]);
@@ -32,9 +53,14 @@ function Objective(props) {
             ${content.completed == false ? 'Defeat' : ''}`} 
         onClick={props.onClick}>
             <CutCornerCard />
+            <div className="completionStateToggle" onClick={toggleCompleted}>
+                <CheckboxIcon symbol={
+                    `${content.completed == null ? '!' : ''} 
+                     ${content.completed == true ? '✓' : ''} 
+                     ${content.completed == false ? '✕' : ''}`
+                     .trim()}/>
+            </div>
             <EditableText placeholder='Objective Statement' onContentChange={(newText) => {setContent({ ...content, statement: newText})}} selected={props.selected} onlyEditableIfSelected>{props.children}</EditableText>
-            <CompleteButton content={content} setContent={setContent} selected={props.selected} onlyClickableIfSelected/>
-            <DefeatButton content={content} setContent={setContent} selected={props.selected} onlyClickableIfSelected/>
             <DeleteButton delete={deleteObjective} selected={props.selected} onlyClickableIfSelected/>
         </div>
     )

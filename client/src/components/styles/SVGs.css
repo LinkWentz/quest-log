@@ -1,4 +1,25 @@
-.CheckboxIcon>g>path:nth-child(1) {
+.CheckboxIcon {
+    position: relative;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.CheckboxIcon>svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    height: 100%;
+    width: 100%;
+}
+
+.CheckboxIcon>span {
+    color: black;
+}
+
+.CheckboxIcon>svg>g>path:nth-child(1) {
     display: inline;
     fill: none;
     fill-opacity: 1;
@@ -9,31 +30,12 @@
     stroke-opacity: 1
 }
 
-.CheckboxIcon>g>path:nth-child(2) {
+.CheckboxIcon>svg>g>path:nth-child(2) {
     display: inline;
     fill: #ffd641;
     fill-opacity: 1;
     stroke: #ffd641;
     stroke-width: 0.5;
-    stroke-linecap: butt;
-    stroke-dasharray: none;
-    stroke-opacity: 1
-}
-
-.CheckboxIcon>g>text {
-    fill: #000000;
-    fill-opacity: 1;
-    stroke: none;
-    stroke-width: 1.47003;
-    stroke-opacity: 1
-}
-
-.CheckboxIcon>g>text>tspan {
-    font-size: 9.33471px;
-    fill: #000000;
-    fill-opacity: 1;
-    stroke: none;
-    stroke-width: 1.47003;
     stroke-linecap: butt;
     stroke-dasharray: none;
     stroke-opacity: 1
@@ -136,25 +138,37 @@
 }
 
 .ListIcon>g>circle:nth-child(1) {
-    fill:#4dcfd8;fill-opacity:1;stroke-width:2.66667
+    fill: #4dcfd8;
+    fill-opacity: 1;
+    stroke-width: 2.66667
 }
 
 .ListIcon>g>circle:nth-child(2) {
-    fill:#4dcfd8;fill-opacity:1;stroke-width:2.66667
+    fill: #4dcfd8;
+    fill-opacity: 1;
+    stroke-width: 2.66667
 }
 
 .ListIcon>g>circle:nth-child(3) {
-    fill:#4dcfd8;fill-opacity:1;stroke-width:2.66667
+    fill: #4dcfd8;
+    fill-opacity: 1;
+    stroke-width: 2.66667
 }
 
 .ListIcon>g>rect:nth-child(4) {
-    fill:#4dcfd8;fill-opacity:1;stroke-width:2
+    fill: #4dcfd8;
+    fill-opacity: 1;
+    stroke-width: 2
 }
 
 .ListIcon>g>rect:nth-child(5) {
-    fill:#4dcfd8;fill-opacity:1;stroke-width:2
+    fill: #4dcfd8;
+    fill-opacity: 1;
+    stroke-width: 2
 }
 
 .ListIcon>g>rect:nth-child(6) {
-    fill:#4dcfd8;fill-opacity:1;stroke-width:2
+    fill: #4dcfd8;
+    fill-opacity: 1;
+    stroke-width: 2
 }

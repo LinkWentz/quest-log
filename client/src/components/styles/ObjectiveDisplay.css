@@ -4,6 +4,7 @@
 
   margin: 0.5rem 0;
   padding: 0 1rem;
+  padding-left: 5rem;
   min-width: 50%;
   max-width: 100%;
   min-height: 4.1rem;
@@ -20,6 +21,10 @@
   position: relative;
 
   z-index: 13;
+}
+
+.Objective > .span {
+  margin-left: 4rem;
 }
 
 .Objective.newObjective::after {
@@ -65,9 +70,9 @@
 .Objective .statusButtons {
   visibility: hidden;
   position: absolute;
-  top: 33%;
+  top: 16.5%;
 
-  height: 33%;
+  height: 66%;
 
   z-index: 13;
 }
@@ -77,14 +82,66 @@
   position: absolute;
 }
 
-.Objective .complete {
-  right: 14%;
-}
-
-.Objective .defeat {
-  right: 8%;
-}
-
 .Objective .delete {
   right: 2%;
+}
+
+.completionStateToggle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  aspect-ratio: 1;
+}
+
+.completionStateToggle > .CheckboxIcon {
+  position: absolute;
+  top: 15%;
+  left: 15%;
+  height: 70%;
+  aspect-ratio: 1;
+
+  z-index: 12;
+}
+
+.Objective:not(.Selected)>.completionStateToggle>.CheckboxIcon>svg>g>path:nth-child(1) {
+  fill: transparent;
+  stroke: var(--redText);
+}
+
+.Objective:not(.Selected)>.completionStateToggle>.CheckboxIcon>svg>g>path:nth-child(2) {
+  fill: black;
+  stroke: transparent;
+}
+
+.Objective:not(.Selected)>.completionStateToggle>.CheckboxIcon>span {
+  color: black;
+}
+
+.Objective.Complete>.completionStateToggle>.CheckboxIcon>svg>g>path:nth-child(1) {
+  fill: black;
+  stroke: rgba(87, 211, 148, 1);
+}
+
+.Objective.Complete>.completionStateToggle>.CheckboxIcon>svg>g>path:nth-child(2) {
+  fill: rgba(87, 211, 148, 1);
+  stroke: rgba(87, 211, 148, 1);
+}
+
+.Objective.Complete>.completionStateToggle>.CheckboxIcon>span {
+  color: black;
+}
+
+.Objective.Defeat>.completionStateToggle>.CheckboxIcon>svg>g>path:nth-child(1) {
+  fill: black;
+  stroke: red;
+}
+
+.Objective.Defeat>.completionStateToggle>.CheckboxIcon>svg>g>path:nth-child(2) {
+  fill: red;
+  stroke: red;
+}
+
+.Objective.Defeat>.completionStateToggle>.CheckboxIcon>span {
+  color: black;
 }
