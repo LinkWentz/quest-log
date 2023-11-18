@@ -1,3 +1,5 @@
+import './styles/StatusButtons.css';
+
 export function CompleteButton(props) {
 
     let style = {}

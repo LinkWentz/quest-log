@@ -1,0 +1,34 @@
+.statusButtons {
+    display: flex;
+
+    box-sizing: border-box;
+    aspect-ratio: 1;
+
+    font-size: 1.25rem;
+    border-radius: 9999px;
+
+    transition: 0.1s;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.statusButtons:hover {
+    box-shadow: inset 0 0 0.4em black;
+}
+
+.statusButtons:active {
+    box-shadow: inset 0 0 0.6em black;
+}
+
+.statusButtons.complete {
+    background-color: rgba(100, 255, 100, 1);
+}
+
+.statusButtons.defeat {
+    background-color: rgba(255, 100, 100, 1);
+}
+
+.statusButtons.delete {
+    background-color: rgba(150, 150, 150, 1);
+}
