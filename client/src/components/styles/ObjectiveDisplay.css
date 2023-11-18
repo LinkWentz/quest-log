@@ -1,88 +1,90 @@
 .Objective {
-    display: flex;
-    position: relative;
-  
-    margin: 0.5rem 0;
-    padding: 0 1rem;
-    min-width: 50%;
-    max-width: 100%;
-    min-height: 4.1rem;
-  
-    font-size: 2rem;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: visible;
-  
-    align-items: center;
-  }
+  display: flex;
+  position: relative;
 
-  .Objective * {
-    position: relative;
+  margin: 0.5rem 0;
+  padding: 0 1rem;
+  min-width: 50%;
+  max-width: 100%;
+  min-height: 4.1rem;
 
-    z-index: 13;
-  }
-  
-  .Objective.newObjective::after {
-    position: relative;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    content: '+';
-    font-family: sans-serif;
-    font-size: 3rem;
-    line-height: 0;
-    color: var(--redText);
+  font-size: 2rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: visible;
 
-    z-index: 13;
-  }
+  align-items: center;
+}
 
-  .Objective.newObjective:hover::after {
-    color: var(--blueText);
-    text-shadow: 0px 0px 10px;
-  }
+.Objective * {
+  position: relative;
 
-  .Objective > svg {
-    position: absolute;
-    top: 0;
-    left: 0;
+  z-index: 13;
+}
 
-    fill: var(--objectiveBackground);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+.Objective.newObjective::after {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  content: '+';
+  font-family: sans-serif;
+  font-size: 3rem;
+  line-height: 0;
+  color: var(--redText);
 
-    stroke: var(--redBackground);
-    stroke-width: 0.5px;
+  z-index: 13;
+}
 
-    height: 100%;
-    width: 100%;
+.Objective.newObjective:hover::after {
+  color: var(--blueText);
+  text-shadow: 0px 0px 10px;
+}
 
-    overflow: visible;
-    z-index: 12;
-  }
+.Objective>svg {
+  position: absolute;
+  top: 0;
+  left: 0;
 
-  .Objective .statusButtons {
-    visibility: hidden;
+  fill: var(--objectiveBackground);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 
-    position: absolute;
-    top: 125%;
-  
-    height: 50%;
-  }
-  
-  .Objective .complete {
-    right: 11%;
-  }
-  
-  .Objective .defeat {
-    right: 6%;
-  }
-  
-  .Objective .delete {
-    right: 1%;
-  }
-  
-  .Objective:hover .statusButtons {
-    transform: translateY(-200%);
-  }
+  stroke: var(--redBackground);
+  stroke-width: 0.5px;
+
+  height: 100%;
+  width: 100%;
+
+  overflow: visible;
+  z-index: 12;
+}
+
+.Objective .statusButtons {
+  visibility: hidden;
+  position: absolute;
+  top: 33%;
+
+  height: 33%;
+
+  z-index: 13;
+}
+
+.Objective.Selected .statusButtons {
+  visibility: visible;
+  position: absolute;
+}
+
+.Objective .complete {
+  right: 14%;
+}
+
+.Objective .defeat {
+  right: 8%;
+}
+
+.Objective .delete {
+  right: 2%;
+}

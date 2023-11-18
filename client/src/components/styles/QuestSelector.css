@@ -107,13 +107,13 @@
 
     margin: 0.35rem 0;
     padding: 0.5rem 1.5rem;
-    width: 100%;
+    width: 99%;
 
     overflow: visible;
     z-index: 11;
 }
 
-.Quest>svg {
+.Quest>svg{
     position: absolute;
     top: 0;
     left: 0;
@@ -174,27 +174,28 @@
 .Quest .statusButtons {
     visibility: hidden;
     position: absolute;
-    left: 100%;
+    top: 33%;
 
-    height: 29%;
+    height: 33%;
 
     z-index: 13;
 }
 
+.Quest.Selected .statusButtons {
+    visibility: visible;
+    position: absolute;
+}
+
 .Quest .complete {
-    top: 4%;
+    right: 14%;
 }
 
 .Quest .defeat {
-    top: 35%;
+    right: 8%;
 }
 
 .Quest .delete {
-    bottom: 4%;
-}
-
-.Quest:hover .statusButtons {
-    transform: translateX(-120%);
+    right: 2%;
 }
 
 .questList button {

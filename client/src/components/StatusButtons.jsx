@@ -1,4 +1,5 @@
 import './styles/StatusButtons.css';
+import { CheckboxIcon } from './SVGs';
 
 export function CompleteButton(props) {
 
@@ -20,7 +21,10 @@ export function CompleteButton(props) {
     }
 
     return(
-        <div className="statusButtons complete" style={style} onClick={toggleComplete}>✓</div>
+        <div className="statusButtons complete" style={style} onClick={toggleComplete}>
+            <CheckboxIcon symbol=""></CheckboxIcon>
+            <span>✓</span>
+        </div>
     )
 }
 
@@ -44,7 +48,10 @@ export function DefeatButton(props) {
     }
 
     return(
-        <div className="statusButtons defeat" style={style} onClick={toggleDefeat}>✕</div>
+        <div className="statusButtons defeat" style={style} onClick={toggleDefeat}>
+            <CheckboxIcon symbol=""></CheckboxIcon>
+            <span>✕</span>
+        </div>
     )
 }
 
@@ -59,6 +66,9 @@ export function DeleteButton(props) {
     }
 
     return(
-        <div className="statusButtons delete" style={style} onClick={ props.delete }>🗑</div>
+        <div className="statusButtons delete" style={style} onClick={ props.delete }>
+            <CheckboxIcon symbol=""></CheckboxIcon>
+            <span>🗑</span>
+        </div>
     )
 }

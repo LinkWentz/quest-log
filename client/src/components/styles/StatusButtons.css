@@ -1,34 +1,67 @@
 .statusButtons {
+    position: relative;
     display: flex;
 
     box-sizing: border-box;
     aspect-ratio: 1;
 
     font-size: 1.25rem;
-    border-radius: 9999px;
-
-    transition: 0.1s;
 
     align-items: center;
     justify-content: center;
+
+    z-index: 13;
 }
 
-.statusButtons:hover {
-    box-shadow: inset 0 0 0.4em black;
+.statusButtons > .CheckboxIcon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+    z-index: 12;
+}
+
+.statusButtons > .CheckboxIcon>g>path:nth-child(2) {
+    fill: black;
+}
+
+.statusButtons > .CheckboxIcon>g>text>tspan {
+    fill: transparent;
+}
+
+.statusButtons.complete:hover, .statusButtons.complete:hover>.CheckboxIcon>g>path,
+.statusButtons.defeat:hover, .statusButtons.defeat:hover>.CheckboxIcon>g>path,
+.statusButtons.delete:hover, .statusButtons.delete:hover>.CheckboxIcon>g>path {
+    color: var(--blueText);
+    stroke: var(--blueText);
+    text-shadow: 0px 0px 2px;
+}
+
+.statusButtons.complete:active, .statusButtons.complete:active>.CheckboxIcon>g>path,
+.statusButtons.defeat:active, .statusButtons.defeat:active>.CheckboxIcon>g>path,
+.statusButtons.delete:active, .statusButtons.delete:active>.CheckboxIcon>g>path {
+    color: var(--goldText);
+    stroke: var(--goldText);
+    text-shadow: 0px 0px 2px;
 }
 
 .statusButtons:active {
     box-shadow: inset 0 0 0.6em black;
 }
 
-.statusButtons.complete {
-    background-color: rgba(100, 255, 100, 1);
+.statusButtons.complete > .CheckboxIcon>g>path, .statusButtons.complete {
+    stroke: var(--redText);
+    color: var(--redText);
 }
 
-.statusButtons.defeat {
-    background-color: rgba(255, 100, 100, 1);
+.statusButtons.defeat > .CheckboxIcon>g>path, .statusButtons.defeat {
+    stroke: var(--greenText);
+    color: var(--greenText);
 }
 
-.statusButtons.delete {
-    background-color: rgba(150, 150, 150, 1);
+.statusButtons.delete > .CheckboxIcon>g>path, .statusButtons.delete  {
+    stroke: var(--greyText);
+    color: var(--greyText);
 }

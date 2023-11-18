@@ -1,6 +1,7 @@
 import EditableText from './EditableText';
 import { CutCornerCard } from './SVGs';
 import { useState, useEffect } from 'react';
+import { CompleteButton, DefeatButton, DeleteButton } from './StatusButtons';
 import API from '../scripts/API';
 
 function Quest(props) {
@@ -57,12 +58,11 @@ function Quest(props) {
                 </EditableText>
             </header>
             <footer>{latestObjective}</footer>
+            <CompleteButton content={content} setContent={setContent} selected={props.selected} onlyClickableIfSelected/>
+            <DefeatButton content={content} setContent={setContent} selected={props.selected} onlyClickableIfSelected/>
+            <DeleteButton delete={deleteQuest} selected={props.selected} onlyClickableIfSelected/>
         </div>
     );
 }
-
-/*             <CompleteButton content={content} setContent={setContent} selected={props.selected} onlyClickableIfSelected/>
-            <DefeatButton content={content} setContent={setContent} selected={props.selected} onlyClickableIfSelected/>
-            <DeleteButton delete={deleteQuest} selected={props.selected} onlyClickableIfSelected/> */
 
 export default Quest

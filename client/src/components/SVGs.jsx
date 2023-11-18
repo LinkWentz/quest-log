@@ -1,13 +1,13 @@
 import './styles/SVGs.css';
 
-export function CheckboxIcon() {
+export function CheckboxIcon({ symbol }) {
     return(
         <svg preserveAspectRatio='none' viewBox="0 0 17.5 17.5" className="CheckboxIcon">
             <g id="layer5" transform="translate(-3.7499999,-3.7499999)">
                 <path d="M 3.9999999,3.9999999 H 21 V 21 H 10 L 3.9999999,15 Z" id="path13" />
                 <path d="M 4.75,4.7285715 H 20.271429 V 20.271429 h -9 L 4.75,14 Z" id="path13-2" />
                 <text x="10.66314" y="15.893404" id="text39">
-                    <tspan id="tspan39" x="10.66314"y="15.893404">!</tspan>
+                    <tspan id="tspan39" x="10.66314"y="15.893404">{symbol || '!'}</tspan>
                 </text>
             </g>
         </svg>
