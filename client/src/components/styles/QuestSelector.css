@@ -118,11 +118,9 @@
     top: 0;
     left: 0;
 
-    fill: var(--questBackground);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 
-    stroke: var(--goldBorder);
     stroke-width: 1px;
 
     height: 100%;
@@ -130,6 +128,45 @@
 
     overflow: visible;
     z-index: 12;
+}
+
+.Quest {
+    fill: var(--goldQuestBackground);
+    stroke: var(--goldQuestBorder);
+}
+
+.Quest:hover>svg, .Quest:active>svg, .Quest.Selected>svg {
+    fill: var(--goldQuestBackgroundActive);
+}
+
+.Quest.Selected>svg {
+    stroke: var(--goldText);
+}
+
+.Quest.Complete {
+    fill: var(--redQuestBackground);
+    stroke: var(--redQuestBorder);
+}
+
+.Quest.Complete:hover>svg, .Quest.Complete:active>svg, .Quest.Complete.Selected>svg {
+    fill: var(--redQuestBackgroundActive);
+}
+
+.Quest.Complete.Selected>svg {
+    stroke: var(--redText);
+}
+
+.Quest.Defeat {
+    fill: var(--greenQuestBackground);
+    stroke: var(--greenQuestBorder);
+}
+
+.Quest.Defeat:hover>svg, .Quest.Defeat:active>svg, .Quest.Selected>svg {
+    fill: var(--greenQuestBackgroundActive);
+}
+
+.Quest.Defeat.Selected>svg {
+    stroke: var(--greenText);
 }
 
 .Quest header {

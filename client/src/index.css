@@ -14,11 +14,18 @@
   --redText: #FF6157;
   --redGlow: rgb(255, 98, 87, 0.2);
   --redBackground: #431617;
+  --redQuestBorder: rgba(55, 23, 25, 1);
+  --redQuestBackground: rgba(23, 14, 22, 0.7);
+  --redQuestBackgroundActive: rgba(42, 17, 24, 0.7);
   --goldText: #ffd641;
+  --goldQuestBorder: rgba(62, 44, 24, 1);
+  --goldQuestBackground: rgba(21, 15, 22, 0.7);
+  --goldQuestBackgroundActive: rgba(47, 33, 23, 0.7);
   --greenText: #2b925d;
+  --greenQuestBorder: rgba(16, 39, 40, 1);
+  --greenQuestBackground: rgba(12, 15, 22, 0.7);
+  --greenQuestBackgroundActive: rgba(15, 23, 28, 0.7);
   --greyText: #99948F;
-  --goldBorder: rgba(164, 121, 40, 1);
-  --questBackground: rgba(21, 15, 22, 0.7);
   --objectiveBackground: rgba(40, 20, 20, 0.2);
 }
 
