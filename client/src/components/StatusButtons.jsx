@@ -22,8 +22,7 @@ export function CompleteButton(props) {
 
     return(
         <div className="statusButtons complete" style={style} onClick={toggleComplete}>
-            <CheckboxIcon symbol=""></CheckboxIcon>
-            <span>✓</span>
+            <CheckboxIcon symbol="✓"></CheckboxIcon>
         </div>
     )
 }
@@ -49,8 +48,7 @@ export function DefeatButton(props) {
 
     return(
         <div className="statusButtons defeat" style={style} onClick={toggleDefeat}>
-            <CheckboxIcon symbol=""></CheckboxIcon>
-            <span>✕</span>
+            <CheckboxIcon symbol="✕"></CheckboxIcon>
         </div>
     )
 }
@@ -67,8 +65,7 @@ export function DeleteButton(props) {
 
     return(
         <div className="statusButtons delete" style={style} onClick={ props.delete }>
-            <CheckboxIcon symbol=""></CheckboxIcon>
-            <span>🗑</span>
+            <CheckboxIcon symbol="🗑"></CheckboxIcon>
         </div>
     )
 }

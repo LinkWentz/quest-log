@@ -39,39 +39,60 @@
 
 .statusButtons > .CheckboxIcon>g>text>tspan {
     fill: transparent;
+    stroke: transparent;
 }
 
-.statusButtons.complete:hover, .statusButtons.complete:hover>.CheckboxIcon>g>path,
-.statusButtons.defeat:hover, .statusButtons.defeat:hover>.CheckboxIcon>g>path,
-.statusButtons.delete:hover, .statusButtons.delete:hover>.CheckboxIcon>g>path {
+.statusButtons.complete:hover>.CheckboxIcon>g>text>tspan,
+.statusButtons.defeat:hover>.CheckboxIcon>g>text>tspan,
+.statusButtons.delete:hover>.CheckboxIcon>g>text>tspan {
+    fill: var(--blueText)
+}
+
+.statusButtons.complete:hover>.CheckboxIcon>g>path, .statusButtons.complete,
+.statusButtons.defeat:hover>.CheckboxIcon>g>path, .statusButtons.defeat,
+.statusButtons.delete:hover>.CheckboxIcon>g>path, .statusButtons.delete {
     color: var(--blueText);
     stroke: var(--blueText);
     text-shadow: 0px 0px 2px;
 }
 
-.statusButtons.complete:active, .statusButtons.complete:active>.CheckboxIcon>g>path,
-.statusButtons.defeat:active, .statusButtons.defeat:active>.CheckboxIcon>g>path,
-.statusButtons.delete:active, .statusButtons.delete:active>.CheckboxIcon>g>path {
+.statusButtons.complete:active>.CheckboxIcon>g>text>tspan,
+.statusButtons.defeat:active>.CheckboxIcon>g>text>tspan,
+.statusButtons.delete:active>.CheckboxIcon>g>text>tspan {
+    fill: var(--goldText);
+}
+
+.statusButtons.complete:active>.CheckboxIcon>g>path, .statusButtons.complete,
+.statusButtons.defeat:active>.CheckboxIcon>g>path, .statusButtons.defeat,
+.statusButtons.delete:active>.CheckboxIcon>g>path, .statusButtons.delete {
     color: var(--goldText);
     stroke: var(--goldText);
     text-shadow: 0px 0px 2px;
 }
 
-.statusButtons:active {
-    box-shadow: inset 0 0 0.6em black;
+.statusButtons.complete>.CheckboxIcon>g>text>tspan {
+    fill: var(--redText);
 }
 
-.statusButtons.complete > .CheckboxIcon>g>path, .statusButtons.complete {
+.statusButtons.complete>.CheckboxIcon>g>path, .statusButtons.complete {
     stroke: var(--redText);
     color: var(--redText);
 }
 
-.statusButtons.defeat > .CheckboxIcon>g>path, .statusButtons.defeat {
+.statusButtons.defeat>.CheckboxIcon>g>text>tspan {
+    fill: var(--greenText);
+}
+
+.statusButtons.defeat>.CheckboxIcon>g>path, .statusButtons.defeat {
     stroke: var(--greenText);
     color: var(--greenText);
 }
 
-.statusButtons.delete > .CheckboxIcon>g>path, .statusButtons.delete  {
+.statusButtons.delete>.CheckboxIcon>g>text>tspan {
+    fill: var(--greyText);
+}
+
+.statusButtons.delete>.CheckboxIcon>g>path, .statusButtons.delete {
     stroke: var(--greyText);
     color: var(--greyText);
 }
