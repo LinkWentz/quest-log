@@ -99,6 +99,7 @@ function QuestSelector() {
                     questID={currentQuest.id}
                     selected={currentQuestIsSelected}
                     onClick={() => {setSelectedQuest(quest)}}
+                    afterQuestUpdate={() => {refreshQuestList();updateSelectedQuest();}}
                     afterQuestDeletion={afterQuestDeletion}
                     title={currentQuest.title}
                     completed={currentQuest.completed}>

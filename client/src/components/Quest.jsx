@@ -43,7 +43,11 @@ function Quest(props) {
 
     useEffect(() => {
         updateQuestData(content);
-    }, [content])
+    }, [content]);
+
+    useEffect(() => {
+        props.afterQuestUpdate();
+    }, [content.completed]);
 
     return (
         <div className={
