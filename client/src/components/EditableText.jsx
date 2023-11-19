@@ -47,7 +47,8 @@ function EditableText(props) {
             suppressContentEditableWarning={true} 
             onInput={updateContent}
             onFocus={onFocus} 
-            onBlur={onBlur}>
+            onBlur={onBlur}
+            spellCheck="false">
                 {props.children || props.placeholder || '...'}
             </span>
             &nbsp;
