@@ -68,6 +68,11 @@ function StepDisplay() {
             setCurrentStepID(steps[currentStep].id);
             setContent(steps[currentStep]);
         }
+        else if (steps.length == 0) {
+            setCurrentStepID(null);
+            setContent({});
+            disableRefresh();
+        }
     }
 
     // When a new quest is selected
