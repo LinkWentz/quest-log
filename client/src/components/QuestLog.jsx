@@ -27,6 +27,7 @@ function QuestLog(props) {
             <div className="content">
                 &nbsp;<EditableText onContentChange={(newText) => {setContent({ ...content, title: newText})}} placeholder='Quest Log Title' selected={props.selected} onlyEditableIfSelected>{props.children}</EditableText>
             </div>
+            <DeleteButton delete={deleteQuestLog} selected={props.selected} onlyClickableIfSelected/>
         </div>
     );
 }

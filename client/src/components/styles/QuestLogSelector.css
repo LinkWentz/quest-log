@@ -13,7 +13,7 @@
     align-items: end;
     justify-content: center;
 
-    overflow: hidden;
+    overflow: visible;
 }
 
 .QuestLogSelector::before, .QuestLogSelector::after {
@@ -61,6 +61,10 @@
     text-shadow: 0px 0px 10px;
 }
 
+.QuestLog {
+    position: relative;
+}
+
 .QuestLog .content {
     display: flex;
 
@@ -81,7 +85,16 @@
 }
 
 .QuestLog .delete {
-    display: none;
+    visibility: none;
+
+    position: absolute;
+    top: 125%;
+    left: 50%;
+
+    height: 75%;
+    aspect-ratio: 1;
+
+    transform: translateX(-50%);
 }
 
 .QuestLog.Selected {
@@ -91,6 +104,10 @@
 
     color: var(--blueText);
     text-shadow: 0px 0px 10px;
+}
+
+.QuestLog.Selected .delete {
+    visibility: visible;
 }
 
 .newQuestLog {

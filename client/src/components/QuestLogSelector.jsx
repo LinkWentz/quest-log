@@ -2,6 +2,7 @@ import './styles/QuestLogSelector.css'
 import QuestLog from './QuestLog'
 import { useState, useEffect, useContext } from 'react';
 import { SelectedIDsContext } from '../App'
+import { DeleteButton } from './StatusButtons';
 import API from '../scripts/API';
 
 function QuestLogSelector() {
@@ -85,7 +86,7 @@ function QuestLogSelector() {
     }, [selectedQuestLog, questLogs]);
 
     return (
-        <div className="QuestLogSelector Background">
+         <div className="QuestLogSelector Background">
             {questLogElements}
             <div className="newQuestLog Interactable" onClick={createNewQuestLog}/>
         </div>
