@@ -10,8 +10,6 @@ function QuestSelector() {
     const {selectedIDs, setSelectedIDs} = useContext(SelectedIDsContext);
 
     const [quests, setQuests] = useState([]);
-
-    const [selectedFilter, setSelectedFilter] = useState(0);
     
     const [questCounts, setQuestCounts] = useState({
         all: 0,
@@ -45,35 +43,10 @@ function QuestSelector() {
     }, [selectedQuest]);
 
     // API interaction
-    const filterQuests = (quests) => {
-        const filteredQuests = [];
-
-        for (const quest in quests) {
-            const currentQuest = quests[quest];
-
-            if (currentQuest.completed !== null && selectedFilter == 1) {    
-                continue;
-            }
-            if (currentQuest.completed !== false && selectedFilter == 2) {
-                continue;
-            }
-            if (currentQuest.completed !== true && selectedFilter == 3) {
-                continue;
-            }
-
-            filteredQuests.push(currentQuest);
-        }
-
-        return filteredQuests;
-    }
-
     const refreshQuestList = async () => {
         const newQuests = selectedIDs.selectedQuestLogID ? await API.get.questsForQuestLog(selectedIDs.selectedQuestLogID) : [];
-        
-        countQuests(newQuests);
-        const filteredQuests = await filterQuests(newQuests);
 
-        setQuests(filteredQuests);
+        setQuests(newQuests);
     };
     
     const createNewQuest = async () => {
@@ -82,7 +55,7 @@ function QuestSelector() {
     }
 
     // Rendering
-    const countQuests = (quests) => {
+    const refreshQuestCounts = () => {
         const newQuestCounts = {
             all: quests.length,
             completed: 0,
@@ -142,10 +115,11 @@ function QuestSelector() {
         refreshQuestList();
         setSelectedQuest(0);
         updateSelectedQuest();
-    }, [selectedIDs.selectedQuestLogID, selectedFilter]);
+    }, [selectedIDs.selectedQuestLogID]);
 
     // When a new quest is selected or new quests are recieved
     useEffect(() => {
+        refreshQuestCounts();
         buildQuestElements();
         updateSelectedQuest();
     }, [quests, selectedQuest]);
@@ -153,26 +127,22 @@ function QuestSelector() {
     return (
         <div className="QuestSelector">
             <div className="tabs">
-                <div className={`fullQuestListButton statusButton ${selectedFilter == 0 ? 'Selected' : ''}`}
-                    onClick={() => {setSelectedFilter(0)}}>
+                <div className={`fullQuestListButton statusButton Selected`}>
                         <FileIcon/>
                         <ListIcon/>
                         <span className="questCount">{questCounts.all}</span>
                 </div>
-                <div className={`incompleteQuestListButton statusButton ${selectedFilter == 1 ? 'Selected' : ''}`}
-                    onClick={() => {setSelectedFilter(1)}}>
+                <div className={`incompleteQuestListButton statusButton`}>
                         <FileIcon/>
                         <ExclamationPointIcon/>
                         <span className="questCount">{questCounts.incomplete}</span>
                 </div>
-                <div className={`defeatedQuestListButton statusButton ${selectedFilter == 2 ? 'Selected' : ''}`}
-                    onClick={() => {setSelectedFilter(2)}}>
+                <div className={`defeatedQuestListButton statusButton`}>
                         <FileIcon/>
                         <CompassIcon/>
                         <span className="questCount">{questCounts.defeated}</span>
                 </div>
-                <div className={`completedQuestListButton statusButton ${selectedFilter == 3 ? 'Selected' : ''}`}
-                    onClick={() => {setSelectedFilter(3)}}>
+                <div className={`completedQuestListButton statusButton`}>
                         <FileIcon/>
                         <CheckmarkIcon/>
                         <span className="questCount">{questCounts.completed}</span>
