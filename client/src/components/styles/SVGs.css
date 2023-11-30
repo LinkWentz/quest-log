@@ -172,3 +172,48 @@
     fill-opacity: 1;
     stroke-width: 2
 }
+
+.CursorIcon {
+    display: inline;
+    fill: #24fcfe;
+}
+
+.HardDriveIcon {
+    transform: translate(-0.65841301, -10.873746);
+    fill: rgba(150, 90, 0, 0.2);
+    stroke: rgba(150, 90, 0, 1);
+    overflow: visible;
+}
+
+.HardDriveIcon * {
+    opacity: 0;
+}
+
+.HardDriveIcon.Selected * {
+    opacity: 100;
+}
+
+.HardDriveIcon>g>path {
+    display: inline;
+}
+
+.HardDriveIcon>g>path {
+    transform: translateY(20%);
+}
+
+.HardDriveIcon.Selected>g>path {
+    transform: translateY(0);
+}
+
+.HardDriveIcon>g>path:nth-child(1) {
+    transition: 0.5s;
+}
+
+.HardDriveIcon>g>path:nth-child(2) {
+    transition: 0.3s;
+}
+
+.HardDriveIcon>g>path:nth-child(3) {
+    transition: 0.1s;
+}
+
