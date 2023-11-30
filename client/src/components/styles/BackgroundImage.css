@@ -26,9 +26,9 @@
     background-color: rgba(0, 0, 0, 0.9);
     background: 
         radial-gradient(ellipse 105% 52% at 20% 0%, rgba(255, 95, 87, 0.25) 0%, rgba(255, 95, 87, 0.25) 20%, transparent 100%),
-        radial-gradient(ellipse 100% 100% at 35% 35%, transparent 0%, black 45%),
+        radial-gradient(ellipse 100% 100% at 35% 35%, transparent 0%, black 60%),
         linear-gradient(rgba(0, 0, 0, 0.9) 100%, rgba(0, 0, 0, 0.9) 100%);
 
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
 }
