@@ -54,7 +54,7 @@
     height: 1.8rem;
     width: 100%;
 
-    border: 1px solid var(--goldBorder);
+    border: 2px solid var(--redHeaderLine);
     padding: 0px 1rem;
     outline: none;
 
@@ -62,7 +62,7 @@
 }
 
 .SettingsMenu input:focus-within{
-    border: 1px solid var(--goldBorder);
+    border: 2px solid var(--redHeaderLine);
 
     color: var(--redText);
 }
