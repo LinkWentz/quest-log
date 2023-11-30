@@ -16,6 +16,12 @@ function SettingsMenu() {
             await API.update.questLog(selectedIDs.selectedQuestLogID, { backgroundImageURL: newURL });
         })();
     }
+
+    const pasteFromClipboard = async (event) => {
+        event.preventDefault();
+        const text = await navigator.clipboard.readText();
+        setBackgroundImageURL(text);
+    }
     
     useEffect(() => {
         if (selectedIDs.selectedQuestLogID != null && selectedIDs.selectedQuestLogID) {
@@ -34,6 +40,7 @@ function SettingsMenu() {
             <form>
                 <label htmlFor="backgroundImageURL">Background Image URL</label>
                 <input className="Interactable" name="backgroundImageURL" type='text' placeholder="..." onInput={onInput} value={backgroundImageURL} />
+                <button onClick={pasteFromClipboard}>PASTE FROM CLIPBOARD</button>
             </form>
         </div>
     );

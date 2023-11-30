@@ -70,3 +70,25 @@
 .SettingsMenu:focus-within {
     bottom: 0;
 }
+
+.SettingsMenu button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 1rem auto;
+
+    background-color: transparent;
+    outline: none;
+    border: none;
+
+    color: var(--redText);
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.SettingsMenu button:hover {
+    color: var(--blueText);
+    text-shadow: 0 0 2px var(--blueText);
+}
+
