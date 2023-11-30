@@ -37,6 +37,10 @@
     fill: black;
 }
 
+.tabs > .statusButton:hover>.FileIcon>g>path {
+    stroke: var(--blueText);
+}
+
 .tabs > .statusButton.Selected > .FileIcon>g>path {
     stroke: var(--blueText);
     fill: var(--questBackground);
