@@ -4,6 +4,7 @@ import QuestLogSelector from './components/QuestLogSelector'
 import SettingsMenu from './components/SettingsMenu'
 import QuestSelector from './components/QuestSelector'
 import StepDisplay from './components/StepDisplay'
+import Cursor from './components/Cursor'
 import { useState, createContext } from 'react'
 
 export const BackgroundImageURLContext = createContext({});
@@ -23,6 +24,7 @@ function App() {
           <SettingsMenu/>
           <QuestSelector/>
           <StepDisplay/>
+          <Cursor/>
         </div>
       </SelectedIDsContext.Provider>
     </BackgroundImageURLContext.Provider>

@@ -9,6 +9,7 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
+  --cursorColor: #4dcfd8;
   --blueText: #5CF1F9;
   --blueBackground: #172b2e;
   --redText: #FF6157;
