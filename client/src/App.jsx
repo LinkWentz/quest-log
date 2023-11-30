@@ -1,5 +1,6 @@
 import './App.css'
 import BackgroundImage from './components/BackgroundImage'
+import Border from './components/Border'
 import QuestLogSelector from './components/QuestLogSelector'
 import SettingsMenu from './components/SettingsMenu'
 import QuestSelector from './components/QuestSelector'
@@ -20,6 +21,7 @@ function App() {
       <SelectedIDsContext.Provider value={{ selectedIDs, setSelectedIDs }}>
         <div className="App">
           <BackgroundImage/>
+          <Border/>
           <QuestLogSelector/>
           <SettingsMenu/>
           <QuestSelector/>
