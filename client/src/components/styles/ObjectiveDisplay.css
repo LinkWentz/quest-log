@@ -115,6 +115,12 @@
 }
 
 .Objective:not(.Selected)>.completionStateToggle>.CheckboxIcon>span {
+  text-shadow: 0px 0px 0px transparent;
+  color: black;
+}
+
+.Objective.Selected>.completionStateToggle>.CheckboxIcon>span {
+  text-shadow: 0px 0px 0px transparent;
   color: black;
 }
 
@@ -129,6 +135,7 @@
 }
 
 .Objective.Complete>.completionStateToggle>.CheckboxIcon>span {
+  text-shadow: 0px 0px 0px transparent;
   color: black;
 }
 
@@ -143,5 +150,6 @@
 }
 
 .Objective.Defeat>.completionStateToggle>.CheckboxIcon>span {
+  text-shadow: 0px 0px 0px transparent;
   color: black;
 }
