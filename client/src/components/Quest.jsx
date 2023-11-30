@@ -1,5 +1,5 @@
 import EditableText from './EditableText';
-import { CutCornerCard } from './SVGs';
+import { CutCornerCard, HardDriveIcon } from './SVGs';
 import { useState, useEffect } from 'react';
 import { CompassIcon, CheckmarkIcon, ExclamationPointIcon } from './SVGs';
 import { CompleteButton, DefeatButton, DeleteButton } from './StatusButtons';
@@ -56,6 +56,9 @@ function Quest(props) {
             ${content.completed == true ? 'Complete' : ''} 
             ${content.completed == false ? 'Defeat' : ''}`}
         onClick={props.onClick}>
+            <div className="hardDrive">
+                <HardDriveIcon />
+            </div>
             <CutCornerCard />
             <div className="statusSymbol">
                 {content.completed === true ? <CheckmarkIcon/> : <></>}
