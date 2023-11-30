@@ -4,6 +4,7 @@
     top: 0;
     left: 0;
 
+    padding: 0 4%;
     height: 7.25%;
     width: 100%;
 
@@ -23,7 +24,7 @@
 
     height: calc(100% - 0.05rem);
 
-    border-bottom: var(--redBackground) solid 0.1rem;
+    border-bottom: var(--redHeaderLine) solid 0.1rem;
 }
 
 .QuestLogSelector > *:first-child {
